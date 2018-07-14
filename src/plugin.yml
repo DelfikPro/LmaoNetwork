@@ -1,0 +1,27 @@
+name: LMAONetwork
+version: 1.15.7
+main: pro.delfik.lmao.core.Lmao
+author: DelfikPro
+softdepend: [YogurtCore, ImplarioLib]
+loadbefore: [LmaoLobby]
+commands: 
+  admin:
+    aliases: [a]
+  perms:
+  vanish:
+  invsee:
+  gamemode:
+    aliases: [gm1, gm0, gm3, gmc, gmw, gms, gm]
+  tp:
+    aliases: [teleport]
+  help:
+  player:
+    aliases: [me]
+  vanish:
+    aliases: [v]
+  ak:
+  sudo:
+  list:
+  control:
+  stop:
+  actions:
