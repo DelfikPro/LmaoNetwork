@@ -2,7 +2,7 @@ package pro.delfik.lmao.command.handle;
 
 import pro.delfik.util.Rank;
 
-public class NotEnoughPermissionsException extends Exception {
+public class NotEnoughPermissionsException extends RuntimeException {
 	
 	public final Rank required;
 	

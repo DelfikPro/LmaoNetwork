@@ -43,23 +43,8 @@ public class Init {
 				new CommandHelp(), new CommandSudo(), new CommandTeleport(),
 				new CommandVanish(), new AntiKillaura(), new CommandList(), new CommandControl(),
 				new CommandStop(), new CommandPlayer(), new CommandActions()};
-		new Thread(new Runnable() {@Override public void run() {
+		new Thread(() -> {
 			for (ImplarioCommand cmd : cmds) r.regCommand(cmd);
-			r.regCommand("update", Rank.ADMIN, "Управление обновлениями", "update [Название файла|all]");
-			r.regCommand("pex", Rank.DEV, "Управление привелегиями игроков", "pex [Ник] [...]");
-			r.regCommand("end", Rank.ADMIN, "Остановка главного сервера", "end [Сообщение]");
-			r.regCommand("alert", Rank.DEV, "Отправить сообщение на все сервера", "alert [Сообщение]");
-			r.regCommand("stp", Rank.MODER, "Телепортация на другой сервер или напрямую к игроку", "stp [Игрок|@Сервер]");
-			r.regCommand("tell", Rank.PLAYER, "Отправить личное сообщение игроку", "tell [Игрок] [Сообщение]");
-			r.regCommand("reply", Rank.PLAYER, "Быстрый ответ на последнее личное сообщение", "reply [Сообщение]");
-			r.regCommand("hub", Rank.PLAYER, "Телепортация в лобби", "hub");
-			r.regCommand("online", Rank.PLAYER, "Мониторинг онлайна серверов", "online [Игрок|@Сервер]");
-			r.regCommand("ban", Rank.MODER, "Блокировка игрока", "ban [Игрок] [Время] [Причина]");
-			r.regCommand("kick", Rank.MODER, "Отключение игрока от сервера", "kick [Игрок] [Причина]");
-			r.regCommand("unban", Rank.MODER, "Разблокировка игрока", "unban [Игрок]");
-			r.regCommand("friend", Rank.PLAYER, "Управление друзьями", "friend [add|remove|list] [...]");
-			r.regCommand("ignore", Rank.PLAYER, "Добавление игрока в чёрный список", "ignore [Игрок]");
-			r.regCommand("unignore", Rank.PLAYER, "Удаление игрока из чёрного списка", "unignore [Игрок]");
-		}}).start();
+		}).start();
 	}
 }

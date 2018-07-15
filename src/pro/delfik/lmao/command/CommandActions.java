@@ -71,7 +71,7 @@ public class CommandActions extends ImplarioCommand {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(banGUI(args[0]));
 			});
-		} else gui.put(4, new ItemStack(Material.COOKIE), pl -> pl.closeInventory());
+		} else gui.put(4, new ItemStack(Material.COOKIE), Player::closeInventory);
 		((Player) sender).openInventory(gui.getInventory());
 	}
 	
@@ -82,14 +82,14 @@ public class CommandActions extends ImplarioCommand {
 		private String reason;
 		private boolean ban;
 		
-		public ProhibitionInfo(String moder, String until, String reason, boolean ban) {
+		ProhibitionInfo(String moder, String until, String reason, boolean ban) {
 			this.moder = moder;
 			this.until = until;
 			this.reason = reason;
 			this.ban = ban;
 		}
 		
-		public static ProhibitionInfo load(String player, boolean ban) {
+		static ProhibitionInfo load(String player, boolean ban) {
 			String prepareddQuery = "SELECT * FROM " + (ban ? "Bans" : "Mutes") + " WHERE " + (ban ? "name" : "player") + " = '" + player + "'";
 			//Bukkit.broadcastMessage("§dPreparedQuery: §e" + prepareddQuery);
 			Database.Result result = Database.sendQuery(prepareddQuery);

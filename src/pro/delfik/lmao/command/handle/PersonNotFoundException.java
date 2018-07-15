@@ -1,6 +1,6 @@
 package pro.delfik.lmao.command.handle;
 
-public class PersonNotFoundException extends Exception {
+public class PersonNotFoundException extends RuntimeException {
 	public final String person;
 	
 	public PersonNotFoundException(String person) {

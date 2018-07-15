@@ -1,6 +1,6 @@
 package pro.delfik.lmao.command.handle;
 
-public class NotEnoughArgumentsException extends Exception {
+public class NotEnoughArgumentsException extends RuntimeException {
 	
 	public final String usage;
 	

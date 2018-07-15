@@ -10,6 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.command.handle.ImplarioExecutor;
+import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.util.Rank;
 
 import java.lang.reflect.Method;
@@ -59,9 +60,10 @@ public class Registrar {
 		return sb.toString();
 	}
 
-	public void regCommand(String cmd, CommandExecutor executor, Rank rank, String description, String usage)
-	{regCommand(cmd, executor, rank, description, usage, null);}
-
+	public void regCommand(LmaoCommand command) {
+	
+	}
+	
 	public void regCommand(ImplarioCommand command) {
 		Method[] ms = command.getClass().getMethods();
 		for (Method m : ms) {
