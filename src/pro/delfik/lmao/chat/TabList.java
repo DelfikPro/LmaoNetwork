@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
 
+//TODO на банж
 public class TabList {
 	
 	private static final PacketPlayOutPlayerListHeaderFooter packet;
