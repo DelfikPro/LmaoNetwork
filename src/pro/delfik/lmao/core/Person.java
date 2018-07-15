@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import pro.delfik.lmao.misc.Human;
 import pro.delfik.lmao.modules.VanishInfo;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.util.Collection;
 import java.util.HashMap;

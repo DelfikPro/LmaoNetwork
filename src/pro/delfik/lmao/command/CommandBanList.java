@@ -6,8 +6,7 @@ import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.command.handle.PersonNotFoundException;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 public class CommandBanList extends ImplarioCommand {
 	@Command(name = "banlist", rankRequired = Rank.MODER)

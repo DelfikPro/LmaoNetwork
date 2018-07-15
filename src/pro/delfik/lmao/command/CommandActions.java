@@ -16,7 +16,7 @@ import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.core.connection.database.ServerIO;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

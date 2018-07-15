@@ -4,7 +4,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.core.connection.database.ServerIO;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

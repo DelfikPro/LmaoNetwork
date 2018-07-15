@@ -3,7 +3,7 @@ package pro.delfik.lmao.command.handle;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 public abstract class ImplarioCommand {
 	

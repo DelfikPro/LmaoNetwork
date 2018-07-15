@@ -1,6 +1,6 @@
 package pro.delfik.lmao.command.handle;
 
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

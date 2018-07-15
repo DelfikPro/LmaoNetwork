@@ -10,7 +10,7 @@ import org.bukkit.plugin.PluginManager;
 import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.command.handle.ImplarioExecutor;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.lang.reflect.Method;
 import java.util.ArrayList;

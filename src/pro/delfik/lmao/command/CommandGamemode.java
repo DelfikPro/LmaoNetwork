@@ -1,7 +1,6 @@
 package pro.delfik.lmao.command;
 
 import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.lmao.permissions.Rank;
 import lib.Converter;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
@@ -11,6 +10,7 @@ import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.command.handle.NotEnoughArgumentsException;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.util.U;
+import pro.delfik.util.Rank;
 
 import java.util.List;
 

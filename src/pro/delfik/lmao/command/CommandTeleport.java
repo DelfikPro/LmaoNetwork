@@ -1,8 +1,6 @@
 package pro.delfik.lmao.command;
 
 import pro.delfik.lmao.command.handle.NotEnoughPermissionsException;
-import pro.delfik.lmao.permissions.Core;
-import pro.delfik.lmao.permissions.Rank;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
@@ -10,6 +8,7 @@ import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Person;
+import pro.delfik.util.Rank;
 
 public class CommandTeleport extends ImplarioCommand {
 	@Command(name = "tp", rankRequired = Rank.BUILDER, description = "Телепортация к игроку", usage = "tp [Игрок]", argsRequired = 1)

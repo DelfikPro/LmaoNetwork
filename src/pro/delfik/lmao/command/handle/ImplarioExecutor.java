@@ -4,7 +4,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.lang.reflect.Method;
 import java.text.SimpleDateFormat;

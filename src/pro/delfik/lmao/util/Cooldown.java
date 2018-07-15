@@ -32,18 +32,16 @@ public class Cooldown {
 	
 	public int task() {
 		
-		return Bukkit.getScheduler().scheduleSyncRepeatingTask(Lmao.plugin, new Runnable() {
-			@Override public void run() {
-				remain--;
-				for (Person p : players == null ? Person.online() : players) {
-					p.sendTitle("§f");
-					p.sendSubtitle("§a§l" + remain);
-					p.getHandle().playSound(p.getLocation(), Sound.ORB_PICKUP, 1, 1);
-				}
-				if (remain <= 0) {
-					Bukkit.getScheduler().cancelTask(task);
-					action.run();
-				}
+		return Bukkit.getScheduler().scheduleSyncRepeatingTask(Lmao.plugin, () -> {
+			remain--;
+			for (Person p : players == null ? Person.online() : players){
+				p.sendTitle("§f");
+				p.sendSubtitle("§a§l" + remain);
+				p.getHandle().playSound(p.getLocation(), Sound.ORB_PICKUP, 1, 1);
+			}
+			if(remain <= 0){
+				Bukkit.getScheduler().cancelTask(task);
+				action.run();
 			}
 		}, 20L, 20L);
 	}
@@ -51,6 +49,7 @@ public class Cooldown {
 	public String getName() {
 		return name;
 	}
+
 	public int getRemain() {
 		return remain;
 	}

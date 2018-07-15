@@ -1,10 +1,10 @@
 package pro.delfik.lmao.command;
 
-import pro.delfik.lmao.permissions.Rank;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.Person;
+import pro.delfik.util.Rank;
 
 public class CommandVanish extends ImplarioCommand {
 	@Command(name = "vanish", rankRequired = Rank.RECRUIT, usage = "vanish", description = "Управление ванишем")

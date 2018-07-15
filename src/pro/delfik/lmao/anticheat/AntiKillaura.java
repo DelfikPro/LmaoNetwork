@@ -7,7 +7,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 public class AntiKillaura extends ImplarioCommand implements Listener {
     

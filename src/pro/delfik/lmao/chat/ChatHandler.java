@@ -1,6 +1,5 @@
 package pro.delfik.lmao.chat;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -10,8 +9,8 @@ import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.User;
 import pro.delfik.lmao.core.connection.handle.SocketEvent;
 import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.lmao.permissions.Rank;
 import pro.delfik.lmao.util.U;
+import pro.delfik.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -111,7 +110,6 @@ public class ChatHandler implements Listener {
 		person.setRank(rank);
 		p.setDisplayName(rank.getPrefix() + rank.getNameColor() + p.getName());
 		p.getScoreboard().getPlayerTeam(p).removePlayer(p);
-		rank.getTeam().addPlayer(p);
 	}
 	
 	

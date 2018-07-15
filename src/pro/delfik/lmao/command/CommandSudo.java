@@ -1,6 +1,5 @@
 package pro.delfik.lmao.command;
 
-import pro.delfik.lmao.permissions.Rank;
 import lib.Converter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -8,6 +7,7 @@ import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.util.U;
+import pro.delfik.util.Rank;
 
 public class CommandSudo extends ImplarioCommand {
     @Command(name = "sudo", rankRequired = Rank.DEV, description = "Выполнение команды от лица игрока", usage = "sudo [Игрок] [Команда]", argsRequired = 2)

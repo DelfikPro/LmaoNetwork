@@ -3,6 +3,7 @@ package pro.delfik.lmao.permissions;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.User;
+import pro.delfik.util.Rank;
 
 public class Perms {
 	

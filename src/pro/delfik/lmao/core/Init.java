@@ -20,8 +20,7 @@ import pro.delfik.lmao.core.connection.handle.SocketEvent;
 import pro.delfik.lmao.misc.Garpoon;
 import pro.delfik.lmao.misc.Invseer;
 import pro.delfik.lmao.permissions.Authenticator;
-import pro.delfik.lmao.permissions.PermsManager;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 public class Init {
 	
@@ -31,7 +30,6 @@ public class Init {
 		SocketEvent.class.getCanonicalName();
 		r.regEvent(new ChatHandler());
 		r.regEvent(new OnlineHandler());
-		r.regEvent(new PermsManager());
 		r.regEvent(new Garpoon());
 		r.regEvent(new AntiKillaura());
 		r.regEvent(new AntiClicker());

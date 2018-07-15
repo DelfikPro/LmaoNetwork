@@ -11,7 +11,7 @@ import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.database.ServerIO;
 import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,33 +19,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class U {
-	
-	/* Конвертация из §9 в 11. */
-	public static byte woolFromColor(String chatColor) {
-		try {
-			switch (chatColor.substring(0, 2)) {
-				case "§0": return 15;
-				case "§1": return 11;
-				case "§2": return 13;
-				case "§3": return 9;
-				case "§4": return 12;
-				case "§5": return 10;
-				case "§6": return 1;
-				case "§7": return 8;
-				case "§8": return 7;
-				case "§9": return 11;
-				case "§a": return 5;
-				case "§b": return 3;
-				case "§c": return 14;
-				case "§d": return 6;
-				case "§e": return 4;
-				case "§f": return 0;
-				default: return 0;
-			}
-		} catch (Exception e) {
-			return 0;
-		}
-	}
 	
 	// Мультисерверность
 	

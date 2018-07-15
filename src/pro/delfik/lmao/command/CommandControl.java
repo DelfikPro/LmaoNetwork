@@ -1,12 +1,12 @@
 package pro.delfik.lmao.command;
 
 import pro.delfik.lmao.core.connection.database.ServerIO;
-import pro.delfik.lmao.permissions.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
 import pro.delfik.lmao.command.handle.Command;
 import pro.delfik.lmao.command.handle.ImplarioCommand;
+import pro.delfik.util.Rank;
 
 import java.io.File;
 import java.io.FileOutputStream;

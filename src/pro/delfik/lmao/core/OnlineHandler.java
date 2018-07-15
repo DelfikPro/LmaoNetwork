@@ -16,7 +16,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import pro.delfik.lmao.core.connection.database.ServerIO;
 import pro.delfik.lmao.chat.TabList;
 import pro.delfik.lmao.permissions.Core;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 public class OnlineHandler implements Listener {
 	
@@ -27,7 +27,6 @@ public class OnlineHandler implements Listener {
 		Person p = new Person(e.getPlayer());
 		Rank rank = User.getUser(e.getPlayer().getName()).getRank();
 		p.setDisplayName(rank.getPrefix() + rank.getNameColor() + p.getName());
-		rank.getTeam().addPlayer(p.getHandle());
 		TabList.send(e.getPlayer());
 		if (e.getPlayer().getName().equals("Desperated")) {
 			Person.online().forEach(person -> {

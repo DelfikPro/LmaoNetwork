@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import pro.delfik.lmao.core.User;
 import pro.delfik.lmao.core.connection.handle.SocketEvent;
 import pro.delfik.lmao.permissions.Core;
-import pro.delfik.lmao.permissions.Rank;
+import pro.delfik.util.Rank;
 
 import java.io.File;
 import java.util.ArrayList;
