@@ -11,8 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pro.delfik.lmao.command.handle.Command;
-import pro.delfik.lmao.command.handle.ImplarioCommand;
+import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.core.connection.database.ServerIO;
@@ -22,18 +21,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.EnumSet;
 
-public class CommandActions extends ImplarioCommand {
+public class CommandActions extends LmaoCommand {
 	
 	private final static ItemStack MUTE = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 4, "§f>> §e§lЗамутить §f<<", "§e§oАналог команды §7/mute");
 	private final static ItemStack KICK = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 1, "§f>> §e§lКикнуть §f<<",
 			"§e§oАналог команды §7/kick [Ник] Помеха игровому процессу");
 	private final static ItemStack BAN = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 14, "§f>> §e§lЗабанить §f<<", "§e§oАналог команды §7/ban");
 	
+	public CommandActions() {
+		super("actions", Rank.PLAYER, "Действия с игроком");
+	}
 	
 	
-	
-	@Command(name = "actions", argsRequired = 1, usage = "actions [Игрок]")
-	public void execute(CommandSender sender, String command, String[] args) {
+	@Override
+	public void run(CommandSender sender, String command, String[] args) {
 		Person s = Person.get(sender);
 		s.getHandle().openInventory(GUILoading.i());
 		GUI gui = new GUI(Bukkit.createInventory(null, 9, "§0§lДействия с " + args[0]));

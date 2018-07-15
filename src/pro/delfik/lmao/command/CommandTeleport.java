@@ -1,22 +1,34 @@
 package pro.delfik.lmao.command;
 
-import pro.delfik.lmao.command.handle.NotEnoughPermissionsException;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
-import pro.delfik.lmao.command.handle.Command;
-import pro.delfik.lmao.command.handle.ImplarioCommand;
+import pro.delfik.lmao.command.handle.CustomException;
+import pro.delfik.lmao.command.handle.LmaoCommand;
+import pro.delfik.lmao.command.handle.NotEnoughPermissionsException;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.util.Rank;
 
-public class CommandTeleport extends ImplarioCommand {
-	@Command(name = "tp", rankRequired = Rank.BUILDER, description = "Телепортация к игроку", usage = "tp [Игрок]", argsRequired = 1)
-	public void onCommand(CommandSender sender, String s, String[] args) throws NotEnoughPermissionsException {
+public class CommandTeleport extends LmaoCommand {
+	
+	public CommandTeleport() {
+		super("tp", Rank.VIP, "");
+	}
+	
+	public void run(CommandSender sender, String s, String[] args) throws NotEnoughPermissionsException {
 		Person p;
 		Person dest;
 		String destname;
-		if (!sender.isOp()) requireRank(sender, Rank.RECRUIT);
+		if (!sender.isOp()) {
+			requireRank(sender, Rank.RECRUIT);
+			p = Person.get(sender);
+			if (!p.isVanish()) try {
+				requireRank(sender, Rank.KURATOR);
+			} catch (NotEnoughPermissionsException ex) {
+				throw new CustomException("§cВы можете телепортироваться к игрокам только в ванише (/vanish)");
+			}
+		}
 		if (args.length == 1) {
 			p = Person.get(sender);
 			destname = args[0];

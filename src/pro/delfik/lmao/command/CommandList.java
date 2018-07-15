@@ -1,21 +1,20 @@
 package pro.delfik.lmao.command;
 
+import lib.Converter;
 import org.bukkit.command.CommandSender;
-import pro.delfik.lmao.command.handle.Command;
-import pro.delfik.lmao.command.handle.ImplarioCommand;
+import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
+import pro.delfik.util.Rank;
 
-import java.util.Collection;
-
-public class CommandList extends ImplarioCommand {
-    @Command(name = "list", description = "Список игроков на сервере", usage = "list")
-    public void list(CommandSender sender, String cmd, String[] args) {
-        StringBuilder sb = new StringBuilder();
-        Collection<Person> list = Person.online();
-        for (Person p : list) {
-            sb.append(p.getDisplayName()).append("§f, ");
-        }
-        sender.sendMessage("§aСписок игроков на сервере (§e" + list.size() + " всего§a):");
-        sender.sendMessage(sb.toString());
+public class CommandList extends LmaoCommand {
+    
+    public CommandList() {
+        super("list", Rank.PLAYER, "Показать список игроков на сервере");
+    }
+    
+    @Override
+    public void run(CommandSender sender, String cmd, String[] args) {
+        sender.sendMessage("§aСписок игроков на сервере (§e" + Person.online().size() + " всего§a):");
+        sender.sendMessage(Converter.merge(Person.online(), Person::getDisplayName, "§7, §f"));
     }
 }

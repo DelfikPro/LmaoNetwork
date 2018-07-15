@@ -22,10 +22,10 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 	
 	private final String description;
 	private Rank required;
-	private final String command;
+	private final String name;
 	
-	protected LmaoCommand(String name, Rank required, String description, String... aliases) {
-		this.command = name;
+	protected LmaoCommand(String name, Rank required, String description) {
+		this.name = name;
 		this.required = required;
 		this.description = description;
 	}
@@ -33,7 +33,7 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 	@Override
 	public boolean onCommand(CommandSender sender, Command bukkkitcommand, String command, String[] args) {
 		if (sender instanceof ConsoleCommandSender) {
-			run(sender, args);
+			run(sender, command, args);
 			return true;
 		}
 		Person user = Person.get(sender);
@@ -42,7 +42,7 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 			return false;
 		}
 		try {
-			run(sender, args);
+			run(sender, command, args);
 		} catch (ClassCastException ex) {
 			U.msg(sender, "§cGo away evil console :c");
 		} catch (Throwable t) {
@@ -67,7 +67,7 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 	
-	protected abstract void run(CommandSender sender, String[] args);
+	protected abstract void run(CommandSender sender, String command, String[] args);
 	
 	
 	public Rank getRequiredRank() {
@@ -109,7 +109,7 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 	}
 	
 	
-	protected List<String> tabComplete(CommandSender sender, String arg, int number) {
+	public List<String> tabComplete(CommandSender sender, String arg, int number) {
 		return Converter.tabCompleteList(Person.online(), Person::getName, arg);
 	}
 	
@@ -119,5 +119,9 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 		if (argnumber < 0) return new ArrayList<>();
 		String currentArg = args[argnumber];
 		return tabComplete(commandSender, currentArg, argnumber);
+	}
+	
+	public String getName() {
+		return name;
 	}
 }
