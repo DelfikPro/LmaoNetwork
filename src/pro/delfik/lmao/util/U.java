@@ -8,10 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.chat.ChatHandler;
 import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.database.ServerIO;
-import pro.delfik.lmao.permissions.Perms;
-import pro.delfik.util.Rank;
+import pro.d
 
 import java.util.Collection;
 import java.util.Collections;
@@ -19,17 +16,6 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class U {
-	
-	// Мультисерверность
-	
-	public static void send(String player, String server) {
-		if (server.startsWith("TEST") || server.startsWith("B_")) if (!Perms.isEnough(Bukkit.getPlayer(player), Rank.BUILDER, true)) return;
-		ServerIO.bungeeEvent("summon", player + '/' + server);
-	}
-	
-	public static void earn(String player, int money) {
-		ServerIO.connect("doshicksAdd ");
-	}
 
 	/*
 	* Селекторы

@@ -1,13 +1,10 @@
 package pro.delfik.lmao.chat;
 
-import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.User;
-import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
 import pro.delfik.util.Rank;
@@ -33,7 +30,7 @@ public class ChatHandler implements Listener {
 			return;
 		}
 		
-		User u = User.getUser(name);
+		Person u = Person.get(name);
 		
 		
 		// Сообщение для цитирования
@@ -99,19 +96,6 @@ public class ChatHandler implements Listener {
 		SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
 		return format.format(date);
 	}
-	
-	@EventHandler(priority = EventPriority.HIGH)
-	public void onSocket(PacketEvent e) {
-		if (!e.getChannel().equals("pex")) return;
-		String[] strings = e.getMsg().split("/");
-		Person person = Person.get(strings[0]);
-		Player p = person.getHandle();
-		Rank rank = Rank.decode(strings[1]);
-		person.setRank(rank);
-		p.setDisplayName(rank.getPrefix() + rank.getNameColor() + p.getName());
-		p.getScoreboard().getPlayerTeam(p).removePlayer(p);
-	}
-	
 	
 	public static void disable() {
 		off = true;

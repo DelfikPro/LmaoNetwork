@@ -28,7 +28,6 @@ public class OnlineHandler implements Listener {
 		TabList.send(e.getPlayer());
 	}
 	
-	
 	@EventHandler
 	public void event(PlayerPreLoginEvent event) {
 		if (Bukkit.getPlayer(event.getName()) != null) event.disallow(PlayerPreLoginEvent.Result.KICK_OTHER, "§cТы шо, самый умный?)");
