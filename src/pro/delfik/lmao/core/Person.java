@@ -17,6 +17,8 @@ import pro.delfik.util.Rank;
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Person {
 	
@@ -33,10 +35,11 @@ public class Person {
 	}
 
 	private static final HashMap<String, Person> names = new HashMap<>();
+	public static final Set<String> authed = new HashSet<>();
 	
 	private final CraftPlayer handle;
 	private Rank rank;
-	private boolean auth;
+	private boolean auth = false;
 	private final String name;
 	private volatile VanishInfo vanish = null;
 	
@@ -46,8 +49,8 @@ public class Person {
 		this.handle = (CraftPlayer) handle;
 		this.name = handle.getName();
 		this.rank = rank;
-		this.auth = auth;
 		names.put(name.toLowerCase(), this);
+		if (auth) auth();
 	}
 	
 	public boolean isAuth() {
@@ -56,6 +59,7 @@ public class Person {
 	
 	public void auth() {
 		this.auth = true;
+		authed.add(name);
 	}
 	
 	public static Collection<Person> online() {
@@ -107,6 +111,7 @@ public class Person {
 	public void remove() {
 		names.remove(name.toLowerCase());
 		online = false;
+		authed.remove(name);
 		if (vanish != null) vanish.getDisplay().remove();
 	}
 	
