@@ -24,7 +24,6 @@ public class Lmao extends JavaPlugin {
 		Init.r = new Registrar(this);
 		Init.events();
 		Init.commands();
-		Database.enable();
 	}
 	
 	@Override

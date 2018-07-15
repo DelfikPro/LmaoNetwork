@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.User;
-import pro.delfik.lmao.core.connection.handle.SocketEvent;
+import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
 import pro.delfik.util.Rank;
@@ -101,7 +101,7 @@ public class ChatHandler implements Listener {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void onSocket(SocketEvent e) {
+	public void onSocket(PacketEvent e) {
 		if (!e.getChannel().equals("pex")) return;
 		String[] strings = e.getMsg().split("/");
 		Person person = Person.get(strings[0]);
