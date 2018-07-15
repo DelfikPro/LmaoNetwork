@@ -19,7 +19,7 @@ public class PacketEvent extends Event {
 
 	private final Packet packet;
 
-	private PacketEvent(Packet packet) {
+	PacketEvent(Packet packet) {
 		this.packet = packet;
 	}
 

@@ -1,9 +1,11 @@
 package pro.delfik.lmao.core.connection;
 
+import org.bukkit.Bukkit;
 import pro.delfik.lmao.permissions.Core;
 import pro.delfik.net.Listener;
 import pro.delfik.net.P2P;
 import pro.delfik.net.Packet;
+import pro.delfik.net.packet.PacketInit;
 import pro.delfik.util.Converter;
 import pro.delfik.util.CryptoUtils;
 import pro.delfik.util.Scheduler;
@@ -26,6 +28,8 @@ public class Connect implements Listener{
 
 	private static CryptoUtils utils;
 
+	private static boolean closed = false;
+
 	static{
 		Map<String, String> config = Converter.deserializeMap(read("config.txt"), "\n", "/");
 		host = config.get("host");
@@ -42,19 +46,31 @@ public class Connect implements Listener{
 		}
 	}
 
-	@Override
-	public void on(P2P p2P) {
+	public static void send(Packet packet){
+		connect.p2p.send(packet);
+	}
 
+	public static void close(){
+		closed = true;
+		connect.p2p.close();
+	}
+
+	private P2P p2p;
+
+	@Override
+	public void on(P2P p2p) {
+		this.p2p = p2p;
+		p2p.send(new PacketInit(Bukkit.getMotd()));
 	}
 
 	@Override
 	public void update(Packet packet) {
-
+		Bukkit.getPluginManager().callEvent(new PacketEvent(packet));
 	}
 
 	@Override
 	public void off() {
-
+		if(!closed) init();
 	}
 
 	private static String prefix = System.getProperty("user.dir") + "/Core/";

@@ -42,6 +42,7 @@ public class OnlineHandler implements Listener {
 		String nick = player.getName();
 		User user = User.getUser(nick);
 		if (user == null) {
+			player.kickPlayer("Чота тебя нету");
 			return;
 		}
 		Boolean b = ServerIO.connect("getauth " + nick + " " + Bukkit.getMotd()).equals("true");
