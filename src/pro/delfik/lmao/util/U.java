@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.chat.ChatHandler;
 import pro.delfik.lmao.core.Lmao;
-import pro.d
+import pro.delfik.lmao.core.Person;
 
 import java.util.Collection;
 import java.util.Collections;
