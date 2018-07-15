@@ -15,7 +15,7 @@ import pro.delfik.lmao.core.connection.database.io.Helper;
 import pro.delfik.lmao.core.connection.database.io.Reader;
 import pro.delfik.lmao.core.connection.database.io.Writer;
 import pro.delfik.lmao.core.connection.handle.SocketEvent;
-import pro.delfik.lmao.util.CryptoUtils;
+import pro.delfik.util.CryptoUtils;
 
 import java.util.ArrayList;
 

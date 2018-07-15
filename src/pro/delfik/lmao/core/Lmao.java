@@ -1,13 +1,10 @@
 package pro.delfik.lmao.core;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.lmao.core.connection.handle.SocketEvent;
 import pro.delfik.lmao.permissions.Core;
-import pro.delfik.lmao.permissions.Rank;
 import pro.delfik.lmao.util.ServerType;
 
 public class Lmao extends JavaPlugin {

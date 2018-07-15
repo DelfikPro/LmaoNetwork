@@ -3,8 +3,8 @@ package pro.delfik.lmao.core.connection.database;
 import org.bukkit.Bukkit;
 import pro.delfik.lmao.core.connection.database.objects.DataList;
 import pro.delfik.lmao.core.connection.database.objects.DataObject;
-import pro.delfik.lmao.util.CryptoUtils;
 import pro.delfik.lmao.util.ServerType;
+import pro.delfik.util.CryptoUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -18,7 +18,6 @@ public class ServerIO {
 	
 	private static String host;
 	private static int port;
-	
 	private static CryptoUtils crypto;
 	
 	public static boolean isConnect() {
