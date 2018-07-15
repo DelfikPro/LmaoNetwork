@@ -6,8 +6,6 @@ import pro.delfik.lmao.core.OnlineHandler;
 import pro.delfik.net.Packet;
 import pro.delfik.net.packet.PacketUser;
 
-import java.util.HashMap;
-
 public class PacketListener implements Listener {
 	@EventHandler
 	public void event(PacketEvent event) {
