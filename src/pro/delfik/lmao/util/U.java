@@ -107,6 +107,7 @@ public class U {
 		for (Player p : Bukkit.getOnlinePlayers()) p.spigot().sendMessage(c);
 		Bukkit.getLogger().info(c.toPlainText());
 	}
+
 	public static void bc(Object... o) {
 		TextComponent c = constructComponent(o);
 		for (Player p : Bukkit.getOnlinePlayers()) p.spigot().sendMessage(c);
@@ -127,6 +128,7 @@ public class U {
 		c.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, suggest));
 		return c;
 	}
+
 	public static TextComponent run(String text, String hover, String suggest) {
 		TextComponent c = new TextComponent(text);
 		c.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
