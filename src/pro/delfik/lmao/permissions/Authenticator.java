@@ -13,16 +13,14 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import pro.delfik.lmao.core.User;
-import pro.delfik.lmao.core.connection.database.ServerIO;
+import pro.delfik.lmao.core.Person;
 
 public class Authenticator implements Listener {
 	
 	public static boolean isAuthorized(Player player) {
 		if (player == null) return false;
 		String name = player.getName();
-		return Core.players.contains(name);
+		return Person.authed.contains(name);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
@@ -57,14 +55,6 @@ public class Authenticator implements Listener {
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)
 				e.getPlayer().sendMessage("§cВы не вошли в игру.");
 		}
-	}
-	
-	@EventHandler
-	public void event(PlayerQuitEvent event) {
-		String nick = event.getPlayer().getName();
-		User.unloadUser(nick);
-		ServerIO.connect("remplayer " + nick);
-		Core.players.remove(nick);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)

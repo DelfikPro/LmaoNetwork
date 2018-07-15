@@ -43,7 +43,6 @@ public class OnlineHandler implements Listener {
 			return;
 		}
 		Person person = Person.load(player, packet.getRank(), packet.isAuthorized());
-		Core.players.add(nick);
 	}
 	
 	@EventHandler

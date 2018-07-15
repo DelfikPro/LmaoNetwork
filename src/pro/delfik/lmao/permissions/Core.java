@@ -16,11 +16,8 @@ import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.util.CryptoUtils;
 import pro.delfik.util.Scheduler;
 
-import java.util.ArrayList;
-
 public final class Core {
 	public static final String prefix = "LMAO §e> §c";
-	public static volatile ArrayList<String> players = new ArrayList<>();
 	
 	private static void classLoader() {
 		PacketEvent.class.getCanonicalName();
