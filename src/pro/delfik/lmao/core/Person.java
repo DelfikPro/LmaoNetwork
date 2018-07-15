@@ -20,20 +20,42 @@ import java.util.HashMap;
 
 public class Person {
 	
+	
+	public static Person load(Player p, Rank rank, boolean auth) {
+		if (get(p) != null) return null;
+		return new Person(p, rank, auth);
+	}
+	
+	public static void unload(String name) {
+		Person p = Person.get(name);
+		if (p == null) return;
+		p.remove();
+	}
+
 	private static final HashMap<String, Person> names = new HashMap<>();
 	
 	private final CraftPlayer handle;
 	private Rank rank;
+	private boolean auth;
 	private final String name;
 	private volatile VanishInfo vanish = null;
 	
 	private boolean online = true;
 	
-	public Person(Player handle) {
+	public Person(Player handle, Rank rank, boolean auth) {
 		this.handle = (CraftPlayer) handle;
 		this.name = handle.getName();
-		this.rank = User.getUser(handle.getName()).getRank();
+		this.rank = rank;
+		this.auth = auth;
 		names.put(name.toLowerCase(), this);
+	}
+	
+	public boolean isAuth() {
+		return auth;
+	}
+	
+	public void auth() {
+		this.auth = true;
 	}
 	
 	public static Collection<Person> online() {

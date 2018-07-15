@@ -5,7 +5,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import pro.delfik.lmao.core.User;
+import pro.delfik.lmao.core.Person;
 import pro.delfik.util.Rank;
 
 import java.util.HashMap;
@@ -30,7 +30,7 @@ public class AntiClicker extends Thread implements Listener {
 		damage++;
 		damages.put(nick, damage);
 		if (damage > 9) {
-			if (User.getUser(nick).getRank() == Rank.DEV) return;
+			if (Person.get(nick).getRank() == Rank.DEV) return;
 			event.setCancelled(true);
 		}
 		if (damage > 30) player.kickPlayer("§dПо-моему тыкать по мышке 30 раз в секунду как-то нечестно, тебе не кажется?");

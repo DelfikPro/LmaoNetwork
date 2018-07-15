@@ -5,18 +5,13 @@
 
 package pro.delfik.lmao.permissions;
 
-import com.sun.xml.internal.bind.v2.runtime.reflect.Lister;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pro.delfik.lmao.anticheat.AntiClicker;
 import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.User;
+import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.Connect;
-import pro.delfik.lmao.core.connection.database.ServerIO;
-import pro.delfik.lmao.core.connection.database.io.Helper;
-import pro.delfik.lmao.core.connection.database.io.Reader;
-import pro.delfik.lmao.core.connection.database.io.Writer;
 import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.util.CryptoUtils;
 import pro.delfik.util.Scheduler;
@@ -30,12 +25,11 @@ public final class Core {
 	private static void classLoader() {
 		PacketEvent.class.getCanonicalName();
 		CryptoUtils.class.getCanonicalName();
-		User.class.getCanonicalName();
+		Person.class.getCanonicalName();
 	}
 	
 	public static void init() {
 		classLoader();
-		User.loadUser("CONSOLE");
 		Bukkit.broadcastMessage("§cInitializing socketlistener...");
 		Connect.init();
 		Bukkit.broadcastMessage("§aSocketlistener-state: ACTIVE");
