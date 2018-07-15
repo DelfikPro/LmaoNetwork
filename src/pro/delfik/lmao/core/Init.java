@@ -14,8 +14,8 @@ import pro.delfik.lmao.command.CommandSudo;
 import pro.delfik.lmao.command.CommandTeleport;
 import pro.delfik.lmao.command.CommandVanish;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.connection.SocketListener;
-import pro.delfik.lmao.core.connection.handle.SocketEvent;
+import pro.delfik.lmao.core.connection.PacketListener;
+import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.misc.Garpoon;
 import pro.delfik.lmao.misc.Invseer;
 import pro.delfik.lmao.permissions.Authenticator;
@@ -25,13 +25,13 @@ public class Init {
 	public static Registrar r;
 	
 	public static void events() {
-		SocketEvent.class.getCanonicalName();
+		PacketEvent.class.getCanonicalName();
 		r.regEvent(new ChatHandler());
 		r.regEvent(new OnlineHandler());
 		r.regEvent(new Garpoon());
 		r.regEvent(new AntiClicker());
 		r.regEvent(new Authenticator());
-		r.regEvent(new SocketListener());
+		r.regEvent(new PacketListener());
 		r.regEvent(new Invseer());
 	}
 	
