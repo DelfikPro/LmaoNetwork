@@ -1,6 +1,7 @@
 package pro.delfik.lmao.core.connection;
 
 import org.bukkit.Bukkit;
+import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.permissions.Core;
 import pro.delfik.net.Listener;
 import pro.delfik.net.P2P;
@@ -65,7 +66,8 @@ public class Connect implements Listener{
 
 	@Override
 	public void update(Packet packet) {
-		Bukkit.getPluginManager().callEvent(new PacketEvent(packet));
+		Bukkit.getScheduler().runTask(Lmao.plugin, () ->
+		Bukkit.getPluginManager().callEvent(new PacketEvent(packet)));
 	}
 
 	@Override
