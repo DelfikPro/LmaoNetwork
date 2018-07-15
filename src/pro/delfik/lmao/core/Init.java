@@ -1,6 +1,7 @@
 package pro.delfik.lmao.core;
 
 import pro.delfik.lmao.anticheat.AntiClicker;
+import pro.delfik.lmao.anticheat.AntiKillaura;
 import pro.delfik.lmao.chat.ChatHandler;
 import pro.delfik.lmao.command.CommandActions;
 import pro.delfik.lmao.command.CommandAdmin;
@@ -13,7 +14,7 @@ import pro.delfik.lmao.command.CommandStop;
 import pro.delfik.lmao.command.CommandSudo;
 import pro.delfik.lmao.command.CommandTeleport;
 import pro.delfik.lmao.command.CommandVanish;
-import pro.delfik.lmao.command.handle.LmaoCommand;
+import pro.delfik.lmao.command.handle.ImplarioCommand;
 import pro.delfik.lmao.core.connection.PacketListener;
 import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.misc.Garpoon;
@@ -29,6 +30,7 @@ public class Init {
 		r.regEvent(new ChatHandler());
 		r.regEvent(new OnlineHandler());
 		r.regEvent(new Garpoon());
+		r.regEvent(new AntiKillaura());
 		r.regEvent(new AntiClicker());
 		r.regEvent(new Authenticator());
 		r.regEvent(new PacketListener());
@@ -36,12 +38,12 @@ public class Init {
 	}
 	
 	public static void commands() {
-		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
+		final ImplarioCommand[] cmds = new ImplarioCommand[] {new CommandAdmin(), new CommandGamemode(),
 				new CommandHelp(), new CommandSudo(), new CommandTeleport(),
-				new CommandVanish(), new CommandList(), new CommandControl(),
+				new CommandVanish(), new AntiKillaura(), new CommandList(), new CommandControl(),
 				new CommandStop(), new CommandPlayer(), new CommandActions()};
 		new Thread(() -> {
-			for (LmaoCommand cmd : cmds) r.regCommand(cmd);
+			for (ImplarioCommand cmd : cmds) r.regCommand(cmd);
 		}).start();
 	}
 }
