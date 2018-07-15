@@ -5,10 +5,13 @@
 
 package pro.delfik.lmao.permissions;
 
+import com.mysql.jdbc.Buffer;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import pro.delfik.lmao.anticheat.AntiClicker;
+import pro.delfik.lmao.core.Init;
+import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.User;
 import pro.delfik.lmao.core.connection.database.ServerIO;
 import pro.delfik.lmao.core.connection.database.io.Helper;
@@ -16,6 +19,7 @@ import pro.delfik.lmao.core.connection.database.io.Reader;
 import pro.delfik.lmao.core.connection.database.io.Writer;
 import pro.delfik.lmao.core.connection.handle.SocketEvent;
 import pro.delfik.util.CryptoUtils;
+import pro.delfik.util.Scheduler;
 
 import java.util.ArrayList;
 
@@ -39,34 +43,22 @@ public final class Core implements Runnable {
 		Bukkit.broadcastMessage("§cInitializing socketlistener...");
 		new Thread(new Core()).start();
 		Bukkit.broadcastMessage("§aSocketlistener-state: ACTIVE");
-		new Thread() {
-			@Override
-			public void run() {
+		Scheduler.init();
+		Bukkit.getScheduler().runTaskLater(Lmao.plugin, () -> {
+			for (Player p : Bukkit.getOnlinePlayers())
 				try {
-					sleep(2000L);
-				} catch (InterruptedException ignored) {}
-				for (Player p : Bukkit.getOnlinePlayers()) {
-					try {
-						Bukkit.getPluginManager().callEvent(new PlayerJoinEvent(p, ""));
-					} catch (Exception ex) {
-						ex.printStackTrace();
-					}
+					Bukkit.getPluginManager().callEvent(new PlayerJoinEvent(p, ""));
+				} catch (Exception ex) {
+					ex.printStackTrace();
 				}
-			}
-		}.start();
-		new Thread() {
+		}, 40L);
+		Scheduler.addTask(new Scheduler.Task(10) {
 			@Override
 			public void run() {
-				//noinspection InfiniteLoopStatement
-				while (true) {
-					try {
-						sleep(2000L);
-					} catch (InterruptedException ignored) {}
-					for (String s : players.toArray(new String[]{}))
-						if (ServerIO.connect("getauth " + s + " " + Bukkit.getMotd()).equals("true")) players.remove(s);
-				}
+				for (String s : players.toArray(new String[]{}))
+					if(ServerIO.connect("getauth " + s + " " + Bukkit.getMotd()).equals("true")) players.remove(s);
 			}
-		}.start();
+		});
 	}
 	
 	public static void disable() {
