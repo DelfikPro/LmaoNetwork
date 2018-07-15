@@ -1,11 +1,11 @@
 package pro.delfik.lmao.command;
 
-import pro.delfik.lmao.core.connection.database.ServerIO;
+import com.google.common.collect.ImmutableSet;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.command.TabCompleter;
-import pro.delfik.lmao.command.handle.Command;
-import pro.delfik.lmao.command.handle.ImplarioCommand;
+import pro.delfik.lmao.command.handle.LmaoCommand;
+import pro.delfik.lmao.core.connection.database.ServerIO;
+import pro.delfik.util.Converter;
 import pro.delfik.util.Rank;
 
 import java.io.File;
@@ -16,12 +16,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-public class CommandControl extends ImplarioCommand implements TabCompleter {
+public class CommandControl extends LmaoCommand {
 	
 	private static final String prefix = System.getProperty("user.dir") + "/plugins/";
 	
-	@Command(name = "control", rankRequired = Rank.DEV, argsRequired = 2, usage = "control [update|delete|remove] [Файл]", description = "Управление плагинами на сервере")
-	public void control(CommandSender sender, String command, String[] args) {
+	public CommandControl() {
+		super("control", Rank.DEV, "Управление обновлениями");
+	}
+	
+	@Override
+	public void run(CommandSender sender, String command, String[] args) {
 		String key = args[0];
 		String name = args[1];
 		switch (key) {
@@ -57,35 +61,20 @@ public class CommandControl extends ImplarioCommand implements TabCompleter {
 		}
 	}
 	
+	
 	@Override
-	public List<String> onTabComplete(CommandSender sender, org.bukkit.command.Command c, String command, String[] args) {
-		if (args.length <= 1) {
-			LinkedList<String> list = new LinkedList<>();
-			list.add("load");
-			list.add("update");
-			list.add("delete");
-			return list;
-		} else {
+	public List<String> tabComplete(CommandSender sender, String arg, int number) {
+		if (number == 0) return Converter.tabCompleteList(ImmutableSet.of("load", "update", "delete"), s -> s, arg);
+		if (number == 1) {
 			File f[] = new File(System.getProperty("user.dir") + "/plugins").listFiles();
 			LinkedList<String> s = new LinkedList<>();
 			for (File aF : f) {
 				if (!aF.isDirectory())
 					s.add(aF.getName());
 			}
-			return getForContains(s.toArray(new String[]{}), args[1]);
+			return Converter.tabCompleteList(s, st -> st, arg);
 		}
-	}
-	
-	public static List<String> getForContains(String search[], String prefix){
-		prefix = prefix.toLowerCase();
-		ArrayList<String> l = new ArrayList<>();
-		for(String s : search)
-			if(s.toLowerCase().startsWith(prefix))l.add(s);
-		return l;
-	}
-	
-	static List<String> getForContains(String search[]){
-		return getForContains(search, "");
+		return new ArrayList<>();
 	}
 	
 	private boolean a(CommandSender sender, String plugin) {
