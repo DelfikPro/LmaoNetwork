@@ -6,6 +6,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.permissions.Core;
 import pro.delfik.lmao.util.ServerType;
+import pro.delfik.net.Packet;
 
 public class Lmao extends JavaPlugin {
 	
@@ -19,6 +20,7 @@ public class Lmao extends JavaPlugin {
 	public void onEnable() {
 		plugin = this;
 		Core.init();
+		Packet.init();
 		Init.r = new Registrar(this);
 		Init.events();
 		Init.commands();
