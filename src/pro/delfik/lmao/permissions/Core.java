@@ -42,7 +42,7 @@ public final class Core {
 	}
 	
 	public static void disable() {
-		PacketEvent.close();
+		Connect.close();
 		AntiClicker.isStart = false;
 	}
 }

@@ -14,7 +14,6 @@ import org.bukkit.plugin.InvalidPluginException;
 import org.bukkit.plugin.Plugin;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.lmao.core.connection.database.ServerIO;
 import pro.delfik.lmao.misc.Human;
 import pro.delfik.util.Rank;
 
@@ -100,23 +99,6 @@ public class CommandAdmin extends LmaoCommand {
 					sender.sendMessage("§aOK");
 					return;
 				}
-				case "write": {
-					if (args.length < 3) {
-						sender.sendMessage("§cМало аргументафффф");
-						return;
-					}
-					ServerIO.connect("writeReal " + Converter.mergeArray(args, 1, " "));
-					sender.sendMessage("§aЗаписано §e" + Converter.mergeArray(args, 2, " ") + "§a в файл §e" + args[1]);
-					return;
-				}
-				case "read": {
-					if (args.length < 2) {
-						sender.sendMessage("§cМало аргументафффф");
-						return;
-					}
-					sender.sendMessage("§aВ файле §e" + args[1] + "§a: §e" + ServerIO.connect("readReal " + args[1]));
-					return;
-				}
 				case "spawn": {
 					((Player) sender).teleport(((Player) sender).getWorld().getSpawnLocation());
 					sender.sendMessage("§aГотово ^_^");
@@ -153,10 +135,6 @@ public class CommandAdmin extends LmaoCommand {
 					} catch (InvalidPluginException | InvalidDescriptionException e) {
 						e.printStackTrace();
 					}
-					return;
-				}
-				case "sio": {
-					sender.sendMessage("§e" + Converter.mergeArray(args, 1, " ") + ": §f" + ServerIO.connect(Converter.mergeArray(args, 1, " ")));
 					return;
 				}
 				default:
