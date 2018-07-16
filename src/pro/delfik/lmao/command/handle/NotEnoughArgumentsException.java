@@ -1,11 +1,19 @@
 package pro.delfik.lmao.command.handle;
 
-public class NotEnoughArgumentsException extends RuntimeException {
+import org.bukkit.command.CommandSender;
+
+public class NotEnoughArgumentsException extends CustomException {
 	
 	public final String usage;
 	
 	public NotEnoughArgumentsException(String usage) {
 		super(usage);
 		this.usage = usage;
+	}
+	
+	@Override
+	public void execute(CommandSender sender, LmaoCommand command) {
+		sender.sendMessage("§c" + command.getDescription());
+		sender.sendMessage("§cИспользование: §c/" + command.getName() + " §f" + usage);
 	}
 }

@@ -17,6 +17,7 @@ public class CommandTeleport extends LmaoCommand {
 	}
 	
 	public void run(CommandSender sender, String s, String[] args) throws NotEnoughPermissionsException {
+		requireArgs(args, 1, "[Игрок]");
 		Person p;
 		Person dest;
 		String destname;

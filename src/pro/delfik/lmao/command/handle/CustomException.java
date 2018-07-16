@@ -8,7 +8,7 @@ public class CustomException extends RuntimeException {
 		super(s);
 	}
 	
-	public void execute(CommandSender sender, String command){
+	public void execute(CommandSender sender, LmaoCommand command){
 		U.msg(sender, getMessage());
 	}
 }

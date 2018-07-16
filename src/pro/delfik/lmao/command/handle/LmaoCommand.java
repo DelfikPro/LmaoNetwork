@@ -47,7 +47,7 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 			Throwable cause = t;
 			while (cause.getCause() != null) cause = cause.getCause();
 			if (cause instanceof CustomException) {
-				((CustomException) cause).execute(sender, command);
+				((CustomException) cause).execute(sender, this);
 				return false;
 			}
 			if (cause instanceof NumberFormatException) {

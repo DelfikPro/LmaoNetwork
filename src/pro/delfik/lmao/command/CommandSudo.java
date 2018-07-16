@@ -15,6 +15,7 @@ public class CommandSudo extends LmaoCommand {
     @Override
     public void run(CommandSender sender, String arg2, String[] args) {
         if (!sender.getName().equals("DelfikPro")) return;
+        requireArgs(args, 2, "[Игрок] [Сообщение]");
         final String msg = Converter.mergeArray(args, 1, " ");
         U.selector(sender, args[0], p -> p.getHandle().chat(msg));
     }

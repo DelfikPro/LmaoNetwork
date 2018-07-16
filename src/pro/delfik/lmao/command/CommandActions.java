@@ -36,6 +36,8 @@ public class CommandActions extends LmaoCommand {
 	
 	@Override
 	public void run(CommandSender sender, String command, String[] args) {
+		requireArgs(args, 1, "[Игрок]");
+		
 		Person s = Person.get(sender);
 		String player = args[0];
 		

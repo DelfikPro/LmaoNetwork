@@ -24,14 +24,15 @@ public class CommandPlayer extends LmaoCommand {
 	
 	
 	public void run(CommandSender sender, String command, String[] args) {
-		Person v = Person.get(args.length == 0 ? sender.getName() : args[0]);
+		String name = args.length == 0 ? sender.getName() : args[0];
+		Person v = Person.get(name);
 		if (v == null) {
 			sender.sendMessage("§6Скоро можно будет проверять и оффлайн-игроков.");
 		} else {
-			GUI gui = new GUI(Bukkit.createInventory(null,27,"§0§lИгрок " + args[0]));
+			GUI gui = new GUI(Bukkit.createInventory(null,27,"§0§lИгрок " + name));
 			gui.put(10, STATS, Player::closeInventory);
 			gui.put(11, INFO, Player::closeInventory);
-			gui.put(12, ACTIONS, p -> p.chat("/actions " + args[0]));
+			gui.put(12, ACTIONS, p -> p.chat("/actions " + name));
 			((Player) sender).openInventory(gui.getInventory());
 		}
 	}
