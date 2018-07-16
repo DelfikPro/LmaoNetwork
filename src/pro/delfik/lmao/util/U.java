@@ -9,6 +9,8 @@ import org.bukkit.entity.Player;
 import pro.delfik.lmao.chat.ChatHandler;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.core.connection.Connect;
+import pro.delfik.net.packet.PacketSummon;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -166,4 +168,7 @@ public class U {
 		});
 	}
 	
+	public static void send(String player, String server) {
+		Connect.send(new PacketSummon(player, server));
+	}
 }
