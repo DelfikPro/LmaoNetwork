@@ -31,8 +31,10 @@ public class Connect implements Listener{
 
 	private static boolean closed = false;
 
-	static{
+	static {
 		Map<String, String> config = Converter.deserializeMap(read("config.txt"), "\n", "/");
+		for (Map.Entry<String, String> entry : config.entrySet())
+			System.out.println("[CONFIG] " + entry.getKey() + " | " + entry.getValue());
 		host = config.get("host");
 		port = Converter.toInt(config.get("port"));
 		utils = new CryptoUtils(config.get("key"));
