@@ -39,7 +39,9 @@ public class Connect implements Listener{
 		port = Converter.toInt(config.get("port"));
 		utils = new CryptoUtils(config.get("key"));
 		try{
-			new P2P(new Socket(host, port), utils, connect);
+			Socket socket = new Socket(host, port);
+			socket.setSoTimeout(1000000000);
+			new P2P(socket, utils, connect);
 		}catch (IOException ex){
 			Scheduler.sleep(1000);
 			init();

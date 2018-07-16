@@ -18,8 +18,6 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
-	
-	
 	private final String description;
 	private Rank required;
 	private final String name;
