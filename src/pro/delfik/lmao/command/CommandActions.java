@@ -13,8 +13,9 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.core.connection.Connect;
 import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.lmao.core.connection.database.ServerIO;
+import pro.delfik.net.packet.PacketPunishment;
 import pro.delfik.util.Rank;
 
 import java.sql.ResultSet;
@@ -36,9 +37,11 @@ public class CommandActions extends LmaoCommand {
 	@Override
 	public void run(CommandSender sender, String command, String[] args) {
 		Person s = Person.get(sender);
+		String player = args[0];
+		
 		s.getHandle().openInventory(GUILoading.i());
 		GUI gui = new GUI(Bukkit.createInventory(null, 9, "§0§lДействия с " + args[0]));
-		boolean online = "true".equals(ServerIO.connect("online " + args[0]));
+		boolean online = Person.get(player) != null;
 		
 		ProhibitionInfo mute = ProhibitionInfo.load(args[0], false);
 		ProhibitionInfo ban = ProhibitionInfo.load(args[0], true);
@@ -51,7 +54,7 @@ public class CommandActions extends LmaoCommand {
 		if (s.hasRank(Rank.RECRUIT)) {
 			gui.put(3, muteItem, pl -> {
 				if (mute != null) {
-					ServerIO.connect("unmute " + args[0] + " " + sender.getName());
+					Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.UNMUTE, s.getName()));
 					pl.closeInventory();
 					return;
 				}
@@ -59,13 +62,14 @@ public class CommandActions extends LmaoCommand {
 				pl.openInventory(muteGUI(args[0]));
 			});
 			if (online) gui.put(4, KICK, pl -> {
-				ServerIO.connect("kick " + args[0] + " " + sender.getName() + " Помеха игровому процессу");
-				pl.closeInventory();
-				pl.sendMessage("§aИгрок §e" + args[0] + "§a кикнут с сервера.");
+//				ServerIO.connect("kick " + args[0] + " " + sender.getName() + " Помеха игровому процессу");
+				pl.closeInventory(); // TODO: Сделать кики
+				pl.sendMessage("§eВ разработке.");
+//				pl.sendMessage("§aИгрок §e" + args[0] + "§a кикнут с сервера.");
 			});
 			gui.put(5, banItem, pl -> {
 				if (ban != null) {
-					ServerIO.connect("unban " + args[0] + " " + sender.getName());
+					Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.UNBAN, s.getName()));
 					pl.closeInventory();
 					return;
 				}
@@ -144,7 +148,7 @@ public class CommandActions extends LmaoCommand {
 				result.add(r);
 			}
 			String reason = Converter.merge(result, r -> r.rule, ", ");
-			ServerIO.connect("mute " + player + " " + p.getName() + " " + time + " " + reason);
+			Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.MUTE, p.getName(), time, reason));
 			p.closeInventory();
 		});
 		for (MuteRule muteRule : values) gui.addItem(muteRule.toItem());
@@ -182,7 +186,7 @@ public class CommandActions extends LmaoCommand {
 		for (int i = 0; i < values.length; i++) {
 			BanRule rule = values[i];
 			gui.put(i, rule.toItem(), p -> {
-				ServerIO.connect("ban " + player + " " + p.getName() + " " + rule.time + " " + rule.rule);
+				Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.MUTE, p.getName(), rule.time, rule.rule));
 				p.closeInventory();
 			});
 		}
