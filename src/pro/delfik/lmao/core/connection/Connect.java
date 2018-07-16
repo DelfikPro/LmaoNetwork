@@ -2,7 +2,6 @@ package pro.delfik.lmao.core.connection;
 
 import org.bukkit.Bukkit;
 import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.permissions.Core;
 import pro.delfik.net.Listener;
 import pro.delfik.net.P2P;
 import pro.delfik.net.Packet;

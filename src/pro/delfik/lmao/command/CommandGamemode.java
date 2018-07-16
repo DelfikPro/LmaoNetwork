@@ -54,7 +54,6 @@ public class CommandGamemode extends LmaoCommand {
 				U.msg(sender, Lmao.p() + "§aИгровой режим игрока §e", p, "§a изменён на §e" + gmd);
 				U.msg(p.getHandle(), Lmao.p() + "§eВаш игровой режим был изменён на §6" + gmd + "§e игроком " + senderD);
 			});
-			return;
 		}
 	}
 }
