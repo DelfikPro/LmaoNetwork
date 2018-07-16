@@ -87,6 +87,7 @@ public class Connect implements Listener{
 			while (true){
 				int i = reader.read();
 				if(i == -1)break;
+				if(i == 13)continue;
 				buffer.append((char)i);
 			}
 		}catch (IOException ex){}
