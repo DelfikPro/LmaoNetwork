@@ -9,7 +9,6 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pro.delfik.lmao.chat.TabList;
-import pro.delfik.lmao.permissions.Core;
 import pro.delfik.lmao.util.TimedMap;
 import pro.delfik.net.packet.PacketUser;
 import pro.delfik.util.Rank;
