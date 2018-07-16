@@ -25,32 +25,32 @@ public class Authenticator implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(BlockBreakEvent event) {
-		if (isAuthorized(event.getPlayer()))
+		if (!isAuthorized(event.getPlayer()))
 			event.setCancelled(true);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(BlockPlaceEvent event) {
-		if (isAuthorized(event.getPlayer()))
+		if (!isAuthorized(event.getPlayer()))
 			event.setCancelled(true);
 	}
 	
 	//Inventory
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(InventoryClickEvent event) {
-		if (isAuthorized((Player) event.getView().getPlayer())) event.setCancelled(true);
+		if (!isAuthorized((Player) event.getView().getPlayer())) event.setCancelled(true);
 	}
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(InventoryOpenEvent event) {
-		if (isAuthorized((Player) event.getView().getPlayer())) event.setCancelled(true);
+		if (!isAuthorized((Player) event.getView().getPlayer())) event.setCancelled(true);
 	}
 	
 	//Player
 	
 	@EventHandler
 	public void event(PlayerInteractEvent e) {
-		if (isAuthorized(e.getPlayer())) {
+		if (!isAuthorized(e.getPlayer())) {
 			e.setCancelled(true);
 			if (e.getAction() == Action.RIGHT_CLICK_BLOCK || e.getAction() == Action.RIGHT_CLICK_AIR)
 				e.getPlayer().sendMessage("§cВы не вошли в игру.");
@@ -59,7 +59,7 @@ public class Authenticator implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(AsyncPlayerChatEvent event) {
-		if (isAuthorized(event.getPlayer())) {
+		if (!isAuthorized(event.getPlayer())) {
 			event.getPlayer().sendMessage("§cВы не вошли в игру.");
 			event.setCancelled(true);
 		}
@@ -67,7 +67,7 @@ public class Authenticator implements Listener {
 	
 	@EventHandler
 	public void event(PlayerCommandPreprocessEvent e) {
-		if (isAuthorized(e.getPlayer())) {
+		if (!isAuthorized(e.getPlayer())) {
 			e.setCancelled(true);
 			e.getPlayer().sendMessage("§cВы не вошли в игру.");
 		}
@@ -75,7 +75,7 @@ public class Authenticator implements Listener {
 	
 	@EventHandler(priority = EventPriority.LOW)
 	public void event(PlayerDropItemEvent event) {
-		if (isAuthorized(event.getPlayer())) event.setCancelled(true);
+		if (!isAuthorized(event.getPlayer())) event.setCancelled(true);
 	}
 	
 }

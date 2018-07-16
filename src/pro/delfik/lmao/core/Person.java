@@ -58,6 +58,7 @@ public class Person {
 	}
 	
 	public void auth() {
+		sendMessage("§aReceived authorization packet.");
 		this.auth = true;
 		authed.add(name);
 	}
