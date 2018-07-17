@@ -190,7 +190,7 @@ public class Person {
 	
 	public void setRank(Rank rank) {
 		this.rank = rank;
-		getHandle().setDisplayName(rank.represent() + name);
+		getHandle().setDisplayName(rank.getPrefix() + rank.getNameColor() + name);
 	}
 	
 	public static boolean online(String arg) {
