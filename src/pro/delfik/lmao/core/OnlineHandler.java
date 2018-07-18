@@ -8,7 +8,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import pro.delfik.lmao.chat.TabList;
 import pro.delfik.lmao.util.TimedMap;
 import pro.delfik.net.packet.PacketUser;
 import pro.delfik.util.Rank;
@@ -24,7 +23,6 @@ public class OnlineHandler implements Listener {
 		Person p = Person.get(e.getPlayer());
 		Rank rank = p.getRank();
 		p.setDisplayName(rank.getPrefix() + rank.getNameColor() + p.getName());
-		TabList.send(e.getPlayer());
 	}
 	
 	@EventHandler

@@ -1,8 +1,10 @@
 package pro.delfik.lmao.core;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.permissions.Core;
 import pro.delfik.lmao.util.ServerType;
 import pro.delfik.net.Packet;
@@ -23,10 +25,12 @@ public class Lmao extends JavaPlugin {
 		Init.r = new Registrar(this);
 		Init.events();
 		Init.commands();
+		Database.enable();
 	}
 	
 	@Override
 	public void onDisable() {
+		Bukkit.broadcastMessage("§c§lСервер перезагружается. Все игры прерваны.");
 		Core.disable();
 	}
 	

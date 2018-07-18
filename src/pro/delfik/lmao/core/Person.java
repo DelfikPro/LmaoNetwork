@@ -1,11 +1,14 @@
 package pro.delfik.lmao.core;
 
+import lib.I;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
 import net.minecraft.server.v1_8_R1.EnumTitleAction;
 import net.minecraft.server.v1_8_R1.PacketPlayOutTitle;
+import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Sound;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
@@ -15,6 +18,7 @@ import pro.delfik.lmao.misc.Human;
 import pro.delfik.lmao.modules.VanishInfo;
 import pro.delfik.util.Rank;
 
+import java.io.File;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -34,6 +38,11 @@ public class Person {
 		p.remove();
 	}
 
+	private static boolean playerCleanUpEnabled = true;
+	public static void disablePlayerCleanUp() {
+		playerCleanUpEnabled = false;
+	}
+	
 	private static final HashMap<String, Person> names = new HashMap<>();
 	public static final Set<String> authed = new HashSet<>();
 	
@@ -113,6 +122,19 @@ public class Person {
 		online = false;
 		authed.remove(name);
 		if (vanish != null) vanish.getDisplay().remove();
+		if (playerCleanUpEnabled) I.delay(() -> cleanPlayerData(getHandle().getUniqueId().toString()), 4);
+	}
+	
+	// Очистка мусорного файла с местоположением и инвентарём игрока
+	private void cleanPlayerData(String uuid) {
+		try {
+			for (World loadedWorld : Bukkit.getWorlds()) {
+				File playerdata = new File(loadedWorld.getName() + File.separator + "playerdata" + File.separator + uuid + ".dat");
+				if (playerdata.exists()) playerdata.delete();
+				File stats = new File(loadedWorld.getName() + File.separator + "stats" + File.separator + uuid + ".json");
+				if (stats.exists()) stats.delete();
+			}
+		} catch (Throwable ignored) {}
 	}
 	
 	public Location getLocation() {

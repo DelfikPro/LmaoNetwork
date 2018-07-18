@@ -30,11 +30,8 @@ public class Connect implements Listener{
 
 	private static boolean closed = false;
 
-	public static void init(){
-		System.out.println(read("config.txt"));
+	public static void init() {
 		Map<String, String> config = Converter.deserializeMap(read("config.txt"), "\n", "/");
-		for (Map.Entry<String, String> entry : config.entrySet())
-			System.out.println("[CONFIG] " + entry.getKey() + " | " + entry.getValue());
 		host = config.get("host");
 		port = Converter.toInt(config.get("port"));
 		utils = new CryptoUtils(config.get("key"));
@@ -91,7 +88,7 @@ public class Connect implements Listener{
 				if(i == 13)continue;
 				buffer.append((char)i);
 			}
-		}catch (IOException ex){}
+		}catch (IOException ignored){}
 		close(reader);
 		return buffer.toString();
 	}
@@ -104,6 +101,6 @@ public class Connect implements Listener{
 		if(reader == null)return;
 		try{
 			reader.close();
-		}catch (IOException ex){}
+		}catch (IOException ignored){}
 	}
 }
