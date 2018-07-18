@@ -24,7 +24,7 @@ public class ChatHandler implements Listener {
 		if (off) return;
 		String name = e.getPlayer().getName();
 		String dname = e.getPlayer().getDisplayName();
-		if (e.getMessage().contains("&")) if (!Perms.isEnough(e.getPlayer(), Rank.SPONSOR, true)) {
+		if (e.getMessage().contains("&")) if (!Perms.isEnough(e.getPlayer(), Rank.WARDEN, true)) {
 			e.setCancelled(true);
 			e.getPlayer().sendMessage("LMAO §e> §cЦветной чат доступен со статуса §bСпонсор§c.");
 			return;
