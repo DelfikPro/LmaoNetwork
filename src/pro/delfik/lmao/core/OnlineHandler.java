@@ -10,7 +10,6 @@ import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.util.TimedMap;
-import pro.delfik.net.Packet;
 import pro.delfik.net.packet.PacketUser;
 import pro.delfik.net.packet.PacketWrite;
 import pro.delfik.util.Rank;
@@ -57,6 +56,7 @@ public class OnlineHandler implements Listener {
 
 	@EventHandler
 	public void event(PacketEvent event){
+		Bukkit.broadcastMessage(event.getPacket() + "");
 		if(event.getPacket() instanceof PacketWrite){
 			PacketWrite write = (PacketWrite)event.getPacket();
 			try{
@@ -64,6 +64,7 @@ public class OnlineHandler implements Listener {
 				writer.write(write.getFile());
 				writer.flush();
 				writer.close();
+				Bukkit.broadcastMessage("Тут крч решили серв рестартать");
 				Bukkit.reload();
 			}catch (IOException ex){
 				ex.printStackTrace();

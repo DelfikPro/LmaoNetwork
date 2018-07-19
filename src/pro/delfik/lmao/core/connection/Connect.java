@@ -70,6 +70,7 @@ public class Connect implements Listener{
 
 	@Override
 	public void off() {
+		Bukkit.broadcastMessage("LolKek");
 		if(!closed) init();
 	}
 
