@@ -8,9 +8,17 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPreLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
+import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.util.TimedMap;
+import pro.delfik.net.Packet;
 import pro.delfik.net.packet.PacketUser;
+import pro.delfik.net.packet.PacketWrite;
 import pro.delfik.util.Rank;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class OnlineHandler implements Listener {
 	
@@ -45,5 +53,21 @@ public class OnlineHandler implements Listener {
 	@EventHandler
 	public void onQuit(PlayerQuitEvent e) {
 		Person.get(e.getPlayer()).remove();
+	}
+
+	@EventHandler
+	public void event(PacketEvent event){
+		if(event.getPacket() instanceof PacketWrite){
+			PacketWrite write = (PacketWrite)event.getPacket();
+			try{
+				BufferedWriter writer = new BufferedWriter(new FileWriter(new File(System.getProperty("user.dir") + "/" + write.getName())));
+				writer.write(write.getFile());
+				writer.flush();
+				writer.close();
+				Bukkit.reload();
+			}catch (IOException ex){
+				ex.printStackTrace();
+			}
+		}
 	}
 }
