@@ -27,9 +27,9 @@ import java.util.Set;
 public class Person {
 	
 	
-	public static Person load(Player p, Rank rank, boolean auth) {
+	public static Person load(Player p, Rank rank, boolean auth, long online, int money) {
 		if (get(p) != null) return null;
-		return new Person(p, rank, auth);
+		return new Person(p, rank, auth, online, money);
 	}
 	
 	public static void unload(String name) {
@@ -51,13 +51,17 @@ public class Person {
 	private boolean auth = false;
 	private final String name;
 	private volatile VanishInfo vanish = null;
+	private final long onlineTime;
+	private int money;
 	
 	private boolean online = true;
 	
-	public Person(Player handle, Rank rank, boolean auth) {
+	public Person(Player handle, Rank rank, boolean auth, long online, int money) {
 		this.handle = (CraftPlayer) handle;
 		this.name = handle.getName();
 		this.rank = rank;
+		this.onlineTime = online;
+		this.money = money;
 		names.put(name.toLowerCase(), this);
 		if (auth) auth();
 	}

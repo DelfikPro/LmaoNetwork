@@ -46,7 +46,7 @@ public class OnlineHandler implements Listener {
 			player.kickPlayer("§cПревышено время ожидания.");
 			return;
 		}
-		Person person = Person.load(player, packet.getRank(), packet.isAuthorized());
+		Person person = Person.load(player, packet.getRank(), packet.isAuthorized(), packet.getOnline(), packet.getMoney());
 	}
 	
 	@EventHandler
