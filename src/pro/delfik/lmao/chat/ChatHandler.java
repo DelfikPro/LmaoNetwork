@@ -4,6 +4,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
@@ -111,5 +112,10 @@ public class ChatHandler implements Listener {
 		public String getDest() {
 			return dest;
 		}
+	}
+	
+	@EventHandler
+	public void onCommand(PlayerCommandPreprocessEvent e) {
+		if (e.getMessage().split(" ")[0].contains(":") && !e.getPlayer().isOp()) e.setCancelled(true);
 	}
 }
