@@ -1,7 +1,6 @@
 package pro.delfik.lmao.command;
 
 import lib.Generate;
-import lib.ItemBuilder;
 import lib.gui.GUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
@@ -43,11 +42,11 @@ public class CommandPlayer extends LmaoCommand {
 	
 	private static ItemStack generateOnlineItem(Person v) {
 		String time = representTime(v.getOnlineTime() + (System.currentTimeMillis() - v.joinedAt));
-		return new ItemBuilder(Material.WATCH).withDisplayName("§fВремя, проведённое в игре:").withLore("§e" + time).build();
+		return null;//TODO//new ItemBuilder(Material.WATCH).withDisplayName("§fВремя, проведённое в игре:").withLore("§e" + time).build();
 	}
 	
 	private static ItemStack generateMoneyItem(Person v) {
-		return new ItemBuilder(Material.DOUBLE_PLANT).withDisplayName("§fКоличество монеток:").withLore("§e" + v.getMoney()).build();
+		return null;//TODO//new ItemBuilder(Material.DOUBLE_PLANT).withDisplayName("§fКоличество монеток:").withLore("§e" + v.getMoney()).build();
 	}
 	
 	private static String representTime(long time) {
