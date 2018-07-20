@@ -17,7 +17,6 @@ import pro.delfik.util.CryptoUtils;
 import pro.delfik.util.Scheduler;
 
 public final class Core {
-	public static final String prefix = "LMAO §e> §c";
 	
 	private static void classLoader() {
 		PacketEvent.class.getCanonicalName();
@@ -27,9 +26,13 @@ public final class Core {
 	
 	public static void init() {
 		classLoader();
-		Bukkit.broadcastMessage("§cInitializing socketlistener...");
-		Connect.init();
-		Bukkit.broadcastMessage("§aSocketlistener-state: ACTIVE");
+		Bukkit.broadcastMessage("§6Подключаемся к прокси-серверу...");
+		try {
+			Connect.init();
+		} catch (Exception ex) {
+			Bukkit.broadcastMessage("§c§lНе удалось подключится к прокси. Сервер не сможет работать, как надо.");
+		}
+		Bukkit.broadcastMessage("§aКластер успешно присоединился к прокси и готов к работе.");
 		Scheduler.init();
 		Bukkit.getScheduler().runTaskLater(Lmao.plugin, () -> {
 			for (Player p : Bukkit.getOnlinePlayers())
