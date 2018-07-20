@@ -26,7 +26,6 @@ import java.util.Set;
 
 public class Person {
 	
-	
 	public static Person load(Player p, Rank rank, boolean auth, long online, int money) {
 		if (get(p) != null) return null;
 		return new Person(p, rank, auth, online, money);
@@ -53,6 +52,7 @@ public class Person {
 	private volatile VanishInfo vanish = null;
 	private final long onlineTime;
 	private int money;
+	public long joinedAt = System.currentTimeMillis();
 	
 	private boolean online = true;
 	
@@ -180,6 +180,14 @@ public class Person {
 	
 	public Player getHandle() {
 		return handle;
+	}
+	
+	public int getMoney() {
+		return money;
+	}
+	
+	public long getOnlineTime() {
+		return onlineTime;
 	}
 	
 	public Rank getRank() {
