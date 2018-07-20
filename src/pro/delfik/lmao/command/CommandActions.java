@@ -188,7 +188,7 @@ public class CommandActions extends LmaoCommand {
 		for (int i = 0; i < values.length; i++) {
 			BanRule rule = values[i];
 			gui.put(i, rule.toItem(), p -> {
-				Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.MUTE, p.getName(), rule.time, rule.rule));
+				Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.BAN, p.getName(), rule.time, rule.rule));
 				p.closeInventory();
 			});
 		}
