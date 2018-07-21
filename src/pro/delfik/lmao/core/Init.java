@@ -4,7 +4,6 @@ import pro.delfik.lmao.anticheat.AntiClicker;
 import pro.delfik.lmao.chat.ChatHandler;
 import pro.delfik.lmao.command.CommandActions;
 import pro.delfik.lmao.command.CommandAdmin;
-import pro.delfik.lmao.command.CommandControl;
 import pro.delfik.lmao.command.CommandGamemode;
 import pro.delfik.lmao.command.CommandHelp;
 import pro.delfik.lmao.command.CommandList;
@@ -39,8 +38,8 @@ public class Init {
 	public static void commands() {
 		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
 				new CommandHelp(), new CommandSudo(), new CommandTeleport(), new CommandSchem(),
-				new CommandVanish(), new CommandList(), new CommandControl(),
-				new CommandStop(), new CommandPlayer(), new CommandActions()};
+				new CommandVanish(), new CommandList(), new CommandStop(), new CommandPlayer(),
+				new CommandActions()};
 		new Thread(() -> {
 			for (LmaoCommand cmd : cmds) r.regCommand(cmd);
 		}).start();

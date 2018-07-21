@@ -20,10 +20,8 @@ commands:
     aliases: [p, me]
   vanish:
     aliases: [v]
-  ak:
   sudo:
   list:
-  control:
   stop:
   actions:
   sch:

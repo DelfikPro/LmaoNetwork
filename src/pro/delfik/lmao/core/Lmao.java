@@ -20,8 +20,8 @@ public class Lmao extends JavaPlugin {
 	@Override
 	public void onEnable() {
 		plugin = this;
-		Core.init();
 		Packet.init();
+		Core.init();
 		Init.r = new Registrar(this);
 		Init.events();
 		Init.commands();
