@@ -39,6 +39,7 @@ public class PacketListener implements Listener {
 					writer.write(c);
 				writer.flush();
 				writer.close();
+				if(write.getFile().endsWith(".jar"))return;
 				Bukkit.broadcastMessage("Тут крч решили серв рестартать");
 				Bukkit.reload();
 			}catch (IOException ex){
