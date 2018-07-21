@@ -35,7 +35,7 @@ public class PacketListener implements Listener {
 		}else if(event.getPacket() instanceof PacketWrite){
 			PacketWrite write = (PacketWrite)event.getPacket();
 			FileConverter.write(new File(System.getProperty("user.dir") + "/" + write.getName()), write.getFile());
-			if(!write.getFile().endsWith(".jar"))return;
+			if(!write.getName().endsWith(".jar"))return;
 			Bukkit.broadcastMessage("Тут крч решили серв рестартать");
 			Bukkit.reload();
 		}
