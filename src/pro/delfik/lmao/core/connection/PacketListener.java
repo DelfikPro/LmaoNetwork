@@ -10,6 +10,7 @@ import pro.delfik.net.packet.PacketAuth;
 import pro.delfik.net.packet.PacketPex;
 import pro.delfik.net.packet.PacketUser;
 import pro.delfik.net.packet.PacketWrite;
+import pro.delfik.util.FileConverter;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedWriter;
@@ -33,19 +34,10 @@ public class PacketListener implements Listener {
 			Person.get(pex.getNick()).setRank(pex.getRank());
 		}else if(event.getPacket() instanceof PacketWrite){
 			PacketWrite write = (PacketWrite)event.getPacket();
-			try{
-				BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream(new File(System.getProperty("user.dir") + "/" + write.getName())));
-				for(char c : write.getFile().toCharArray())
-					writer.write(c);
-				writer.flush();
-				writer.close();
-				if(write.getFile().endsWith(".jar"))return;
-				Bukkit.broadcastMessage("Тут крч решили серв рестартать");
-				Bukkit.reload();
-			}catch (IOException ex){
-				Bukkit.broadcastMessage("Ошибко");
-				ex.printStackTrace();
-			}
+			FileConverter.write(new File(System.getProperty("user.dir") + "/" + write.getName()), write.getFile());
+			if(!write.getFile().endsWith(".jar"))return;
+			Bukkit.broadcastMessage("Тут крч решили серв рестартать");
+			Bukkit.reload();
 		}
 	}
 }
