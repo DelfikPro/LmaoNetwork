@@ -9,6 +9,7 @@ import pro.delfik.lmao.command.CommandGamemode;
 import pro.delfik.lmao.command.CommandHelp;
 import pro.delfik.lmao.command.CommandList;
 import pro.delfik.lmao.command.CommandPlayer;
+import pro.delfik.lmao.command.CommandSchem;
 import pro.delfik.lmao.command.CommandStop;
 import pro.delfik.lmao.command.CommandSudo;
 import pro.delfik.lmao.command.CommandTeleport;
@@ -37,7 +38,7 @@ public class Init {
 	
 	public static void commands() {
 		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
-				new CommandHelp(), new CommandSudo(), new CommandTeleport(),
+				new CommandHelp(), new CommandSudo(), new CommandTeleport(), new CommandSchem(),
 				new CommandVanish(), new CommandList(), new CommandControl(),
 				new CommandStop(), new CommandPlayer(), new CommandActions()};
 		new Thread(() -> {

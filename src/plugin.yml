@@ -2,9 +2,10 @@ name: LMAONetwork
 version: 1.15.7
 main: pro.delfik.lmao.core.Lmao
 author: DelfikPro
-softdepend: [YogurtCore, ImplarioLib]
+softdepend: [ImplarioLib]
 loadbefore: [LmaoLobby]
-commands: 
+load: POSTWORLD
+commands:
   admin:
     aliases: [a]
   perms:
@@ -16,7 +17,7 @@ commands:
     aliases: [teleport]
   help:
   player:
-    aliases: [me]
+    aliases: [p, me]
   vanish:
     aliases: [v]
   ak:
@@ -25,3 +26,4 @@ commands:
   control:
   stop:
   actions:
+  sch:

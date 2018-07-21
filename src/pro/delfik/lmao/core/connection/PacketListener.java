@@ -26,7 +26,8 @@ public class PacketListener implements Listener {
 			PacketUser user = (PacketUser) packet;
 			OnlineHandler.waitingPackets.add(user.getNick().toLowerCase(), user);
 		}else if(packet instanceof PacketAuth){
-			Person.get(((PacketAuth) packet).getNick()).auth();
+			Person p = Person.get(((PacketAuth) packet).getNick());
+			if (p != null) p.auth();
 		}else if(packet instanceof PacketPex){
 			PacketPex pex = (PacketPex)packet;
 			Person.get(pex.getNick()).setRank(pex.getRank());
