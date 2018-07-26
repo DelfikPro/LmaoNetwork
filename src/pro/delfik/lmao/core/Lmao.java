@@ -12,8 +12,7 @@ public class Lmao extends JavaPlugin {
 	
 	public static Lmao plugin;
 	private static final String prefix = "LMAO §e> §c";
-	public static ServerType server_type;
-	
+
 	public static String p() {return prefix;}
 	
 	@Override
