@@ -23,6 +23,7 @@ public class AntiClicker extends Thread implements Listener {
 	@EventHandler
 	public void event(PlayerInteractEvent event) {
 		if (event.getAction() == Action.PHYSICAL) return;
+		if(!isStart)return;
 		Player player = event.getPlayer();
 		String nick = player.getName();
 		Integer damage = damages.get(nick);

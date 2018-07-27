@@ -7,12 +7,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.permissions.Core;
 import pro.delfik.net.Packet;
+import pro.delfik.util.ServerType;
 
 public class Lmao extends JavaPlugin {
 	
 	public static Lmao plugin;
 	private static final String prefix = "LMAO §e> §c";
-	public static ServerType server_type;
 	
 	public static String p() {return prefix;}
 	

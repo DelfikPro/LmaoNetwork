@@ -46,6 +46,7 @@ public final class Core {
 	
 	public static void disable() {
 		Connect.close();
+		Scheduler.kill();
 		AntiClicker.isStart = false;
 	}
 }
