@@ -12,12 +12,7 @@ import pro.delfik.net.packet.PacketUser;
 import pro.delfik.net.packet.PacketWrite;
 import pro.delfik.util.FileConverter;
 
-import java.io.BufferedOutputStream;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class PacketListener implements Listener {
 	@EventHandler
@@ -35,8 +30,8 @@ public class PacketListener implements Listener {
 		}else if(event.getPacket() instanceof PacketWrite){
 			PacketWrite write = (PacketWrite)event.getPacket();
 			FileConverter.write(new File(System.getProperty("user.dir") + "/" + write.getName()), write.getFile());
-			if(!write.getName().endsWith(".jar"))return;
-			Bukkit.broadcastMessage("Тут крч решили серв рестартать");
+			if(!write.getName().endsWith(".jar")) return;
+			Bukkit.broadcastMessage("§aНа сервер успешно загружено обновление.");
 			Bukkit.reload();
 		}
 	}

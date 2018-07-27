@@ -63,12 +63,8 @@ public class CommandActions extends LmaoCommand {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(muteGUI(args[0]));
 			});
-			if (online) gui.put(4, KICK, pl -> {
-//				ServerIO.connect("kick " + args[0] + " " + sender.getName() + " Помеха игровому процессу");
-				pl.closeInventory(); // TODO: Сделать кики
-				pl.sendMessage("§eВ разработке.");
-//				pl.sendMessage("§aИгрок §e" + args[0] + "§a кикнут с сервера.");
-			});
+			if (online) gui.put(4, KICK,
+					pl -> Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.KICK, s.getName(), 0, "Помеха игровому процессу")));
 			gui.put(5, banItem, pl -> {
 				if (ban != null) {
 					Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.UNBAN, s.getName()));
