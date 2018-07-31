@@ -13,11 +13,6 @@ public class Lmao extends JavaPlugin {
 	
 	public static Lmao plugin;
 	private static final String prefix = "LMAO §e> §c";
-<<<<<<< HEAD
-	
-=======
-
->>>>>>> f588a606dbc2d3bafeda7ee21991a843d78b8c8f
 	public static String p() {return prefix;}
 	
 	@Override
