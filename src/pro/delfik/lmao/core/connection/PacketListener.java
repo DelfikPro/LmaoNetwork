@@ -7,6 +7,7 @@ import pro.delfik.lmao.core.OnlineHandler;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.net.Packet;
 import pro.delfik.net.packet.PacketAuth;
+import pro.delfik.net.packet.PacketGC;
 import pro.delfik.net.packet.PacketPex;
 import pro.delfik.net.packet.PacketUser;
 import pro.delfik.net.packet.PacketWrite;
@@ -27,12 +28,18 @@ public class PacketListener implements Listener {
 		}else if(packet instanceof PacketPex){
 			PacketPex pex = (PacketPex)packet;
 			Person.get(pex.getNick()).setRank(pex.getRank());
-		}else if(event.getPacket() instanceof PacketWrite){
+		}else if(packet instanceof PacketWrite){
 			PacketWrite write = (PacketWrite)event.getPacket();
 			FileConverter.write(new File(System.getProperty("user.dir") + "/" + write.getName()), write.getFile());
 			if(!write.getName().endsWith(".jar")) return;
 			Bukkit.broadcastMessage("§aНа сервер успешно загружено обновление.");
 			Bukkit.reload();
+		}else if(packet instanceof PacketGC){
+			Runtime.getRuntime().gc();
+			System.gc();
+			Bukkit.broadcastMessage("§cСервер очищается от хлама. Возможна перезагрузка");
+			if(((PacketGC) packet).isRl())
+				Bukkit.reload();
 		}
 	}
 }
