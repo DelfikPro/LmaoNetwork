@@ -108,11 +108,11 @@ public class CommandActions extends LmaoCommand {
 	}
 	
 	private enum MuteRule {
-		CAPS(10, 10, "Капс", false),
+		CAPS(30, 30, "Капс", false),
 		FLOOD(30, 30, "Флуд", false),
 		CHAR_FLOOD(30, 30, "Флуд символами", false),
 		SWEAR(60, 60, "Мат", false),
-		AFFRONT(120, 2, "Оскорбление", true),
+		AFFRONT(240, 4, "Оскорбление", true),
 		AMORAL(240, 4, "Аморальное поведение", true);
 		
 		private final int time;
