@@ -24,6 +24,7 @@ public class Lmao extends JavaPlugin {
 		Init.events();
 		Init.commands();
 		Database.enable();
+		if (Bukkit.getServer().getMotd().startsWith("TEST_")) Person.disablePlayerCleanUp();
 	}
 	
 	@Override

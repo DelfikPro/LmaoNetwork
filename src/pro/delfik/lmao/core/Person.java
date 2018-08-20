@@ -230,4 +230,9 @@ public class Person {
 	public static boolean online(String arg) {
 		return names.containsKey(arg.toLowerCase());
 	}
+
+	@Override
+	public int hashCode() {
+		return name.hashCode();
+	}
 }

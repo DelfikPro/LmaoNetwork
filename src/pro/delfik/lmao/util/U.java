@@ -128,7 +128,7 @@ public class U {
 		return c;
 	}
 	
-	private static TextComponent constructComponent(Object... o) {
+	public static TextComponent constructComponent(Object... o) {
 		TextComponent c = new TextComponent("§7");
 		for (Object ob : o) {
 			TextComponent comp = new TextComponent();
