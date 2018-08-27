@@ -1,9 +1,14 @@
 package pro.delfik.lmao.core;
 
 import lib.I;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
+import net.minecraft.server.v1_8_R1.EntityPlayer;
 import net.minecraft.server.v1_8_R1.EnumTitleAction;
+import net.minecraft.server.v1_8_R1.EnumWorldBorderAction;
 import net.minecraft.server.v1_8_R1.PacketPlayOutTitle;
+import net.minecraft.server.v1_8_R1.PacketPlayOutWorldBorder;
+import net.minecraft.server.v1_8_R1.WorldBorder;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -19,6 +24,7 @@ import pro.delfik.lmao.modules.VanishInfo;
 import pro.delfik.util.Rank;
 
 import java.io.File;
+import java.lang.reflect.Field;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -234,5 +240,9 @@ public class Person {
 	@Override
 	public int hashCode() {
 		return name.hashCode();
+	}
+
+	public void msg(TextComponent text) {
+		handle.spigot().sendMessage(text);
 	}
 }

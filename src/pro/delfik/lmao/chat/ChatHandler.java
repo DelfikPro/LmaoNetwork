@@ -1,5 +1,6 @@
 package pro.delfik.lmao.chat;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -12,6 +13,7 @@ import pro.delfik.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -24,30 +26,33 @@ public class ChatHandler implements Listener {
 	public void onChat(AsyncPlayerChatEvent e) {
 		if (off) return;
 		String name = e.getPlayer().getName();
-		String dname = e.getPlayer().getDisplayName();
 		if (e.getMessage().contains("&")) if (!Perms.isEnough(e.getPlayer(), Rank.WARDEN, true)) {
 			e.setCancelled(true);
 			e.getPlayer().sendMessage("LMAO §e> §cЦветной чат доступен со статуса §bСпонсор§c.");
 			return;
 		}
-		
+		e.setCancelled(true); // Отменяем сообщение со скобками
+		chat(name, e.getMessage(), null, "");
+
+	}
+
+	public static void chat(String name, String message, Collection<Player> recipients, String prefix) {
 		Person u = Person.get(name);
-		
-		
+
 		// Сообщение для цитирования
-		String msg = U.color(e.getMessage());
+		String msg = U.color(message);
 		// Сообщение для отображения
 		String toBc = "§7: §f" + msg.replace("[Q]", "§7§o\"§e§o").replace("[/Q]", "§7§o\" -§f");
 		msg = msg.replaceAll("\\[Q\\].*\\[\\/Q\\]\\s", "");
-		e.setCancelled(true); // Отменяем сообщение со скобками
-		
-		
+
+
 		List<Object> msgblock = new ArrayList<>();
-		msgblock.add(e.getPlayer());
-		String hover = "§aСообщение от §e" + dname + "§a.\n§aОтправлено в §e" + time() + "\n§e> Нажмите, чтобы ответить <";
+		msgblock.add(prefix);
+		msgblock.add(u.getHandle());
+		String hover = "§aСообщение от §e" + u.getDisplayName() + "§a.\n§aОтправлено в §e" + time() + "\n§e> Нажмите, чтобы ответить <";
 		String suggest = "[Q]" + msg.replaceAll("§.", "") + "[/Q] ";
-		
-		
+
+
 		// Обработка ссылок
 		int lastindex = 0;
 		boolean endwithlink = false;
@@ -65,7 +70,7 @@ public class ChatHandler implements Listener {
 			String lastpart = toBc.substring(lastindex);
 			if (!lastpart.equals("")) msgblock.add(U.simple(lastpart, hover, suggest));
 		}
-		U.bclist(msgblock);
+		U.send(U.constructFromList(msgblock), recipients);
 	}
 	
 	public static String decorateUrl(String b) {

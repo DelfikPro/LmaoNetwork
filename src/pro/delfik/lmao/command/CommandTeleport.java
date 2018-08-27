@@ -43,6 +43,7 @@ public class CommandTeleport extends LmaoCommand {
 				sender.sendMessage(Lmao.p() + "Телепортация на координаты: §e/tp [x] [y] [z]");
 				return;
 			}
+			if (loc.getBlockY() > 10000) throw new CustomException("§c§lФАТАЛЬНАЯ АШЫПКА СЕРВЕР УПАДЁТ СЧАС БЕГИТЕ!!!");
 			p.teleport(loc);
 			sender.sendMessage(Lmao.p() + "§aВы были телепортированы в точку §e" + loc.getBlockX() + "§a, §e" + loc.getBlockY() + "§a, §e" + loc.getBlockZ());
 			return;

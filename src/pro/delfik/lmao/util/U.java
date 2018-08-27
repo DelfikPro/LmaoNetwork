@@ -62,7 +62,12 @@ public class U {
 		if (s instanceof Player) ((Player) s).spigot().sendMessage(constructComponent(o));
 		else s.sendMessage(constructComponent(o).toPlainText());
 	}
-	
+	public static void send(TextComponent text, Collection<? extends Player> players) {
+		if (players == null) players = Bukkit.getOnlinePlayers();
+		for (Player player : players) player.spigot().sendMessage(text);
+	}
+
+
 	public static void bclist(List<Object> o) {
 		TextComponent c = constructFromList(o);
 		for (Player p : Bukkit.getOnlinePlayers()) p.spigot().sendMessage(c);
@@ -84,8 +89,7 @@ public class U {
 	
 	public static TextComponent simple(String text, String hover, String suggest) {
 		TextComponent c = new TextComponent(text);
-		c.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-											  new TextComponent[] {new TextComponent(hover)}));
+		c.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new TextComponent[] {new TextComponent(hover)}));
 		c.setClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, suggest));
 		return c;
 	}
@@ -100,62 +104,36 @@ public class U {
 	
 	public static TextComponent constructFromList(List<Object> o) {
 		TextComponent c = new TextComponent("§7");
-		for (Object ob : o) {
-			TextComponent comp = new TextComponent();
-			if (ob instanceof Player) {
-				comp.setText("§7" + ((Player) ob).getDisplayName());
-				comp.setHoverEvent(getHover((Player) ob));
-				comp.setClickEvent(getClick((Player) ob));
-			} else if (ob instanceof TextComponent) {
-				comp = (TextComponent) ob;
-			} else if (ob instanceof Person) {
-				comp.setText(((Person) ob).getDisplayName());
-				comp.setHoverEvent(getHover(((Person) ob).getHandle()));
-				comp.setClickEvent(getClick(((Person) ob).getHandle()));
-			} else if (ob instanceof ChatHandler.Link) {
-				comp.setText(ChatHandler.decorateUrl(((ChatHandler.Link) ob).getDest()));
-				comp.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ((ChatHandler.Link) ob).getDest()));
-				comp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-														 new TextComponent[] {new TextComponent("§eСсылка:\n§a§n" + ((ChatHandler.Link) ob).getDest() + "\n§e >> Нажмите для перехода <<")}
-				));
-			}
-			else {
-				String s = ob.toString();
-				comp.setText(s);
-			}
-			c.addExtra(comp);
-		}
+		for (Object ob : o) c.addExtra(constructComponent0(ob));
 		return c;
 	}
-	
+
 	public static TextComponent constructComponent(Object... o) {
 		TextComponent c = new TextComponent("§7");
-		for (Object ob : o) {
-			TextComponent comp = new TextComponent();
-			if (ob instanceof Player) {
-				comp.setText("§7" + ((Player) ob).getDisplayName());
-				comp.setHoverEvent(getHover((Player) ob));
-				comp.setClickEvent(getClick((Player) ob));
-			} else if (ob instanceof TextComponent) {
-				comp = (TextComponent) ob;
-			} else if (ob instanceof Person) {
-				comp.setText(((Person) ob).getDisplayName());
-				comp.setHoverEvent(getHover(((Person) ob).getHandle()));
-				comp.setClickEvent(getClick(((Person) ob).getHandle()));
-			} else if (ob instanceof ChatHandler.Link) {
-				comp.setText(ChatHandler.decorateUrl(((ChatHandler.Link) ob).getDest()));
-				comp.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ((ChatHandler.Link) ob).getDest()));
-				comp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-														 new TextComponent[] {new TextComponent("§eСсылка:\n§a§n" + ((ChatHandler.Link) ob).getDest() + "\n§e >> Нажмите для перехода <<")}
-				));
-			}
-			else {
-				String s = ob.toString();
-				comp.setText(s);
-			}
-			c.addExtra(comp);
-		}
+		for (Object ob : o) c.addExtra(constructComponent0(ob));
 		return c;
+	}
+	private static TextComponent constructComponent0(Object o) {
+		TextComponent comp = new TextComponent();
+		if (o instanceof Player) {
+			comp.setText("§7" + ((Player) o).getDisplayName());
+			comp.setHoverEvent(getHover((Player) o));
+			comp.setClickEvent(getClick((Player) o));
+		} else if (o instanceof TextComponent) {
+			comp = (TextComponent) o;
+		} else if (o instanceof Person) {
+			comp.setText(((Person) o).getDisplayName());
+			comp.setHoverEvent(getHover(((Person) o).getHandle()));
+			comp.setClickEvent(getClick(((Person) o).getHandle()));
+		} else if (o instanceof ChatHandler.Link) {
+			comp.setText(ChatHandler.decorateUrl(((ChatHandler.Link) o).getDest()));
+			comp.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ((ChatHandler.Link) o).getDest()));
+			comp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
+													 new TextComponent[] {new TextComponent("§eСсылка:\n§a§n" + ((ChatHandler.Link) o).getDest() + "\n§e >> Нажмите для перехода <<")}
+			));
+		}
+		else comp.setText(o.toString());
+		return comp;
 	}
 	
 	private static ClickEvent getClick(Player p) {
