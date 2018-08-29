@@ -13,8 +13,8 @@ import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.Connect;
 import pro.delfik.lmao.core.connection.PacketEvent;
-import pro.delfik.util.CryptoUtils;
-import pro.delfik.util.Scheduler;
+import implario.util.CryptoUtils;
+import implario.util.Scheduler;
 
 public final class Core {
 	

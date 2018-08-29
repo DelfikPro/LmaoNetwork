@@ -5,13 +5,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import pro.delfik.lmao.core.OnlineHandler;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.net.Packet;
-import pro.delfik.net.packet.PacketAuth;
-import pro.delfik.net.packet.PacketGC;
-import pro.delfik.net.packet.PacketPex;
-import pro.delfik.net.packet.PacketUser;
-import pro.delfik.net.packet.PacketWrite;
-import pro.delfik.util.FileConverter;
+import implario.net.Packet;
+import implario.net.packet.PacketAuth;
+import implario.net.packet.PacketGC;
+import implario.net.packet.PacketPex;
+import implario.net.packet.PacketUser;
+import implario.net.packet.PacketWrite;
+import implario.util.FileConverter;
 
 import java.io.File;
 

@@ -9,8 +9,8 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.util.U;
-import pro.delfik.util.Converter;
-import pro.delfik.util.Rank;
+import implario.util.Converter;
+import implario.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

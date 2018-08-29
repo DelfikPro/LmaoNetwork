@@ -3,7 +3,7 @@ package pro.delfik.lmao.util;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
-import pro.delfik.util.Converter;
+import implario.util.Converter;
 
 import java.util.List;
 

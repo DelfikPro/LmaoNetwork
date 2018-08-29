@@ -1,7 +1,7 @@
 package pro.delfik.lmao.command.handle;
 
 import org.bukkit.command.CommandSender;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 public class NotEnoughPermissionsException extends CustomException {
 	

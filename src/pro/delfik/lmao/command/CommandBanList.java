@@ -5,7 +5,7 @@ import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.command.handle.PersonNotFoundException;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 public class CommandBanList extends LmaoCommand {
 	

@@ -6,8 +6,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.permissions.Core;
-import pro.delfik.net.Packet;
-import pro.delfik.util.ServerType;
+import implario.net.Packet;
 
 public class Lmao extends JavaPlugin {
 	

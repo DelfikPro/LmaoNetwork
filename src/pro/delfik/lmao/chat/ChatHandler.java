@@ -9,7 +9,7 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

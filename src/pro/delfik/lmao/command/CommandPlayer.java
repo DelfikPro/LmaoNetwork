@@ -11,7 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 public class CommandPlayer extends LmaoCommand {
 	

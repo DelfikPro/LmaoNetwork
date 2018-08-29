@@ -2,13 +2,13 @@ package pro.delfik.lmao.core.connection;
 
 import org.bukkit.Bukkit;
 import pro.delfik.lmao.core.Lmao;
-import pro.delfik.net.Listener;
-import pro.delfik.net.P2P;
-import pro.delfik.net.Packet;
-import pro.delfik.net.packet.PacketInit;
-import pro.delfik.util.Converter;
-import pro.delfik.util.CryptoUtils;
-import pro.delfik.util.Scheduler;
+import implario.net.Listener;
+import implario.net.P2P;
+import implario.net.Packet;
+import implario.net.packet.PacketInit;
+import implario.util.Converter;
+import implario.util.CryptoUtils;
+import implario.util.Scheduler;
 
 import java.io.BufferedReader;
 import java.io.File;

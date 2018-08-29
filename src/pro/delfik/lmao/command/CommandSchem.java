@@ -3,10 +3,10 @@ package pro.delfik.lmao.command;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.connection.Connect;
-import pro.delfik.net.packet.PacketRead;
-import pro.delfik.net.packet.PacketWrite;
-import pro.delfik.util.FileConverter;
-import pro.delfik.util.Rank;
+import implario.net.packet.PacketRead;
+import implario.net.packet.PacketWrite;
+import implario.util.FileConverter;
+import implario.util.Rank;
 
 import java.io.File;
 

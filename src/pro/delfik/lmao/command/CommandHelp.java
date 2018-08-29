@@ -5,7 +5,7 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.core.Registrar;
 import pro.delfik.lmao.util.U;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 import java.util.ArrayList;
 import java.util.HashSet;

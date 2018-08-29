@@ -9,7 +9,7 @@ import pro.delfik.lmao.command.handle.NotEnoughArgumentsException;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 import java.util.List;
 

@@ -2,7 +2,7 @@ package pro.delfik.lmao.core.connection;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
-import pro.delfik.net.Packet;
+import implario.net.Packet;
 
 public class PacketEvent extends Event {
 

@@ -15,8 +15,8 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.Connect;
 import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.net.packet.PacketPunishment;
-import pro.delfik.util.Rank;
+import implario.net.packet.PacketPunishment;
+import implario.util.Rank;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;

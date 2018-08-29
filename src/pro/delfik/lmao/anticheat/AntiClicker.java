@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import pro.delfik.lmao.core.Person;
-import pro.delfik.util.Rank;
+import implario.util.Rank;
 
 import java.util.HashMap;
 
