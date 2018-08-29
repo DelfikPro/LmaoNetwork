@@ -5,6 +5,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import pro.delfik.lmao.core.connection.database.Database;
+import pro.delfik.lmao.outward.gui.GUILoading;
 import pro.delfik.lmao.permissions.Core;
 import implario.net.Packet;
 
@@ -12,6 +13,8 @@ public class Lmao extends JavaPlugin {
 	
 	public static Lmao plugin;
 	private static final String prefix = "LMAO §e> §c";
+	public static boolean noPhysics = true;
+
 	public static String p() {return prefix;}
 	
 	@Override
@@ -23,6 +26,7 @@ public class Lmao extends JavaPlugin {
 		Init.events();
 		Init.commands();
 		Database.enable();
+		GUILoading.startLoop();
 		if (Bukkit.getServer().getMotd().startsWith("TEST_")) Person.disablePlayerCleanUp();
 	}
 	

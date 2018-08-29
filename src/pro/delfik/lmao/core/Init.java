@@ -18,6 +18,9 @@ import pro.delfik.lmao.core.connection.PacketListener;
 import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.misc.Garpoon;
 import pro.delfik.lmao.misc.Invseer;
+import pro.delfik.lmao.outward.TotalDisabler;
+import pro.delfik.lmao.outward.Trampoline;
+import pro.delfik.lmao.outward.gui.GUIHandler;
 import pro.delfik.lmao.permissions.Authenticator;
 
 public class Init {
@@ -33,6 +36,9 @@ public class Init {
 		r.regEvent(new Authenticator());
 		r.regEvent(new PacketListener());
 		r.regEvent(new Invseer());
+		r.regEvent(new TotalDisabler());
+		r.regEvent(new Trampoline());
+		r.regEvent(new GUIHandler());
 	}
 	
 	public static void commands() {

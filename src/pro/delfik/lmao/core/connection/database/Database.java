@@ -1,6 +1,6 @@
 package pro.delfik.lmao.core.connection.database;
 
-import lib.I;
+import pro.delfik.lmao.outward.item.I;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

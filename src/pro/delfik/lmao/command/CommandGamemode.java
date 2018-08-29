@@ -1,6 +1,7 @@
 package pro.delfik.lmao.command;
 
-import lib.Converter;
+import implario.util.Converter;
+import implario.util.Rank;
 import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -9,7 +10,6 @@ import pro.delfik.lmao.command.handle.NotEnoughArgumentsException;
 import pro.delfik.lmao.core.Lmao;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
-import implario.util.Rank;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class CommandGamemode extends LmaoCommand {
 		super("gamemode", Rank.SPONSOR, "Изменение игрового режима");
 	}
 	
-	public static final List<String> SHORT_COMMANDS = Converter.toList("gms", "gmc", "gm0", "gm1", "gm3", "gmw");
+	public static final List<String> SHORT_COMMANDS = Converter.asList("gms", "gmc", "gm0", "gm1", "gm3", "gmw");
 	
 	@Override
 	public void run(CommandSender sender, String cmd, String[] args) throws NotEnoughArgumentsException {
@@ -27,17 +27,17 @@ public class CommandGamemode extends LmaoCommand {
 		final String gmd;
 		boolean shortcut = SHORT_COMMANDS.contains(cmd.toLowerCase());
 		if (shortcut) {
-			gm = Converter.getGamemode(cmd.charAt(2) + "");
-			gmd = Converter.getGamemodeRepresentation(gm);
+			gm = U.getGamemode(cmd.charAt(2) + "");
+			gmd = U.getGamemodeRepresentation(gm);
 		} else {
 			requireArgs(args, 1, "[Режим]");
-			gm = Converter.getGamemode(args[0]);
+			gm = U.getGamemode(args[0]);
 			if (gm == null) {
 				sender.sendMessage(Lmao.p() + "Такого игрового режима не существует. Допустимые режимы: §esurvival§c, " +
 										   "§ecreative§c, §espectator§c, §eadventure§c.");
 				return;
 			}
-			gmd = Converter.getGamemodeRepresentation(gm);
+			gmd = U.getGamemodeRepresentation(gm);
 		}
 		if (args.length == (shortcut ? 0 : 1)) {
 			Player p = (Player) sender;

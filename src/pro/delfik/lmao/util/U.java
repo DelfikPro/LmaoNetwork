@@ -4,6 +4,7 @@ import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.chat.ChatHandler;
@@ -42,7 +43,27 @@ public class U {
 			else return null;
 		} else return p;
 	}
-	
+
+
+	public static GameMode getGamemode(String string) {
+		switch (string.toLowerCase()) {
+			case "c": case "creative": case "1": return GameMode.CREATIVE;
+			case "survival": case "s": case "0": return GameMode.SURVIVAL;
+			case "adventure": case "a": case "2": return GameMode.ADVENTURE;
+			case "3": case "spectator": case "watcher": case "w": return GameMode.SPECTATOR;
+			default: return null;}
+	}
+	public static String getGamemodeRepresentation(GameMode gm) {
+		switch (gm) {
+			case ADVENTURE: return "Приключение";
+			case CREATIVE: return "Творческий";
+			case SPECTATOR: return "Наблюдатель";
+			case SURVIVAL: return "Выживание";
+			default: return "Неизвестный режим";
+		}
+	}
+
+
 	// -------------------------------------------- Работа с чатом
 	
 	public static final char[] COLOR_CHARS = new char[] {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a',

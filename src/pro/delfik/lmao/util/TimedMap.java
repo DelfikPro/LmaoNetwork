@@ -1,6 +1,6 @@
 package pro.delfik.lmao.util;
 
-import lib.I;
+import pro.delfik.lmao.outward.item.I;
 
 import java.util.HashMap;
 

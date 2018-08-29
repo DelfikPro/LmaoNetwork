@@ -1,10 +1,10 @@
 package pro.delfik.lmao.command;
 
-import lib.Converter;
+import implario.util.Converter;
+import implario.util.Rank;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.util.U;
-import implario.util.Rank;
 
 public class CommandSudo extends LmaoCommand {
     

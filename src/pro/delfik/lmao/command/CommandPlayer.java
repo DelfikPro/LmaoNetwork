@@ -1,8 +1,8 @@
 package pro.delfik.lmao.command;
 
-import lib.Generate;
-import lib.ItemBuilder;
-import lib.gui.GUI;
+import pro.delfik.lmao.outward.Generate;
+import pro.delfik.lmao.outward.item.ItemBuilder;
+import pro.delfik.lmao.outward.gui.GUI;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;

@@ -1,10 +1,8 @@
 package pro.delfik.lmao.command;
 
-import lib.Converter;
-import lib.Generate;
-import lib.gui.CheckBoxGUI;
-import lib.gui.GUI;
-import lib.gui.GUILoading;
+import implario.net.packet.PacketPunishment;
+import implario.util.Converter;
+import implario.util.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
@@ -15,8 +13,10 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.Connect;
 import pro.delfik.lmao.core.connection.database.Database;
-import implario.net.packet.PacketPunishment;
-import implario.util.Rank;
+import pro.delfik.lmao.outward.Generate;
+import pro.delfik.lmao.outward.gui.CheckBoxGUI;
+import pro.delfik.lmao.outward.gui.GUI;
+import pro.delfik.lmao.outward.gui.GUILoading;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -131,7 +131,7 @@ public class CommandActions extends LmaoCommand {
 		public ItemStack toItem() {
 			return item != null ? item : (item = Generate.itemstack(changeIcon ? Material.REDSTONE_BLOCK : Material.GOLD_BLOCK, itemAmount, 0,
 					"§6Мут за §e" + rule, "§6Длительность: §e" + (changeIcon ? time / 60 : time) + (changeIcon ?
-																											Converter.plural(time / 60, " час", " часа", " часов") : Converter.plural(time, " минута", " минуты", " минут"))));
+						Converter.plural(time / 60, " час", " часа", " часов") : Converter.plural(time, " минута", " минуты", " минут"))));
 		}
 	}
 	

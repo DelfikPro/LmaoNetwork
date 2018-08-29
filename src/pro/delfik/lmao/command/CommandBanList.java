@@ -1,6 +1,6 @@
 package pro.delfik.lmao.command;
 
-import lib.gui.GUILoading;
+import pro.delfik.lmao.outward.gui.GUILoading;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.command.handle.PersonNotFoundException;

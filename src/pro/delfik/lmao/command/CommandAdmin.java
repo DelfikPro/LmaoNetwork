@@ -1,7 +1,6 @@
 package pro.delfik.lmao.command;
 
-import lib.Converter;
-import lib.Lib;
+import implario.util.Converter;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
@@ -9,9 +8,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.plugin.InvalidDescriptionException;
-import org.bukkit.plugin.InvalidPluginException;
-import org.bukkit.plugin.Plugin;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.misc.Human;
@@ -117,24 +113,6 @@ public class CommandAdmin extends LmaoCommand {
 					Bukkit.getPluginManager().callEvent(new PlayerLoginEvent(z, z.getAddress().getHostName(), z.getAddress().getAddress()));
 					Bukkit.getPluginManager().callEvent(new PlayerJoinEvent(z, "some join msg"));
 					sender.sendMessage("§aИгрок прогружен.");
-					return;
-				}
-				case "rl": {
-					if (args.length < 3) {
-						sender.sendMessage("§a/a rl [Плагин] [Имя файла]");
-						return;
-					}
-					Plugin plugin = Bukkit.getPluginManager().getPlugin(args[1]);
-					if (plugin == null) {
-						sender.sendMessage("§cПлагин §e" + args[1] + "§c не найден.");
-						return;
-					}
-					sender.sendMessage(Lib.unload(plugin));
-					try {
-						Bukkit.getPluginManager().loadPlugin(new File("plugins/" + args[2]));
-					} catch (InvalidPluginException | InvalidDescriptionException e) {
-						e.printStackTrace();
-					}
 					return;
 				}
 				default:
