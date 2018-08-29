@@ -40,6 +40,7 @@ public class OnlineHandler implements Listener {
 			return;
 		}
 		Person person = Person.load(player, packet.getRank(), packet.isAuthorized(), packet.getOnline(), packet.getMoney());
+		if (packet.isAuthorized()) person.auth();
 	}
 	
 	@EventHandler
