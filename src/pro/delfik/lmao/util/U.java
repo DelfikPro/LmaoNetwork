@@ -5,6 +5,8 @@ import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.chat.ChatHandler;
@@ -169,5 +171,15 @@ public class U {
 	
 	public static void send(String player, String server) {
 		Connect.send(new PacketSummon(player, server));
+	}
+
+	public static Location toLocation(String location, World world) {
+		String[] args = location.split(", ");
+		Location loc = new Location(world, Double.parseDouble(args[0]), Double.parseDouble(args[1]), Double.parseDouble(args[2]));
+		if (args.length == 5) {
+			loc.setYaw(Float.parseFloat(args[3]));
+			loc.setPitch(Float.parseFloat(args[4]));
+		}
+		return loc;
 	}
 }
