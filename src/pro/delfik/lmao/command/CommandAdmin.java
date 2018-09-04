@@ -1,6 +1,7 @@
 package pro.delfik.lmao.command;
 
 import implario.util.Converter;
+import implario.util.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
@@ -11,9 +12,7 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.misc.Human;
-import implario.util.Rank;
 
-import java.io.File;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
