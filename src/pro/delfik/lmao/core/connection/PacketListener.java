@@ -19,35 +19,33 @@ public class PacketListener implements Listener {
 	@EventHandler
 	public void event(PacketEvent event) {
 		Packet packet = event.getPacket();
-		if(packet instanceof PacketUser){
+
+		if (packet instanceof PacketUser) {
 			PacketUser user = (PacketUser) packet;
-
-			StringBuilder b = new StringBuilder("§7");
-			for (int i = 0; i < 10; i++) {
-
-			}
-
-
-			Bukkit.broadcastMessage(user.isAuthorized() + "");
 			OnlineHandler.waitingPackets.add(user.getNick().toLowerCase(), user);
-		}else if(packet instanceof PacketAuth){
+
+		} else if (packet instanceof PacketAuth) {
 			String nick = ((PacketAuth) packet).getNick();
 			Person p = Person.get(nick);
 			if (p != null) p.auth();
-		}else if(packet instanceof PacketPex){
-			PacketPex pex = (PacketPex)packet;
+
+		} else if (packet instanceof PacketPex) {
+			PacketPex pex = (PacketPex) packet;
 			Person.get(pex.getNick()).setRank(pex.getRank());
-		}else if(packet instanceof PacketWrite){
-			PacketWrite write = (PacketWrite)event.getPacket();
+
+		} else if (packet instanceof PacketWrite) {
+			PacketWrite write = (PacketWrite) event.getPacket();
 			FileConverter.write(new File(System.getProperty("user.dir") + "/" + write.getName()), write.getFile());
-			if(!write.getName().endsWith(".jar")) return;
+			if (!write.getName().endsWith(".jar")) return;
 			Bukkit.broadcastMessage("§aНа сервер успешно загружено обновление.");
 			Bukkit.reload();
-		}else if(packet instanceof PacketGC){
+
+		} else if (packet instanceof PacketGC) {
 			Bukkit.broadcastMessage("§cСервер очищается от хлама. Возможна перезагрузка");
 			Runtime.getRuntime().gc();
-			if(((PacketGC) packet).isRl())
+			if (((PacketGC) packet).isRl())
 				Bukkit.reload();
+
 		}
 	}
 }
