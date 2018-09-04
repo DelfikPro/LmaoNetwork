@@ -2,6 +2,7 @@ package pro.delfik.lmao.core;
 
 import pro.delfik.lmao.anticheat.AntiClicker;
 import pro.delfik.lmao.chat.ChatHandler;
+import pro.delfik.lmao.command.CmdI;
 import pro.delfik.lmao.command.CommandActions;
 import pro.delfik.lmao.command.CommandAdmin;
 import pro.delfik.lmao.command.CommandGamemode;
@@ -18,6 +19,7 @@ import pro.delfik.lmao.core.connection.PacketListener;
 import pro.delfik.lmao.core.connection.PacketEvent;
 import pro.delfik.lmao.misc.Garpoon;
 import pro.delfik.lmao.misc.Invseer;
+import pro.delfik.lmao.command.CommandMultipleCmds;
 import pro.delfik.lmao.outward.TotalDisabler;
 import pro.delfik.lmao.outward.Trampoline;
 import pro.delfik.lmao.outward.gui.GUIHandler;
@@ -45,7 +47,7 @@ public class Init {
 		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
 				new CommandHelp(), new CommandSudo(), new CommandTeleport(), new CommandSchem(),
 				new CommandVanish(), new CommandList(), new CommandStop(), new CommandPlayer(),
-				new CommandActions()};
+				new CommandActions(), new CmdI(), new CommandMultipleCmds()};
 		new Thread(() -> {
 			for (LmaoCommand cmd : cmds) r.regCommand(cmd);
 		}).start();
