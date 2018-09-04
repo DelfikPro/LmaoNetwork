@@ -19,7 +19,28 @@ public class CommandHelp extends LmaoCommand {
 	}
 	
 	public static List<Set<String>> playerpages = null;
-	
+	public static void initPages() {
+		playerpages = new ArrayList<>();
+		int field = 0;
+		Set<String> set = new HashSet<>();
+		for (Registrar r : Registrar.getRegistrars().values()) {
+			for (LmaoCommand cmd : r.getCommands()) {
+
+				Rank rank = cmd.getRequiredRank();
+				if (rank != Rank.PLAYER) continue;
+				String text = "§7/" + cmd.getName() + " §e- " + cmd.getDescription();
+				set.add(text);
+				field++;
+				if (field > 8) {
+					field = 0;
+					playerpages.add(set);
+					set = new HashSet<>();
+				}
+			}
+		}
+		playerpages.add(set);
+	}
+
 	@Override
 	public void run(CommandSender sender, String s, String[] args) {
 		int page = 1;
@@ -36,26 +57,5 @@ public class CommandHelp extends LmaoCommand {
 			U.msg(sender, tc);
 		}
 	}
-	
-	public static void initPages() {
-		playerpages = new ArrayList<>();
-		int field = 0;
-		Set<String> set = new HashSet<>();
-		for (Registrar r : Registrar.getRegistrars().values()) {
-			for (LmaoCommand cmd : r.getCommands()) {
-				
-				Rank rank = cmd.getRequiredRank();
-				if (rank != Rank.PLAYER) continue;
-				String text = "§7/" + cmd.getName() + " §e- " + cmd.getDescription();
-				set.add(text);
-				field++;
-				if (field > 8) {
-					field = 0;
-					playerpages.add(set);
-					set = new HashSet<>();
-				}
-			}
-		}
-		playerpages.add(set);
-	}
+
 }
