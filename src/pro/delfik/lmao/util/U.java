@@ -28,7 +28,8 @@ public class U {
 	
 	public static Collection<Person> selector(CommandSender sender, String selector) {
 		if (selector.equals("@a")) return Person.online();
-		return Collections.singletonList(unary(sender, selector));
+		Person person = unary(sender, selector);
+		return person == null ? Collections.emptyList() : Collections.singletonList(person);
 	}
 	public static void selector(CommandSender sender, String selector, Consumer<Person> ps) {
 		Collection<Person> list = selector(sender, selector);
