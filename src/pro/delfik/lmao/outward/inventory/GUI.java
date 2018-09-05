@@ -1,11 +1,14 @@
 package pro.delfik.lmao.outward.inventory;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
+import pro.delfik.lmao.outward.item.ItemBuilder;
 
 import java.util.Collection;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,6 +18,7 @@ import java.util.Map;
 public abstract class GUI {
 
 	private static final Map<Inventory, GUI> ALL = new HashMap<>();
+	protected static Map<Material, GUI> assigned = new EnumMap<>(Material.class);
 	private final Inventory inv;
 	private final boolean temporary;
 
@@ -60,6 +64,15 @@ public abstract class GUI {
 	}
 
 	/**
+	 * Метод для быстрого добавления предмета-болванки с заданным типом и названием.
+	 * @param material Тип предмета
+	 * @param name Название предмета
+	 */
+	public void dummy(Material material, String name) {
+		inv().addItem(ItemBuilder.create(material, name));
+	}
+
+	/**
 	 * Создание ивентаря.
 	 * @param slots Количество слотов в инвентаре (должно быть кратно 9)
 	 * @param title Название инвентаря
@@ -83,6 +96,14 @@ public abstract class GUI {
 	 */
 	public static Collection<GUI> getAll() {
 		return ALL.values();
+	}
+
+	/**
+	 * @param material Тип предмета, на который надо будет тыкать.
+	 * @param gui Меню, которое будет открываться.
+	 */
+	public static void assign(Material material, GUI gui) {
+		assigned.put(material, gui);
 	}
 
 }

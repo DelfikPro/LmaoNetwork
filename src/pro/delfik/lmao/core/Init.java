@@ -41,6 +41,7 @@ public class Init {
 		r.regEvent(new TotalDisabler());
 		r.regEvent(new Trampoline());
 		r.regEvent(new GUIHandler());
+		r.regEvent(new pro.delfik.lmao.outward.inventory.GUIHandler());
 	}
 	
 	public static void commands() {

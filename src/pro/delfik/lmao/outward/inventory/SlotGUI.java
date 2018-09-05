@@ -13,6 +13,16 @@ public class SlotGUI extends GUI {
 	 * @param title Название инвентаря (Строчка сверху)
 	 * @param rows Количество строк в инвентаре
 	 * @param action (player, slot, itemstack) -> {...} - код, который выполняется при нажатии
+	 */
+	public SlotGUI(String title, int rows, Action action) {
+		this(title, rows, action, null);
+	}
+
+	/**
+	 * GUI, который выполняет один и тот же заданный код для кликов по всем слотам.
+	 * @param title Название инвентаря (Строчка сверху)
+	 * @param rows Количество строк в инвентаре
+	 * @param action (player, slot, itemstack) -> {...} - код, который выполняется при нажатии
 	 * @param shiftAction Код, который выполняется при нажатии с зажатым Shift (можно оставить null)
 	 */
 	public SlotGUI(String title, int rows, Action action, Action shiftAction) {
