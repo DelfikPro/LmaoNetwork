@@ -43,7 +43,10 @@ public class Init {
 		r.regEvent(new GUIHandler());
 		r.regEvent(new pro.delfik.lmao.outward.inventory.GUIHandler());
 	}
-	
+
+	/**
+	 * Инициализация команд.
+	 */
 	public static void commands() {
 		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
 				new CommandHelp(), new CommandSudo(), new CommandTeleport(), new CommandSchem(),
