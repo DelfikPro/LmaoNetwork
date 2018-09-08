@@ -79,7 +79,7 @@ public class Connect implements Listener{
 		BufferedReader reader = null;
 		File file = getFile(strFile);
 		if(!file.exists())return null;
-		StringBuffer buffer = new StringBuffer((int)file.length());
+		StringBuilder buffer = new StringBuilder((int)file.length());
 		try{
 			reader = new BufferedReader(new FileReader(file));
 			while (true){
