@@ -84,15 +84,4 @@ public final class I {
 		i.addUnsafeEnchantment(e, level);
 		return i;
 	}
-	
-	public static ItemStack enchant(ItemStack i, String... s) {try {
-		for (String a : s) {
-			if (!a.replaceAll("\\d{1,}:\\d{1,}", "").equals("")) {
-				throw new IllegalArgumentException();
-			}
-			String m[] = a.split(":");
-			i.addUnsafeEnchantment(Enchantment.getById(Integer.parseInt(m[0])), Integer.parseInt(m[1]));
-		}
-		return i;
-	} catch (NumberFormatException e) {throw new IllegalArgumentException();}}
 }

@@ -48,10 +48,6 @@ public final class Generate {
 		return i;
 	}
 
-	public static ItemStack enchant(ItemStack i, String... s) {
-		return I.enchant(i, s);
-	}
-
 	public static void firework(Location location, boolean withoutparticles) {
 		Firework f = (Firework) location.getWorld().spawnEntity(location, EntityType.FIREWORK);
 		FireworkMeta fm = f.getFireworkMeta(); Type t = Type.BALL_LARGE; Color c = Color.WHITE;

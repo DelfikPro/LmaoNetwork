@@ -1,13 +1,15 @@
 package pro.delfik.lmao.outward.item;
 
+import implario.util.Converter;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class ItemBuilder {
 	
@@ -17,8 +19,21 @@ public class ItemBuilder {
 	private String displayName = null;
 	private List<String> lore = null;
 	private boolean unbreakable = false;
-	private Set<Ench> enchantments = new HashSet<>();
-	
+	private Collection<Ench> enchantments;
+
+	public ItemBuilder(ItemStack item) {
+		material = item.getType();
+		damage = item.getDurability();
+		amount = item.getAmount();
+		if (item.hasItemMeta()) {
+			ItemMeta meta = item.getItemMeta();
+			if (meta.hasDisplayName()) displayName = meta.getDisplayName();
+			if (meta.hasLore()) lore = meta.getLore();
+			if (meta.hasEnchants()) enchantments = Converter.transform(meta.getEnchants().entrySet(), Ench::new);
+			unbreakable = meta.spigot().isUnbreakable();
+		}
+	}
+
 	public ItemBuilder(Material m) {
 		this.material = m;
 	}
@@ -38,6 +53,23 @@ public class ItemBuilder {
 		return itemStack;
 	}
 
+	public static ItemStack setAmount(ItemStack item, int amount) {
+		return new ItemBuilder(item).withAmount(amount).build();
+	}
+
+	public static ItemStack addLore(ItemStack item, String... lore) {
+		item = item.clone();
+		ItemMeta meta = item.getItemMeta();
+		if (!meta.hasLore()) meta.setLore(Converter.asList(lore));
+		else {
+			List<String> list = meta.getLore();
+			Collections.addAll(list, lore);
+			meta.setLore(list);
+		}
+		item.setItemMeta(meta);
+		return item;
+	}
+
 	public ItemStack build() {
 		ItemStack itemStack = new ItemStack(material, amount, damage);
 		ItemMeta meta = itemStack.getItemMeta();
@@ -45,7 +77,7 @@ public class ItemBuilder {
 		if (lore != null && !lore.isEmpty()) meta.setLore(lore);
 		if (unbreakable) meta.spigot().setUnbreakable(true);
 		itemStack.setItemMeta(meta);
-		enchantments.forEach(e -> e.applyTo(itemStack));
+		if (enchantments != null) enchantments.forEach(e -> e.applyTo(itemStack));
 		return itemStack;
 	}
 	
@@ -68,9 +100,16 @@ public class ItemBuilder {
 		this.lore = Arrays.asList(lore);
 		return this;
 	}
+
+	public ItemBuilder addLore(String... lore) {
+		if (this.lore == null) this.lore = Converter.asList(lore);
+		else Collections.addAll(this.lore, lore);
+		return this;
+	}
 	
-	public ItemBuilder enchant(Ench ench) {
-		this.enchantments.add(ench);
+	public ItemBuilder enchant(Ench... ench) {
+		if (enchantments == null) enchantments = new HashSet<>();
+		Collections.addAll(enchantments, ench);
 		return this;
 	}
 	
