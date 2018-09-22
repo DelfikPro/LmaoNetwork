@@ -7,7 +7,9 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerFishEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
@@ -95,6 +97,14 @@ public class Garpoon implements Listener {
 		if (!pulled.contains(e.getPlayer().getName())) return;
 		//User.getUser(e.getPlayer().getName()).getAntiFly().off();
 		pulled.remove(e.getPlayer().getName());
+	}
+
+	@EventHandler
+	public void onInteract(PlayerInteractEvent e) {
+		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() == Material.CAKE_BLOCK && !e.getPlayer().isSneaking()) {
+			if (e.getClickedBlock().getData() == 6) e.getClickedBlock().setType(Material.AIR);
+			else e.getClickedBlock().setData((byte) (e.getClickedBlock().getData() + 1));
+		}
 	}
 
 	private static boolean isBlockNearby(Location loc) {
