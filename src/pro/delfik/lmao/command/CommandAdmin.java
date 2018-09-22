@@ -10,6 +10,7 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pro.delfik.lmao.command.handle.LmaoCommand;
+import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.core.connection.database.Database;
 import pro.delfik.lmao.misc.Human;
 
@@ -114,8 +115,16 @@ public class CommandAdmin extends LmaoCommand {
 					sender.sendMessage("§aИгрок прогружен.");
 					return;
 				}
+				case "hitdelay": {
+					int i = requireInt(args[2]);
+					Person v = requirePerson(args[1]);
+					v.getHandle().setMaximumNoDamageTicks(i);
+					v.getHandle().setNoDamageTicks(i);
+					sender.sendMessage("§aDone.");
+					return;
+				}
 				default:
-					sender.sendMessage("§cImplario §e> §6/admin write read spawn up exec fake userlist rl");
+					sender.sendMessage("§cImplario §e> §6/admin sqlquery sqlupdate fake spawn exec up hitdelay");
 			}
 		}
 	}
