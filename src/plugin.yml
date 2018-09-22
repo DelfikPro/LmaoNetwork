@@ -8,7 +8,6 @@ commands:
   admin:
     aliases: [a]
   perms:
-  vanish:
   invsee:
   gamemode:
     aliases: [gm1, gm0, gm3, gmc, gmw, gms, gm]
