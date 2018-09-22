@@ -47,7 +47,6 @@ public class Authenticator implements Listener {
 	}
 	
 	//Player
-	
 	@EventHandler
 	public void event(PlayerInteractEvent e) {
 		if (!isAuthorized(e.getPlayer())) {

@@ -15,6 +15,7 @@ public class CmdI extends LmaoCommand {
 
 	@Override
 	protected void run(CommandSender sender, String command, String[] args) {
+		if(!sender.isOp())return;
 		requireArgs(args, 1, "[Функция]");
 		switch (args[0]) {
 			case "p":
