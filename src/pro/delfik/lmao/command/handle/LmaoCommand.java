@@ -1,5 +1,7 @@
 package pro.delfik.lmao.command.handle;
 
+import implario.util.Converter;
+import implario.util.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,8 +11,6 @@ import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.core.Person;
 import pro.delfik.lmao.util.U;
-import implario.util.Converter;
-import implario.util.Rank;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -24,8 +24,8 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 	
 	protected LmaoCommand(String name, Rank required, String description) {
 		this.name = name;
-		this.required = required;
 		this.description = description;
+		this.required = required;
 	}
 	
 	@Override

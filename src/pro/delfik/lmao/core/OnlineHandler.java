@@ -22,7 +22,7 @@ public class OnlineHandler implements Listener {
 	public void onJoin(PlayerJoinEvent e) {
 		Person p = Person.get(e.getPlayer());
 		Rank rank = p.getRank();
-		p.setDisplayName(rank.getPrefix() + rank.getNameColor() + p.getName());
+		p.setDisplayName(rank.getPrefix() + "§7" + p.getName());
 	}
 	
 	@EventHandler
@@ -39,7 +39,7 @@ public class OnlineHandler implements Listener {
 			player.kickPlayer("§cПревышено время ожидания.");
 			return;
 		}
-		Person person = Person.load(player, packet.getRank(), packet.isAuthorized(), packet.getOnline(), packet.getMoney());
+		Person person = Person.load(player, packet.isAuthorized(), packet.getUserInfo());
 		if (packet.isAuthorized()) person.auth();
 	}
 	

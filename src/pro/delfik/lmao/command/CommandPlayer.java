@@ -42,7 +42,7 @@ public class CommandPlayer extends LmaoCommand {
 	}
 	
 	private static ItemStack generateOnlineItem(Person v) {
-		String time = representTime(v.getOnlineTime() + (System.currentTimeMillis() - v.joinedAt));
+		String time = representTime(v.getOnlineTime());
 		return new ItemBuilder(Material.WATCH).withDisplayName("§fВремя, проведённое в игре:").withLore("§e" + time).build();
 	}
 	

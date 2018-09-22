@@ -1,5 +1,6 @@
 package pro.delfik.lmao.core;
 
+import implario.util.UserInfo;
 import pro.delfik.lmao.outward.item.I;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
@@ -27,9 +28,9 @@ import java.util.Set;
 
 public class Person {
 	
-	public static Person load(Player p, Rank rank, boolean auth, long online, int money) {
+	public static Person load(Player p, boolean auth, UserInfo info) {
 		if (get(p) != null) return null;
-		return new Person(p, rank, auth, online, money);
+		return new Person(p, auth, info);
 	}
 	
 	public static void unload(String name) {
@@ -47,22 +48,18 @@ public class Person {
 	public static final Set<String> authed = new HashSet<>();
 	
 	private final CraftPlayer handle;
-	private Rank rank;
+	private UserInfo info;
 	private boolean auth = false;
 	private final String name;
 	private volatile VanishInfo vanish = null;
-	private final long onlineTime;
-	private int money;
-	public long joinedAt = System.currentTimeMillis();
-	
+
 	private boolean online = true;
 	
-	public Person(Player handle, Rank rank, boolean auth, long online, int money) {
+	public Person(Player handle, boolean auth, UserInfo info) {
 		this.handle = (CraftPlayer) handle;
 		this.name = handle.getName();
-		this.rank = rank;
-		this.onlineTime = online;
-		this.money = money;
+		this.info = info;
+		if (info.darkTheme) handle.setPlayerTime(15000, false);
 		names.put(name.toLowerCase(), this);
 		if (auth) auth();
 	}
@@ -119,7 +116,7 @@ public class Person {
 	
 	@Override
 	public boolean equals(Object o) {
-		return o != null && o instanceof Person && ((Person) o).getName().hashCode() == name.hashCode();
+		return o instanceof Person && ((Person) o).getName().hashCode() == name.hashCode();
 	}
 	
 	public void remove() {
@@ -184,19 +181,19 @@ public class Person {
 	}
 	
 	public int getMoney() {
-		return money;
+		return info.money;
 	}
 	
 	public long getOnlineTime() {
-		return onlineTime;
+		return info.online;
 	}
 	
 	public Rank getRank() {
-		return rank;
+		return info.rank;
 	}
 	
 	public boolean hasRank(Rank rank) {
-		return this.rank.ordinal() <= rank.ordinal();
+		return getRank().ordinal() <= rank.ordinal();
 	}
 	
 	public void setGameMode(GameMode mode) {
@@ -224,8 +221,8 @@ public class Person {
 	}
 	
 	public void setRank(Rank rank) {
-		this.rank = rank;
-		getHandle().setDisplayName(rank.getPrefix() + rank.getNameColor() + name);
+		this.info.rank = rank;
+		getHandle().setDisplayName(rank.getPrefix() + "§7" + name);
 	}
 	
 	public static boolean online(String arg) {
@@ -239,5 +236,10 @@ public class Person {
 
 	public void msg(TextComponent text) {
 		handle.spigot().sendMessage(text);
+	}
+
+	public void setDarkTheme(boolean dark) {
+		info.darkTheme = dark;
+		handle.setPlayerTime(dark ? 15000 : 5000, false);
 	}
 }

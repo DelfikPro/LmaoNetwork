@@ -2,6 +2,7 @@ package pro.delfik.lmao.core.connection;
 
 import implario.net.Packet;
 import implario.net.packet.PacketAuth;
+import implario.net.packet.PacketChangeTheme;
 import implario.net.packet.PacketGC;
 import implario.net.packet.PacketPex;
 import implario.net.packet.PacketUser;
@@ -22,7 +23,7 @@ public class PacketListener implements Listener {
 
 		if (packet instanceof PacketUser) {
 			PacketUser user = (PacketUser) packet;
-			OnlineHandler.waitingPackets.add(user.getNick().toLowerCase(), user);
+			OnlineHandler.waitingPackets.add(user.getUserInfo().name.toLowerCase(), user);
 
 		} else if (packet instanceof PacketAuth) {
 			String nick = ((PacketAuth) packet).getNick();
@@ -46,6 +47,9 @@ public class PacketListener implements Listener {
 			if (((PacketGC) packet).isRl())
 				Bukkit.reload();
 
+		} else if (packet instanceof PacketChangeTheme) {
+			Person p = Person.get(((PacketChangeTheme) packet).player);
+			p.setDarkTheme(((PacketChangeTheme) packet).dark);
 		}
 	}
 }
