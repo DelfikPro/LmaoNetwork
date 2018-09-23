@@ -10,16 +10,13 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.Connect;
-import pro.delfik.lmao.core.connection.database.Database;
+import pro.delfik.lmao.user.Person;
+import pro.delfik.lmao.Connect;
 import pro.delfik.lmao.outward.Generate;
 import pro.delfik.lmao.outward.gui.CheckBoxGUI;
 import pro.delfik.lmao.outward.gui.GUI;
 import pro.delfik.lmao.outward.gui.GUILoading;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.EnumSet;
 
 public class CommandActions extends LmaoCommand {
@@ -45,66 +42,19 @@ public class CommandActions extends LmaoCommand {
 		GUI gui = new GUI(Bukkit.createInventory(null, 9, "§0§lДействия с " + args[0]));
 		boolean online = Person.get(player) != null;
 		
-		ProhibitionInfo mute = ProhibitionInfo.load(args[0], false);
-		ProhibitionInfo ban = ProhibitionInfo.load(args[0], true);
-		
-		ItemStack muteItem = mute == null ? MUTE : Generate.itemstack(Material.BARRIER,1, 0, "§f>> §a§lРазмутить §f<<",
-				"§6Причина мута: §e" + mute.reason, "§6Модератор: §e" + mute.moder, "§6Мут до: §e" + mute.until);
-		ItemStack banItem = ban == null ? BAN : Generate.itemstack(Material.BARRIER,1, 0, "§f>> §a§lРазбанить §f<<",
-				"§cПричина бана: §e" + ban.reason, "§cМодератор: §e" + ban.moder, "§cБан до: §e" + ban.until);
-		
 		if (s.hasRank(Rank.RECRUIT)) {
-			gui.put(3, muteItem, pl -> {
-				if (mute != null) {
-					Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.UNMUTE, s.getName()));
-					pl.closeInventory();
-					return;
-				}
+			gui.put(3, MUTE, pl -> {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(muteGUI(args[0]));
 			});
 			if (online) gui.put(4, KICK,
 					pl -> Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.KICK, s.getName(), 0, "Помеха игровому процессу")));
-			gui.put(5, banItem, pl -> {
-				if (ban != null) {
-					Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.UNBAN, s.getName()));
-					pl.closeInventory();
-					return;
-				}
+			gui.put(5, BAN, pl -> {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(banGUI(args[0]));
 			});
 		} else gui.put(4, new ItemStack(Material.COOKIE), Player::closeInventory);
 		((Player) sender).openInventory(gui.getInventory());
-	}
-	
-	
-	private static class ProhibitionInfo {
-		private String moder;
-		private String until;
-		private String reason;
-		private boolean ban;
-		
-		ProhibitionInfo(String moder, String until, String reason, boolean ban) {
-			this.moder = moder;
-			this.until = until;
-			this.reason = reason;
-			this.ban = ban;
-		}
-		
-		static ProhibitionInfo load(String player, boolean ban) {
-			String prepareddQuery = "SELECT * FROM " + (ban ? "Bans" : "Mutes") + " WHERE " + (ban ? "name" : "player") + " = '" + player + "'";
-			//Bukkit.broadcastMessage("§dPreparedQuery: §e" + prepareddQuery);
-			Database.Result result = Database.sendQuery(prepareddQuery);
-			if (result == null) return null;
-			ResultSet set = result.set;
-			try {
-				if (!set.next()) return null;
-				else return new ProhibitionInfo(set.getString("moderator"), set.getString("until"), set.getString("reason"), ban);
-			} catch (SQLException e) {
-				return null;
-			}
-		}
 	}
 	
 	private enum MuteRule {

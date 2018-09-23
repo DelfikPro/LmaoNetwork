@@ -1,8 +1,7 @@
-package pro.delfik.lmao.modules;
+package pro.delfik.lmao.user;
 
 import org.bukkit.GameMode;
 import org.bukkit.Location;
-import pro.delfik.lmao.misc.Human;
 
 import java.util.HashSet;
 import java.util.Set;

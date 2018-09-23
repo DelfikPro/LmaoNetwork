@@ -17,11 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Garpoon implements Listener {
-
-//	public static final HashMap<Entity, Player> puller = new HashMap<>();
-
-	public static void pullEntityToLocation(Entity e, Location loc)
-	{
+	private static void pullEntityToLocation(Entity e, Location loc) {
 		Location entityLoc = e.getLocation();
 		e.setFallDistance(0);
 		entityLoc.setY(entityLoc.getY() + 0.5D);
@@ -38,47 +34,7 @@ public class Garpoon implements Listener {
 		v.setY(v_y);
 		v.setZ(v_z);
 		e.setVelocity(v);
-
 	}
-
-//	@EventHandler
-//	public void onShoot(EntityShootBowEvent e) {
-//		if (e.getEntity() instanceof Player) puller.put(e.getProjectile(), (Player) e.getEntity());
-//	}
-
-//	@EventHandler
-//	private void onProjectileHit(final ProjectileHitEvent e) {
-//		if (e.getEntityType() == EntityType.ARROW) {
-//			Bukkit.getScheduler().scheduleSyncDelayedTask(Lmao.plugin, new Runnable() {
-//				public void run() {
-//					try {
-//						EntityArrow entityArrow = ((CraftArrow) e.getEntity()).getHandle();
-//
-//						Field fieldX = EntityArrow.class.getDeclaredField("d");
-//
-//						Field fieldY = EntityArrow.class.getDeclaredField("e");
-//
-//						Field fieldZ = EntityArrow.class.getDeclaredField("f");
-//
-//						fieldX.setAccessible(true);
-//						fieldY.setAccessible(true);
-//						fieldZ.setAccessible(true);
-//
-//						int x = fieldX.getInt(entityArrow);
-//						int y = fieldY.getInt(entityArrow);
-//						int z = fieldZ.getInt(entityArrow);
-//						if ((x != -1) && (y != -1) && (z != -1)) {
-//							Block block = e.getEntity().getWorld().getBlockAt(x, y, z);
-//							pullEntityToLocation(puller.get(e.getEntity()), block.getLocation());
-//							puller.remove(e.getEntity());
-//						}
-//					} catch (NoSuchFieldException | IllegalArgumentException | IllegalAccessException | SecurityException e1) {
-//						e1.printStackTrace();
-//					}
-//				}
-//			});
-//		}
-//	}
 
 	private static final List<String> pulled = new LinkedList<>();
 

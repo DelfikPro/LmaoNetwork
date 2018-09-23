@@ -9,7 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.command.TabCompleter;
 import org.bukkit.entity.Player;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.util.U;
 
 import java.text.SimpleDateFormat;

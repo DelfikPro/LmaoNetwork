@@ -5,7 +5,7 @@ import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.outward.Generate;
 
 public class GUILoading extends GUI {

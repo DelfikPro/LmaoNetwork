@@ -4,7 +4,7 @@ import implario.util.Converter;
 import implario.util.Rank;
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.user.Person;
 
 public class CommandList extends LmaoCommand {
     

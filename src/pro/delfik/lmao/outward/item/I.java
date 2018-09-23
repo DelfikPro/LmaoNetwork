@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.FireworkEffectMeta;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.outward.Generate;
 
 import java.util.Arrays;

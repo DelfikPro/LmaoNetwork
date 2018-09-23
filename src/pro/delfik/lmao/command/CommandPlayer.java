@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.user.Person;
 import implario.util.Rank;
 
 public class CommandPlayer extends LmaoCommand {

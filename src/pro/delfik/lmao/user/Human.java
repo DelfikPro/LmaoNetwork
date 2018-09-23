@@ -1,5 +1,4 @@
-package pro.delfik.lmao.misc;
-
+package pro.delfik.lmao.user;
 
 import com.mojang.authlib.GameProfile;
 import net.minecraft.server.v1_8_R1.DataWatcher;

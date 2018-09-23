@@ -8,11 +8,11 @@ package pro.delfik.lmao.permissions;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerJoinEvent;
-import pro.delfik.lmao.anticheat.AntiClicker;
-import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.Connect;
-import pro.delfik.lmao.core.connection.PacketEvent;
+import pro.delfik.lmao.ev.EvInteract;
+import pro.delfik.lmao.Lmao;
+import pro.delfik.lmao.user.Person;
+import pro.delfik.lmao.Connect;
+import pro.delfik.lmao.ev.added.PacketEvent;
 import implario.util.CryptoUtils;
 import implario.util.Scheduler;
 
@@ -47,6 +47,6 @@ public final class Core {
 	public static void disable() {
 		Connect.close();
 		Scheduler.kill();
-		AntiClicker.isStart = false;
+		EvInteract.isStart = false;
 	}
 }

@@ -1,4 +1,4 @@
-package pro.delfik.lmao.core;
+package pro.delfik.lmao.user;
 
 import implario.util.UserInfo;
 import pro.delfik.lmao.outward.item.I;
@@ -16,8 +16,6 @@ import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent;
-import pro.delfik.lmao.misc.Human;
-import pro.delfik.lmao.modules.VanishInfo;
 import implario.util.Rank;
 
 import java.io.File;

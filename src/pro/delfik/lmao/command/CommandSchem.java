@@ -2,7 +2,7 @@ package pro.delfik.lmao.command;
 
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.connection.Connect;
+import pro.delfik.lmao.Connect;
 import implario.net.packet.PacketRead;
 import implario.net.packet.PacketWrite;
 import implario.util.FileConverter;

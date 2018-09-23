@@ -1,12 +1,11 @@
-package pro.delfik.lmao.chat;
+package pro.delfik.lmao.ev;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
 import implario.util.Rank;
@@ -19,20 +18,22 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ChatHandler implements Listener {
+public class EvChat implements Listener {
 	private static boolean off = false;
 	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
-	public void onChat(AsyncPlayerChatEvent e) {
+	public void event(AsyncPlayerChatEvent event) {
 		if (off) return;
-		String name = e.getPlayer().getName();
-		if (e.getMessage().contains("&")) if (!Perms.isEnough(e.getPlayer(), Rank.WARDEN, true)) {
-			e.setCancelled(true);
-			e.getPlayer().sendMessage("LMAO §e> §cЦветной чат доступен со статуса §bСпонсор§c.");
+		Player player = event.getPlayer();
+		String name = player.getName();
+		String message = event.getMessage();
+		if (message.contains("&")) if (!Perms.isEnough(player, Rank.WARDEN, true)) {
+			event.setCancelled(true);
+			event.getPlayer().sendMessage("LMAO §e> §cЦветной чат доступен со статуса §bСпонсор§c.");
 			return;
 		}
-		e.setCancelled(true); // Отменяем сообщение со скобками
-		chat(name, e.getMessage(), null, "");
+		event.setCancelled(true); // Отменяем сообщение со скобками
+		chat(name, message, null, "");
 
 	}
 
@@ -117,10 +118,5 @@ public class ChatHandler implements Listener {
 		public String getDest() {
 			return dest;
 		}
-	}
-	
-	@EventHandler
-	public void onCommand(PlayerCommandPreprocessEvent e) {
-		if (e.getMessage().split(" ")[0].contains(":") && !e.getPlayer().isOp()) e.setCancelled(true);
 	}
 }

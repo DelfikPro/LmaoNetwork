@@ -1,7 +1,6 @@
-package pro.delfik.lmao.core.connection;
+package pro.delfik.lmao;
 
 import org.bukkit.Bukkit;
-import pro.delfik.lmao.core.Lmao;
 import implario.net.Listener;
 import implario.net.P2P;
 import implario.net.Packet;
@@ -9,6 +8,7 @@ import implario.net.packet.PacketInit;
 import implario.util.Converter;
 import implario.util.CryptoUtils;
 import implario.util.Scheduler;
+import pro.delfik.lmao.ev.added.PacketEvent;
 
 import java.io.BufferedReader;
 import java.io.File;

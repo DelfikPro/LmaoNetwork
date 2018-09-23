@@ -1,6 +1,6 @@
 package pro.delfik.lmao.outward.gui;
 
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.outward.Generate;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

@@ -1,4 +1,4 @@
-package pro.delfik.lmao.core;
+package pro.delfik.lmao.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;

@@ -2,8 +2,8 @@ package pro.delfik.lmao.util;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
-import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.Lmao;
+import pro.delfik.lmao.user.Person;
 
 import java.util.List;
 

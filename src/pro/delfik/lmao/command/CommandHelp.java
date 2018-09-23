@@ -2,8 +2,8 @@ package pro.delfik.lmao.command;
 
 import org.bukkit.command.CommandSender;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.Registrar;
+import pro.delfik.lmao.Lmao;
+import pro.delfik.lmao.util.Registrar;
 import pro.delfik.lmao.util.U;
 import implario.util.Rank;
 

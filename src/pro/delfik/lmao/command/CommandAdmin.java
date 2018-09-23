@@ -1,6 +1,5 @@
 package pro.delfik.lmao.command;
 
-import implario.util.Converter;
 import implario.util.Rank;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
@@ -10,17 +9,10 @@ import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.database.Database;
-import pro.delfik.lmao.misc.Human;
-
-import java.sql.ResultSet;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import pro.delfik.lmao.user.Person;
+import pro.delfik.lmao.user.Human;
 
 public class CommandAdmin extends LmaoCommand {
-	
-	
 	public static String[] quotes = new String[] {
 			"Почему бы тебе не выпить чаю?",
 			"Ум и интеллигентность. Красота и любовь. Ой, опять про гугла заговорил",
@@ -30,40 +22,6 @@ public class CommandAdmin extends LmaoCommand {
 	
 	public CommandAdmin() {
 		super("admin", Rank.PLAYER, "Взламать сервир нафег!!1");
-	}
-	
-	
-	private static Object[] sqlquery(CommandSender sender, String command, String[] args) {
-		try {
-			Database.Result res = Database.sendQuery(Converter.mergeArray(args, 1, " ")); // "SELECT * FROM PlayerData WHERE BALANCE = 0;"
-			ResultSet result = res.set;
-			ResultSetMetaData metadata = result.getMetaData();
-			int columnCount = metadata.getColumnCount();
-			StringBuilder stringBuilder = new StringBuilder("§fКолонки: §e");
-			for (int i = 1; i <= columnCount; i++) stringBuilder.append(metadata.getColumnName(i)).append("§f, §e");
-			sender.sendMessage(stringBuilder.toString());
-			int r = 0;
-			while (result.next()) {
-				StringBuilder row = new StringBuilder("§e").append(r).append(". §a");
-				r++;
-				for (int i = 1; i <= columnCount; i++) {
-					row.append(result.getString(i)).append("§f, §a");
-				}
-				sender.sendMessage(row.toString());
-			}
-			res.st.close();
-			return new Object[]{"§aЗапрос к базе данных успешно отправлен."};
-		} catch (Exception e) {
-			throw new RuntimeException(e);
-		}
-	}
-	
-	private static Object[] sqlupdate(CommandSender commandSender, String command, String[] args) {
-		try {
-			return new Object[] {"§aОбновлено §e" + Database.sendUpdate(Converter.mergeArray(args, 1, " ")) + "§a записей."};
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		}
 	}
 	
 	@Override
@@ -82,14 +40,6 @@ public class CommandAdmin extends LmaoCommand {
 		} catch (ClassCastException ignored) {}
 		if (args.length != 0) {
 			switch (args[0]) {
-				case "sqlquery": {
-					for (Object o : sqlquery(sender, null, args)) sender.sendMessage(o.toString());
-					return;
-				}
-				case "sqlupdate": {
-					for (Object o : sqlupdate(sender, null, args)) sender.sendMessage(o.toString());
-					return;
-				}
 				case "fake": {
 					new Human(((CraftPlayer) p).getHandle());
 					sender.sendMessage("§aOK");

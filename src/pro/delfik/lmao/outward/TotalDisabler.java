@@ -22,7 +22,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 
 public class TotalDisabler implements Listener {
 	

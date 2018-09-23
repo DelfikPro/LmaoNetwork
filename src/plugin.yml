@@ -1,6 +1,6 @@
 name: LMAONetwork
 version: 1.15.7
-main: pro.delfik.lmao.core.Lmao
+main: pro.delfik.lmao.Lmao
 author: DelfikPro
 loadbefore: [LmaoLobby]
 load: POSTWORLD

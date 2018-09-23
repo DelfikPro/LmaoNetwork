@@ -13,7 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import pro.delfik.lmao.core.Person;
+import pro.delfik.lmao.user.Person;
 
 public class Authenticator implements Listener {
 	

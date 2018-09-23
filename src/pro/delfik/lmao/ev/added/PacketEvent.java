@@ -1,11 +1,10 @@
-package pro.delfik.lmao.core.connection;
+package pro.delfik.lmao.ev.added;
 
 import org.bukkit.event.Event;
 import org.bukkit.event.HandlerList;
 import implario.net.Packet;
 
 public class PacketEvent extends Event {
-
 	public static final HandlerList handlers = new HandlerList();
 
 	@Override
@@ -19,7 +18,7 @@ public class PacketEvent extends Event {
 
 	private final Packet packet;
 
-	PacketEvent(Packet packet) {
+	public PacketEvent(Packet packet) {
 		this.packet = packet;
 	}
 

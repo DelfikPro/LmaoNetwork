@@ -7,7 +7,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.command.handle.NotEnoughArgumentsException;
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.util.U;
 

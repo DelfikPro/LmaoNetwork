@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkMeta;
 import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
-import pro.delfik.lmao.core.Lmao;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.outward.item.I;
 
 import static implario.util.Exceptions.runThrowsEx;

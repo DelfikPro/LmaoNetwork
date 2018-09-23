@@ -9,10 +9,10 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import pro.delfik.lmao.chat.ChatHandler;
-import pro.delfik.lmao.core.Lmao;
-import pro.delfik.lmao.core.Person;
-import pro.delfik.lmao.core.connection.Connect;
+import pro.delfik.lmao.ev.EvChat;
+import pro.delfik.lmao.Lmao;
+import pro.delfik.lmao.user.Person;
+import pro.delfik.lmao.Connect;
 import implario.net.packet.PacketSummon;
 
 import java.util.Collection;
@@ -149,11 +149,11 @@ public class U {
 			comp.setText(((Person) o).getDisplayName());
 			comp.setHoverEvent(getHover(((Person) o).getHandle()));
 			comp.setClickEvent(getClick(((Person) o).getHandle()));
-		} else if (o instanceof ChatHandler.Link) {
-			comp.setText(ChatHandler.decorateUrl(((ChatHandler.Link) o).getDest()));
-			comp.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ((ChatHandler.Link) o).getDest()));
+		} else if (o instanceof EvChat.Link) {
+			comp.setText(EvChat.decorateUrl(((EvChat.Link) o).getDest()));
+			comp.setClickEvent(new ClickEvent(ClickEvent.Action.OPEN_URL, ((EvChat.Link) o).getDest()));
 			comp.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-													 new TextComponent[] {new TextComponent("§eСсылка:\n§a§n" + ((ChatHandler.Link) o).getDest() + "\n§e >> Нажмите для перехода <<")}
+													 new TextComponent[] {new TextComponent("§eСсылка:\n§a§n" + ((EvChat.Link) o).getDest() + "\n§e >> Нажмите для перехода <<")}
 			));
 		}
 		else comp.setText(o.toString());
