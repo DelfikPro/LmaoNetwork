@@ -1,6 +1,7 @@
 package pro.delfik.lmao.user;
 
 import implario.util.UserInfo;
+import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
 import pro.delfik.lmao.outward.item.I;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
@@ -103,6 +104,16 @@ public class Person {
 		handle.getHandle().playerConnection.sendPacket(
 				new PacketPlayOutTitle(EnumTitleAction.TITLE, ChatSerializer.a("{\"text\":\"" + title + "\"," + "\"color\":\"white\"}"))
 		);
+	}
+
+	public void sendActionBar(String text) {
+		handle.getHandle().playerConnection.sendPacket(
+				new PacketPlayOutChat(ChatSerializer.a("{\"text\":\"" + text + "\"}"), (byte) 2)
+		);
+	}
+
+	public void clearArrows() {
+		handle.getHandle().getDataWatcher().watch(9, (byte) 0);
 	}
 	
 	public void sendSubtitle(String subtitle) {
