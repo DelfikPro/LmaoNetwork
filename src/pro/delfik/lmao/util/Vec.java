@@ -1,9 +1,9 @@
 package pro.delfik.lmao.util;
 
+import implario.util.Converter;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
-import implario.util.Converter;
 
 import java.util.List;
 
@@ -12,45 +12,51 @@ import static java.lang.Double.valueOf;
 /**
  * Аналог Location, но без ссылки на мир.
  * Используется для конфигурации местоположений без указания мира.
+ *
  * @see Location
  * @see Vec3i
  */
 public interface Vec {
-	
+
 	/**
 	 * Конвертация в Bukkit-Vector.
+	 *
 	 * @return Вектор Bukkit с идентичными координатами.
 	 */
 	Vector toBukkitVector();
-	
+
 	/**
 	 * Конвертация в Bukkit-Location в указанном мире.
 	 * Позиция находится в пределах этого блока, полезно для указания на блок,
 	 * Когда точное местоположение не имеет значения.
+	 *
 	 * @param world Мир, в котором будет находится местоположение.
 	 * @return Bukkit-Location
 	 * @see Location
 	 */
 	Location toBlock(World world);
-	
+
 	/**
 	 * Конвертация в Bukkit-Location с точными координатами.
 	 * Если точные координаты не указаны, возвращается позиция в центре блока.
 	 * Полезно при телепортации игроков.
+	 *
 	 * @param world Мир, в котором будет находится местоположение.
 	 * @return Bukkit-Location с точными координатами.
 	 * @see Location
 	 */
 	Location toLocation(World world);
-	
+
 	/**
 	 * Конвертация в округлённый до int Vec3i.
+	 *
 	 * @return Vec3i с округлёнными координатами.
 	 */
 	Vec3i toVec3i();
-	
+
 	/**
 	 * Генерация объекта Vec из строки.
+	 *
 	 * @param string Сериализованный Vec.
 	 * @return Десериализованный Vec.
 	 */
@@ -63,5 +69,14 @@ public interface Vec {
 
 	static List<Vec> toVecList(List<String> list) {
 		return Converter.transform(list, Vec::toVec);
+	}
+
+	default int distanceIntSquared(Vec vec) {
+		Vec3i a = toVec3i();
+		Vec3i b = vec.toVec3i();
+		int x = a.x - b.x;
+		int y = a.y - b.y;
+		int z = a.z - b.z;
+		return x * x + y * y + z * z;
 	}
 }
