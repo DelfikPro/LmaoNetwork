@@ -1,7 +1,6 @@
 package pro.delfik.lmao.outward;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -19,7 +18,6 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityShootBowEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
-import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.event.weather.WeatherChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import pro.delfik.lmao.Lmao;
@@ -132,13 +130,6 @@ public class TotalDisabler implements Listener {
 	@EventHandler
 	public void onBlockFromTo(BlockFromToEvent event) {
 		if (Lmao.noPhysics) event.setCancelled(true);
-	}
-	
-	@EventHandler
-	public void onItemConsume(PlayerItemConsumeEvent event) {
-		if (event.getItem().getType() == Material.POTION) {
-			Bukkit.getScheduler().runTaskLaterAsynchronously(Lmao.plugin, () -> event.getPlayer().setItemInHand(new ItemStack(Material.AIR)), 1);
-		}
 	}
 	
 	@EventHandler

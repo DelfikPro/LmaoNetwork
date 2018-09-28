@@ -32,7 +32,6 @@ public class Sidebar {
 	}
 
 	public void setLine(int number) {
-		entries.set()
 	}
 
 }
