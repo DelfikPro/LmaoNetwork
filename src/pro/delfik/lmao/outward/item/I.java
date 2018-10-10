@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.FireworkEffectMeta;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 import pro.delfik.lmao.Lmao;
@@ -82,6 +83,14 @@ public final class I {
 	
 	public static ItemStack enchant(ItemStack i, Enchantment e, int level) {
 		i.addUnsafeEnchantment(e, level);
+		return i;
+	}
+
+	public static ItemStack leatherArmor(Material type, Color armorColor, String name, String... lore) {
+		ItemStack i = create(type, name, lore);
+		LeatherArmorMeta meta = ((LeatherArmorMeta) i.getItemMeta());
+		meta.setColor(armorColor);
+		i.setItemMeta(meta);
 		return i;
 	}
 }
