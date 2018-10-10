@@ -12,17 +12,11 @@ public class VanishInfo {
 	
 	private final Location loc;
 	private final GameMode gm;
-	private final Human h;
-	
-	public VanishInfo(Location loc, GameMode gm, Human h) {
+
+	public VanishInfo(Location loc, GameMode gm) {
 		this.loc = loc;
 		this.gm = gm;
-		this.h = h;
 		list.add(this);
-	}
-	
-	public Human getDisplay() {
-		return h;
 	}
 	
 	public GameMode getGameMode() {

@@ -86,15 +86,13 @@ public class Person {
 	
 	public boolean vanish() {
 		boolean enable = vanish == null;
-		final VanishInfo v = vanish;
-		final Person p = this;
-		vanish = enable ? new VanishInfo(getLocation(), getGameMode(), new Human(handle.getHandle())) : null;
+		VanishInfo v = vanish;
+		vanish = enable ? new VanishInfo(getLocation(), getGameMode()) : null;
 		if (enable) {
 			setGameMode(GameMode.SPECTATOR);
 		} else {
 			setGameMode(v.getGameMode());
 			teleport(v.getLocation());
-			v.getDisplay().remove();
 			v.disable();
 		}
 		return enable;
@@ -132,7 +130,6 @@ public class Person {
 		names.remove(name.toLowerCase());
 		online = false;
 		authed.remove(name);
-		if (vanish != null) vanish.getDisplay().remove();
 		if (playerCleanUpEnabled) I.delay(() -> cleanPlayerData(getHandle().getUniqueId().toString()), 4);
 	}
 	
