@@ -10,13 +10,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerFishEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.util.Vector;
 
-import java.util.LinkedList;
-import java.util.List;
-
 public class Garpoon implements Listener {
+	private static boolean disabled = false;
+
 	private static void pullEntityToLocation(Entity e, Location loc) {
 		Location entityLoc = e.getLocation();
 		e.setFallDistance(0);
@@ -36,23 +34,17 @@ public class Garpoon implements Listener {
 		e.setVelocity(v);
 	}
 
-	private static final List<String> pulled = new LinkedList<>();
+	public static void disable() {
+		disabled = true;
+	}
 
 	@EventHandler
 	public void onPull(PlayerFishEvent e) {
+		if (disabled) return;
 		if (e.getState() == PlayerFishEvent.State.FISHING) return;
 		if (!isBlockNearby(e.getHook().getLocation())) return;
 		//User.getUser(e.getPlayer().getName()).getAntiFly().on();
 		pullEntityToLocation(e.getPlayer(), e.getHook().getLocation());
-		pulled.add(e.getPlayer().getName());
-	}
-
-	@EventHandler
-	public void onPlayerPrizemlitsa(PlayerMoveEvent e) {
-		if (!((Entity) e.getPlayer()).isOnGround()) return;
-		if (!pulled.contains(e.getPlayer().getName())) return;
-		//User.getUser(e.getPlayer().getName()).getAntiFly().off();
-		pulled.remove(e.getPlayer().getName());
 	}
 
 	@EventHandler
