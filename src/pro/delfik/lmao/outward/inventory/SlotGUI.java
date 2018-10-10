@@ -2,6 +2,7 @@ package pro.delfik.lmao.outward.inventory;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 public class SlotGUI extends GUI {
@@ -29,6 +30,18 @@ public class SlotGUI extends GUI {
 		super(create(rows * 9, title), false);
 		click = action;
 		shift = shiftAction;
+	}
+
+	public SlotGUI(String title, int rows, Action action, boolean temp) {
+		super(create(rows * 9, title), temp);
+		click = action;
+		shift = null;
+	}
+
+	public SlotGUI(Inventory inv, Action action, boolean temp) {
+		super(inv, temp);
+		click = action;
+		shift = null;
 	}
 
 	@Override

@@ -14,11 +14,15 @@ public class GUIHandler implements Listener {
 	@EventHandler
 	public void click(InventoryClickEvent e) {
 		if (e.getRawSlot() < 0) return;
-		GUI gui = GUI.get(e.getClickedInventory());
+		GUI gui = GUI.get(e.getInventory());
 		if (gui == null) return;
+		if (!gui.listenAll) {
+			if (e.getInventory() != e.getClickedInventory()) return;
+			e.setCancelled(true);
+			ItemStack i = e.getCurrentItem();
+			if (i == null || i.getType() == Material.AIR) return;
+		}
 		e.setCancelled(true);
-		ItemStack i = e.getCurrentItem();
-		if (i == null || i.getType() == Material.AIR) return;
 		gui.click(e);
 	}
 

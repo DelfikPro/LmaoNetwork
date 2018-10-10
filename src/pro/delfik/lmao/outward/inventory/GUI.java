@@ -2,7 +2,6 @@ package pro.delfik.lmao.outward.inventory;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
-import org.bukkit.entity.HumanEntity;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import pro.delfik.lmao.outward.item.ItemBuilder;
@@ -21,6 +20,7 @@ public abstract class GUI {
 	protected static Map<Material, GUI> assigned = new EnumMap<>(Material.class);
 	private final Inventory inv;
 	private final boolean temporary;
+	protected boolean listenAll = false;
 
 	protected GUI(Inventory inv, boolean temporary) {
 		this.inv = inv;
@@ -57,10 +57,10 @@ public abstract class GUI {
 	 */
 	public void remove() {
 		ALL.remove(inv);
-		for (HumanEntity player : inv.getViewers()) {
-			player.closeInventory();
-			player.sendMessage("§cGUI удалён.");
-		}
+//		for (HumanEntity player : inv.getViewers().toArray(new HumanEntity[0])) {
+//			player.closeInventory();
+//			player.sendMessage("§cGUI удалён.");
+//		}
 	}
 
 	/**
@@ -106,4 +106,8 @@ public abstract class GUI {
 		assigned.put(material, gui);
 	}
 
+	public GUI listenAll() {
+		this.listenAll = true;
+		return this;
+	}
 }

@@ -44,7 +44,7 @@ public class VotingGUI extends GUI {
 	}
 
 	public List<Entry> result() {
-		int max = 0;
+		int max = -1;
 		List<Entry> winners = new ArrayList<>();
 		for (int i = 0; i < entries.length; i++) {
 			Entry entry = entries[i];
