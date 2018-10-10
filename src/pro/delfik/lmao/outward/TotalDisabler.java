@@ -1,6 +1,7 @@
 package pro.delfik.lmao.outward;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.block.Sign;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -90,12 +91,12 @@ public class TotalDisabler implements Listener {
 	
 	@EventHandler
 	public void onBlockFade(BlockFadeEvent event) {
-		if (Lmao.noPhysics) event.setCancelled(true);
+		if (Lmao.noPhysics && event.getBlock().getType() != Material.BED_BLOCK) event.setCancelled(true);
 	}
 	
 	@EventHandler
 	public void onBlockFade(BlockPhysicsEvent e) {
-		if (Lmao.noPhysics) e.setCancelled(true);
+		if (Lmao.noPhysics && e.getBlock().getType() != Material.BED_BLOCK) e.setCancelled(true);
 	}
 //
 //	@EventHandler
@@ -129,7 +130,7 @@ public class TotalDisabler implements Listener {
 	
 	@EventHandler
 	public void onBlockFromTo(BlockFromToEvent event) {
-		if (Lmao.noPhysics) event.setCancelled(true);
+		if (Lmao.noPhysics && event	.getBlock().getType() != Material.BED_BLOCK) event.setCancelled(true);
 	}
 	
 	@EventHandler
