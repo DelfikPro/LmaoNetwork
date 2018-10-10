@@ -5,7 +5,7 @@ import pro.delfik.lmao.outward.item.I;
 import java.util.HashMap;
 
 public class TimedMap<K, V> {
-	private final HashMap<K, V> list = new HashMap<>();
+	public final HashMap<K, V> list = new HashMap<>();
 	
 	private final int time;
 	
