@@ -9,6 +9,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import pro.delfik.lmao.command.handle.Cmd;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.Connect;
@@ -19,42 +20,34 @@ import pro.delfik.lmao.outward.gui.GUILoading;
 
 import java.util.EnumSet;
 
-public class CommandActions extends LmaoCommand {
-	
+@Cmd(name = "actions", description = "Действия с игроком", args = 1, help = "[Игрок]")
+public class CmdActions extends LmaoCommand {
 	private final static ItemStack MUTE = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 4, "§f>> §e§lЗамутить §f<<", "§e§oАналог команды §7/mute");
 	private final static ItemStack KICK = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 1, "§f>> §e§lКикнуть §f<<",
 			"§e§oАналог команды §7/kick [Ник] Помеха игровому процессу");
 	private final static ItemStack BAN = Generate.itemstack(Material.STAINED_GLASS_PANE, 1, 14, "§f>> §e§lЗабанить §f<<", "§e§oАналог команды §7/ban");
-	
-	public CommandActions() {
-		super("actions", Rank.PLAYER, "Действия с игроком");
-	}
-	
-	
+
 	@Override
-	public void run(CommandSender sender, String command, String[] args) {
-		requireArgs(args, 1, "[Игрок]");
-		
-		Person s = Person.get(sender);
+	public void run(Person person, String args[]) {
 		String player = args[0];
 		
-		s.getHandle().openInventory(GUILoading.i());
+		person.getHandle().openInventory(GUILoading.i());
 		GUI gui = new GUI(Bukkit.createInventory(null, 9, "§0§lДействия с " + args[0]));
 		boolean online = Person.get(player) != null;
 		
-		if (s.hasRank(Rank.RECRUIT)) {
+		if (person.hasRank(Rank.RECRUIT)) {
 			gui.put(3, MUTE, pl -> {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(muteGUI(args[0]));
 			});
 			if (online) gui.put(4, KICK,
-					pl -> Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.KICK, s.getName(), 0, "Помеха игровому процессу")));
+					pl -> Connect.send(new PacketPunishment(player, PacketPunishment.Punishment.KICK, person.getName(), 0, "Помеха игровому процессу")));
 			gui.put(5, BAN, pl -> {
 				pl.openInventory(GUILoading.i());
 				pl.openInventory(banGUI(args[0]));
 			});
 		} else gui.put(4, new ItemStack(Material.COOKIE), Player::closeInventory);
-		((Player) sender).openInventory(gui.getInventory());
+		person.getHandle().openInventory(gui.getInventory());
 	}
 	
 	private enum MuteRule {

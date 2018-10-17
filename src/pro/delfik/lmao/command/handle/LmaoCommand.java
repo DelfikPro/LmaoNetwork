@@ -18,14 +18,31 @@ import java.util.Date;
 import java.util.List;
 
 public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
+	private final boolean cmd;
 	private final String description;
+	private final String help;
 	private Rank required;
 	private final String name;
+	private final int args;
+
+	protected LmaoCommand(){
+		Cmd cmd = getClass().getAnnotation(Cmd.class);
+		Bukkit.broadcastMessage(cmd + "");
+		this.cmd = true;
+		this.help = cmd.help();
+		this.required = cmd.rank();
+		this.name = cmd.name();
+		this.args = cmd.args();
+		this.description = cmd.description();
+	}
 	
 	protected LmaoCommand(String name, Rank required, String description) {
+		cmd = false;
 		this.name = name;
 		this.description = description;
 		this.required = required;
+		this.args = 0;
+		this.help = "";
 	}
 	
 	@Override
@@ -35,12 +52,10 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 			return true;
 		}
 		Person user = Person.get(sender);
-		if (!user.hasRank(getRequiredRank())) {
-			U.msg(sender, "§cКоманда §e/" + command + "§c доступна со статуса §e" + getRequiredRank().represent());
-			return false;
-		}
 		try {
-			run(sender, command, args);
+			requireRank(user, getRequiredRank());
+			if(cmd) requireArgs(args, this.args, help);
+			run(user, command, args);
 		} catch (ClassCastException ex) {
 			U.msg(sender, "§cGo away evil console :c");
 		} catch (Throwable t) {
@@ -65,9 +80,15 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 		return true;
 	}
 	
-	protected abstract void run(CommandSender sender, String command, String[] args);
-	
-	
+	protected void run(CommandSender sender, String command, String[] args){}
+
+	public void run(Person person, String command, String args[]){
+		if(cmd) run(person, args);
+		else run(person.getHandle(), command, args);
+	}
+
+	public void run(Person person, String args[]){}
+
 	public Rank getRequiredRank() {
 		return required == null ? Rank.PLAYER : required;
 	}
@@ -83,9 +104,13 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 	public static void requireArgs(String[] args, int required, String usage) {
 		if (args.length < required) throw new NotEnoughArgumentsException(usage);
 	}
+
+	public static void requireRank(Person person, Rank rank){
+		if (!person.hasRank(rank)) throw new NotEnoughPermissionsException(rank);
+	}
 	
 	public static void requireRank(CommandSender sender, Rank rank) {
-		if (!Person.get(sender).hasRank(rank)) throw new NotEnoughPermissionsException(rank);
+		requireRank(Person.get(sender), rank);
 	}
 	
 	public static Person requirePerson(String arg) {

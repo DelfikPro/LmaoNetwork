@@ -1,5 +1,6 @@
 package pro.delfik.lmao.command;
 
+import pro.delfik.lmao.command.handle.Cmd;
 import pro.delfik.lmao.outward.Generate;
 import pro.delfik.lmao.outward.item.ItemBuilder;
 import pro.delfik.lmao.outward.gui.GUI;
@@ -13,21 +14,17 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.user.Person;
 import implario.util.Rank;
 
-public class CommandPlayer extends LmaoCommand {
-	
+@Cmd(name = "player", description = "Меню с информацией об игроке")
+public class CmdPlayer extends LmaoCommand {
 	private static final ItemStack STATS = Generate.itemstack(Material.ITEM_FRAME, 1, 0, "§f>> §6§lСтатистика §f<<", "§e§oПодробная статистика по всем режимам");
 	private static final ItemStack ACTIONS = Generate.charge(Color.YELLOW,"§f>> §6§lДействия §f<<", "§e§oПосмотреть доступные действия с игроком");
 	
-	public CommandPlayer() {
-		super("player", Rank.PLAYER, "Меню с информацией об игроке");
-	}
-	
-	
-	public void run(CommandSender sender, String command, String[] args) {
-		String name = args.length == 0 ? sender.getName() : args[0];
+	@Override
+	public void run(Person person, String args[]) {
+		String name = args.length == 0 ? person.getName() : args[0];
 		Person v = Person.get(name);
 		if (v == null) {
-			sender.sendMessage("§6Скоро можно будет проверять и оффлайн-игроков.");
+			person.sendMessage("§6Скоро можно будет проверять и оффлайн-игроков.");
 		} else {
 			GUI gui = new GUI(Bukkit.createInventory(null,27,"§0§lИгрок " + name));
 			gui.put(10, STATS, player -> {
@@ -37,7 +34,7 @@ public class CommandPlayer extends LmaoCommand {
 			gui.put(11, generateOnlineItem(v), null);
 			gui.put(12, generateMoneyItem(v), null);
 			gui.put(16, ACTIONS, p -> p.chat("/actions " + name));
-			((Player) sender).openInventory(gui.getInventory());
+			person.getHandle().openInventory(gui.getInventory());
 		}
 	}
 	

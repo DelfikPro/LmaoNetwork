@@ -13,7 +13,7 @@ public class NotEnoughArgumentsException extends CustomException {
 	
 	@Override
 	public void execute(CommandSender sender, LmaoCommand command) {
-		sender.sendMessage("§c" + command.getDescription());
+		sender.sendMessage("§cНедостаточно аргументов");
 		sender.sendMessage("§cИспользование: §c/" + command.getName() + " §f" + usage);
 	}
 }

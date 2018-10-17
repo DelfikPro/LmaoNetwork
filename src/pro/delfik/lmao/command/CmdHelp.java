@@ -1,8 +1,10 @@
 package pro.delfik.lmao.command;
 
 import org.bukkit.command.CommandSender;
+import pro.delfik.lmao.command.handle.Cmd;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.Lmao;
+import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.util.Registrar;
 import pro.delfik.lmao.util.U;
 import implario.util.Rank;
@@ -12,12 +14,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class CommandHelp extends LmaoCommand {
-	
-	public CommandHelp() {
-		super("help", Rank.PLAYER, "Помощь по командам сервера");
-	}
-	
+@Cmd(name = "help", description = "Помощь по командам сервера")
+public class CmdHelp extends LmaoCommand {
 	public static List<Set<String>> playerpages = null;
 	public static void initPages() {
 		playerpages = new ArrayList<>();
@@ -42,20 +40,19 @@ public class CommandHelp extends LmaoCommand {
 	}
 
 	@Override
-	public void run(CommandSender sender, String s, String[] args) {
-		int page = 1;
+	public void run(Person person, String args[]) {
+		int page = args.length == 0 ? 1 : requireInt(args[0]);
 		if (playerpages == null) initPages();
 		Set<String> ts;
 		try {
 			ts = playerpages.get(page - 1);
 		} catch (Exception e) {
-			sender.sendMessage(Lmao.p() + "§cСтраницы под номером §e" + page + "§c не существует.");
+			person.sendMessage(Lmao.p() + "§cСтраницы под номером §e" + page + "§c не существует.");
 			return;
 		}
-		sender.sendMessage("§aПомощь по командам сервера, страница §e" + page + "§a:");
-		for (String tc : ts) {
-			U.msg(sender, tc);
-		}
+		person.sendMessage("§aПомощь по командам сервера, страница §e" + page + "§a:");
+		for (String tc : ts)
+			person.sendMessage(tc);
 	}
 
 }

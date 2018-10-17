@@ -73,10 +73,10 @@ public class Lmao extends JavaPlugin {
 	}
 
 	public static void commands() {
-		final LmaoCommand[] cmds = new LmaoCommand[] {new CommandAdmin(), new CommandGamemode(),
-				new CommandHelp(), new CommandSudo(), new CommandTeleport(), new CommandSchem(),
-				new CommandVanish(), new CommandList(), new CommandStop(), new CommandPlayer(),
-				new CommandActions(), new CmdI(), new CommandMultipleCmds()};
+		final LmaoCommand[] cmds = new LmaoCommand[] {new CmdAdmin(), new CmdGm(),
+				new CmdHelp(), new CmdSudo(), new CmdTp(), new CmdSchem(),
+				new CmdVanish(), new CmdList(), new CmdStop(), new CmdPlayer(),
+				new CmdActions(), new CmdI(), new CmdMultipleCmds(), new CmdOp()};
 		new Thread(() -> {
 			for (LmaoCommand cmd : cmds) r.regCommand(cmd);
 		}).start();
