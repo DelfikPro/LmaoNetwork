@@ -47,6 +47,12 @@ public class Connect implements NetListener {
 				Bukkit.getPluginManager().callEvent(new PacketEvent(packet)));
 	}
 
+	@Override
+	public void closed() {
+		Scheduler.sleep(1000);
+		init();
+	}
+
 	private static String prefix = System.getProperty("user.dir") + "/Core/";
 
 	public static String read(String strFile){
