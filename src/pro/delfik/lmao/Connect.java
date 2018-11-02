@@ -18,6 +18,7 @@ import java.net.Socket;
 
 public class Connect implements NetListener {
 	private static Connector connect;
+	private static boolean stop;
 
 	public static void init() {
 		try{
@@ -37,6 +38,7 @@ public class Connect implements NetListener {
 	}
 
 	public static void close(){
+		stop = true;
 		connect.close();
 	}
 
@@ -49,6 +51,7 @@ public class Connect implements NetListener {
 
 	@Override
 	public void closed() {
+		if(stop)return;
 		Scheduler.sleep(1000);
 		init();
 	}
