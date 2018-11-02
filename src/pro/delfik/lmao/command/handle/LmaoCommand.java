@@ -27,7 +27,6 @@ public abstract class LmaoCommand implements CommandExecutor, TabCompleter {
 
 	protected LmaoCommand(){
 		Cmd cmd = getClass().getAnnotation(Cmd.class);
-		Bukkit.broadcastMessage(cmd + "");
 		this.cmd = true;
 		this.help = cmd.help();
 		this.required = cmd.rank();
