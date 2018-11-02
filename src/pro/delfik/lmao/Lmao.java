@@ -38,7 +38,7 @@ public class Lmao extends JavaPlugin {
 		events();
 		commands();
 		GUILoading.startLoop();
-		FileIO.prefix = "/Core/";
+		FileIO.prefix = "Core/";
 		if (Bukkit.getServer().getMotd().startsWith("B_")) Person.disablePlayerCleanUp();
 	}
 	

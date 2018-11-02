@@ -1,12 +1,11 @@
 package pro.delfik.lmao;
 
+import __google_.net.Response;
+import __google_.util.FileIO;
+import implario.net.*;
+import implario.util.Coder;
 import org.bukkit.Bukkit;
-import implario.net.Listener;
-import implario.net.P2P;
-import implario.net.Packet;
 import implario.net.packet.PacketInit;
-import implario.util.Converter;
-import implario.util.CryptoUtils;
 import implario.util.Scheduler;
 import pro.delfik.lmao.ev.added.PacketEvent;
 
@@ -16,29 +15,17 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.net.Socket;
-import java.util.Map;
 
-public class Connect implements Listener{
-
-	private static Connect connect = new Connect();
-
-	private static String host;
-
-	private static int port;
-
-	private static CryptoUtils utils;
-
-	private static boolean closed = false;
+public class Connect implements NetListener {
+	private static Connector connect;
 
 	public static void init() {
-		Map<String, String> config = Converter.deserializeMap(read("config.txt"), "\n", "/");
-		host = config.get("host");
-		port = Converter.toInt(config.get("port"));
-		utils = new CryptoUtils(config.get("key"));
 		try{
-			Socket socket = new Socket(host, port);
+			Socket socket = new Socket("localhost", Coder.toInt(FileIO
+					.read("/Minecraft/_GLOBAL/config.txt").split("\n")[0]));
 			socket.setSoTimeout(1000000000);
-			new P2P(socket, utils, connect);
+			connect = new Connector(socket, new Connect());
+			send(new PacketInit(Bukkit.getMotd()));
 		}catch (IOException ex){
 			Scheduler.sleep(1000);
 			init();
@@ -46,31 +33,18 @@ public class Connect implements Listener{
 	}
 
 	public static void send(Packet packet){
-		connect.p2p.send(packet);
+		connect.write(new Response(0, packet.zip()));
 	}
 
 	public static void close(){
-		closed = true;
-		connect.p2p.close();
-	}
-
-	private P2P p2p;
-
-	@Override
-	public void on(P2P p2p) {
-		this.p2p = p2p;
-		p2p.send(new PacketInit(Bukkit.getMotd()));
+		connect.close();
 	}
 
 	@Override
-	public void update(Packet packet) {
+	public void accept(__google_.net.Response response, Connector connector) {
+		Packet packet = Packet.getPacket(response.getContent());
 		Bukkit.getScheduler().runTask(Lmao.plugin, () ->
-		Bukkit.getPluginManager().callEvent(new PacketEvent(packet)));
-	}
-
-	@Override
-	public void off() {
-		if(!closed) init();
+				Bukkit.getPluginManager().callEvent(new PacketEvent(packet)));
 	}
 
 	private static String prefix = System.getProperty("user.dir") + "/Core/";
