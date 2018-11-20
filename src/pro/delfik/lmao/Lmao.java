@@ -11,6 +11,7 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.ev.*;
 import pro.delfik.lmao.ev.added.PacketEvent;
 import pro.delfik.lmao.misc.Garpoon;
+import pro.delfik.lmao.outward.texteria.Texteria;
 import pro.delfik.lmao.outward.TotalDisabler;
 import pro.delfik.lmao.outward.Trampoline;
 import pro.delfik.lmao.outward.gui.GUIHandler;
@@ -40,6 +41,7 @@ public class Lmao extends JavaPlugin {
 		GUILoading.startLoop();
 		FileIO.prefix = "Core/";
 		if (Bukkit.getServer().getMotd().startsWith("B_")) Person.disablePlayerCleanUp();
+		new Texteria().onEnable();
 	}
 	
 	@Override
