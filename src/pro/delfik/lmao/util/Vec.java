@@ -64,7 +64,7 @@ public interface Vec {
 		String[] s = string.split(", ");
 		if (s.length == 5)
 			return new Vec5d(valueOf(s[0]), valueOf(s[1]), valueOf(s[2]), valueOf(s[3]), valueOf(s[4]));
-		else return new Vec3i(new Integer(s[0]), new Integer(s[1]), new Integer(s[2]));
+		return new Vec3i(new Integer(s[0]), new Integer(s[1]), new Integer(s[2]));
 	}
 
 	static List<Vec> toVecList(List<String> list) {
@@ -79,4 +79,10 @@ public interface Vec {
 		int z = a.z - b.z;
 		return x * x + y * y + z * z;
 	}
+
+	default Vec add(int x, int y, int z) {
+		Vec3i v = toVec3i();
+		return new Vec3i(v.x + x, v.y + y, v.z + z);
+	}
+
 }
