@@ -1,5 +1,7 @@
 package pro.delfik.lmao.util;
 
+import __google_.util.ByteUnzip;
+import __google_.util.ByteZip;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -9,7 +11,7 @@ import org.bukkit.World;
  */
 public class Vec3i implements Vec {
 	public final int x, y, z;
-	
+
 	public Vec3i(int x, int y, int z) {
 		this.x = x;
 		this.y = y;
@@ -35,8 +37,8 @@ public class Vec3i implements Vec {
 	@Override
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Vec3i)) return false;
-		Vec3i o = ((Vec3i) obj);
-		return o == this || (o.x == x && o.y == y && o.z == z);
+		Vec3i o = (Vec3i) obj;
+		return o == this || o.x == x && o.y == y && o.z == z;
 
 	}
 	
@@ -44,4 +46,14 @@ public class Vec3i implements Vec {
 	public int hashCode() {
 		return x * 1000000 + y * 1000 + z;
 	}
+
+	public byte[] toByteArray() {
+		return new ByteZip().add(x).add(y).add(z).build();
+	}
+
+	public static Vec3i read(byte[] array) {
+		ByteUnzip u = new ByteUnzip(array);
+		return new Vec3i(u.getInt(), u.getInt(), u.getInt());
+	}
+
 }

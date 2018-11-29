@@ -6,8 +6,8 @@ import org.bukkit.util.Vector;
 
 public class Vec5d implements Vec {
 	
-	private final double x, y, z;
-	private final float yaw, pitch;
+	private double x, y, z;
+	private float yaw, pitch;
 	
 	public Vec5d(double x, double y, double z, double yaw, double pitch) {
 		this.x = x;

@@ -61,7 +61,7 @@ public class Lmao extends JavaPlugin {
 		r.regEvent(new EvChat());
 		r.regEvent(new EvPreLogin());
 		r.regEvent(new Garpoon());
-		r.regEvent(new EvInteract());
+		if (!Bukkit.getMotd().startsWith("B_") && !Bukkit.getMotd().startsWith("LOBBY_")) {r.regEvent(new EvInteract());}
 		r.regEvent(new Authenticator());
 		r.regEvent(new EvPacket());
 		r.regEvent(new EvInteractAtEntity());

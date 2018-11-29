@@ -4,23 +4,24 @@ import implario.util.Converter;
 import implario.util.Rank;
 import org.bukkit.GameMode;
 import org.bukkit.entity.Player;
+import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.command.handle.Cmd;
 import pro.delfik.lmao.command.handle.CustomException;
 import pro.delfik.lmao.command.handle.LmaoCommand;
-import pro.delfik.lmao.command.handle.NotEnoughArgumentsException;
-import pro.delfik.lmao.Lmao;
 import pro.delfik.lmao.permissions.Perms;
 import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.util.U;
 
 import java.util.List;
+import java.util.function.Function;
 
-@Cmd(name = "gamemode", rank = Rank.SPONSOR, description = "Изменение игрового режима")
+@Cmd(name = "gamemode", rank = Rank.PLAYER, description = "Изменение игрового режима")
 public class CmdGm extends LmaoCommand {
 	public static final List<String> SHORT_COMMANDS = Converter.asList("gms", "gmc", "gm0", "gm1", "gm3", "gmw");
 	
 	@Override
 	public void run(Person person, String cmd, String args[]) {
+		if (!CHECKER.apply(person)) throw new CustomException("§cВы не можете использовать §e/gamemode§c здесь.");
 		final GameMode gm;
 		final String gmd;
 		boolean shortcut = SHORT_COMMANDS.contains(cmd.toLowerCase());
@@ -43,11 +44,14 @@ public class CmdGm extends LmaoCommand {
 			if (!Perms.isEnough(person, Rank.KURATOR, true))
 				throw new CustomException("LMAO §e> §cИзменять игровой режим другим игрокам можно с §6Куратора");
 			String senderD = Lmao.getColoredName(person.getHandle());
-			U.selector(person.getHandle(), args[shortcut ? 0 : 1], (p) -> {
+			U.selector(person.getHandle(), args[shortcut ? 0 : 1], p -> {
 				p.setGameMode(gm);
 				U.msg(person.getHandle(), Lmao.p() + "§aИгровой режим игрока §e", p, "§a изменён на §e" + gmd);
 				U.msg(p.getHandle(), Lmao.p() + "§eВаш игровой режим был изменён на §6" + gmd + "§e игроком " + senderD);
 			});
 		}
 	}
+
+	public static Function<Person, Boolean> CHECKER = p -> p.getHandle().isOp() || p.hasRank(Rank.ADMIN);
+
 }
