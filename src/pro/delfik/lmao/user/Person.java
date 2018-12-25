@@ -1,9 +1,7 @@
 package pro.delfik.lmao.user;
 
-import implario.net.packet.PacketMoney;
 import implario.util.debug.UserInfo;
 import net.minecraft.server.v1_8_R1.PacketPlayOutChat;
-import pro.delfik.lmao.Connect;
 import pro.delfik.lmao.outward.item.I;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.minecraft.server.v1_8_R1.ChatSerializer;
@@ -249,9 +247,5 @@ public class Person {
 	public void setDarkTheme(boolean dark) {
 		info.darkTheme = dark;
 		handle.setPlayerTime(dark ? 15000 : 5000, false);
-	}
-
-	public void earn(int money) {
-		Connect.send(new PacketMoney(money, name));
 	}
 }
