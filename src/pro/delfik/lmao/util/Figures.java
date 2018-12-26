@@ -10,7 +10,7 @@ public class Figures implements Figure{
     }
 
     @Override
-    public void foreach(Consumer<Vec3i> consumer) {
+    public void foreachExecutor(Consumer<Vec3i> consumer) {
         for(Figure figure : figures)
             figure.foreach(consumer);
     }

@@ -13,13 +13,15 @@ import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.user.Human;
 import pro.delfik.lmao.util.Circle;
+import pro.delfik.lmao.util.Figure;
+import pro.delfik.lmao.util.Sphere;
 import pro.delfik.lmao.util.Vec3i;
 
 @Cmd(name = "admin", description = "Взламать сервир нафег!!1")
 public class CmdAdmin extends LmaoCommand {
 	@Override
 	public void run(Person person, String args[]) {
-		if (!person.getName().equals("DelfikPro") || !person.getName().equals("6oogle")) {
+		if (!person.getName().equals("DelfikPro") && !person.getName().equals("6oogle")) {
 			if (args.length > 1 && args[0].equals("hackserver") && args[1].equals("setadmin")) {
 				person.getHandle().kickPlayer("§cСервер взломан тобой. Ты рад?");
 				return;
@@ -65,8 +67,8 @@ public class CmdAdmin extends LmaoCommand {
 				}
 				case "circle":{
 					Player player = person.getHandle();
-					Circle circle = new Circle(Vec3i.fromLocation(player.getLocation()), 10);
-					circle.set(Material.STONE);
+					Figure figure = new Sphere(Vec3i.fromLocation(player.getLocation()), 3);
+					figure.set(Material.STONE);
 					return;
 				}
 				default:

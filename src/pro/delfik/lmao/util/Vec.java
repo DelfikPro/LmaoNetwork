@@ -73,12 +73,14 @@ public interface Vec {
 	}
 
 	default double distance(Vec vec) {
-		return Math.sqrt(
-				NumberConversions.square(x() - vec.x()) +
-				NumberConversions.square(y() - vec.y()) +
-				NumberConversions.square(z() - vec.z())
-		);
+		return Math.sqrt(distanceSquared(vec));
 	}
+
+	default double distanceSquared(Vec vec){
+	    return  NumberConversions.square(x() - vec.x()) +
+                NumberConversions.square(y() - vec.y()) +
+                NumberConversions.square(z() - vec.z());
+    }
 
 	/**
 	 * Конвертация в округлённый до int Vec3i.

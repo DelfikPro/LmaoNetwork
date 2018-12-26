@@ -12,7 +12,7 @@ public class Square implements Figure{
     }
 
     @Override
-    public void foreach(Consumer<Vec3i> consumer) {
+    public void foreachExecutor(Consumer<Vec3i> consumer) {
         for(int x = one.getX(); x < two.getX(); x++)
            for(int z = one.getZ(); z < two.getZ(); z++)
                consumer.accept(new Vec3i(x, one.getY(), z));

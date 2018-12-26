@@ -10,16 +10,16 @@ public class Circle implements Figure{
         this.one = new Vec3i(vec.getX() - distance, vec.getY(), vec.getZ() - distance);
         this.two = new Vec3i(vec.getX() + distance, vec.getY(), vec.getZ() + distance);
         this.center = vec.toVec3i();
-        this.distance = distance;
+        this.distance = distance * distance;
     }
 
     @Override
-    public void foreach(Consumer<Vec3i> consumer) {
+    public void foreachExecutor(Consumer<Vec3i> consumer) {
         for(int x = one.getX(); x < two.getX(); x++)
             for(int z = one.getZ(); z < two.getZ(); z++) {
-                Vec vec = new Vec3i(x, one.getY(), z);
-                if(vec.distance(center) < distance)
-                    consumer.accept(new Vec3i(x, one.getY(), z));
+                Vec3i vec = new Vec3i(x, one.getY(), z);
+                if(vec.distanceIntSquared(center) < distance)
+                    consumer.accept(vec);
             }
     }
 }

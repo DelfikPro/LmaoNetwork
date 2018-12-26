@@ -8,7 +8,11 @@ import pro.delfik.lmao.Lmao;
 import java.util.function.Consumer;
 
 public interface Figure {
-    void foreach(Consumer<Vec3i> consumer);
+    default void foreach(Consumer<Vec3i> consumer){
+        Bukkit.getScheduler().runTask(Lmao.plugin, () -> foreachExecutor(consumer));
+    }
+
+    void foreachExecutor(Consumer<Vec3i> consumer);
 
     default void set(Material material, byte data){
         boolean needData = data != 0;

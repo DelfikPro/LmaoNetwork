@@ -19,8 +19,10 @@ public class CmdSchem extends LmaoCommand {
 			Connect.send(new PacketRead("schematics/" + args[1] + ".schematic", "plugins/WorldEdit/schematics/" + args[1] + ".schematic"));
 			person.sendMessage("§aЗапрос на получение §f" + args[1] + ".schematic §aиз облака отправлен.");
 		} else if (args[0].equals("upload")) {
-			Connect.send(new PacketWrite("schematics/" + args[1] + ".schematic", FileConverter.read(new File("plugins/WorldEdit/schematics/" + args[1] + ".schematic"))));
-			person.sendMessage("§aСхема §f" + args[1] + "§a успешно загружена в облако.");
+			File file = new File("plugins/WorldEdit/schematics/" + args[1] + ".schematic");
+			if(!file.exists()) file = new File("plugins/WorldEdit/schematics/" + person.getHandle().getUniqueId() + "/" + args[1] + ".schematic");
+			Connect.send(new PacketWrite("schematics/" + args[1] + ".schematic", FileConverter.read(file)));
+			person.sendMessage("§aСхема §f" + args[1] + "§a успешно загружена в облако." + person.getHandle().getUniqueId());
 		}
 	}
 }

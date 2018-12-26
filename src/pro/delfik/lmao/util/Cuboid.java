@@ -11,9 +11,9 @@ public class Cuboid implements Figure{
     }
 
     @Override
-    public void foreach(Consumer<Vec3i> consumer) {
+    public void foreachExecutor(Consumer<Vec3i> consumer) {
         for(int x = one.getX(); x < two.getX(); x++)
-            for(int y = one.getY(); x < two.getY(); y++)
+            for(int y = one.getY(); y < two.getY(); y++)
                 for(int z = one.getZ(); z < two.z(); z++)
                     consumer.accept(new Vec3i(x, y, z));
     }
