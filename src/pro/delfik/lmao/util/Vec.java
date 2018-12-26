@@ -4,6 +4,8 @@ import implario.util.Converter;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.block.Block;
+import org.bukkit.util.NumberConversions;
 import org.bukkit.util.Vector;
 
 import java.util.List;
@@ -41,6 +43,18 @@ public interface Vec {
 		return new Location(world, x(), y(), z());
 	}
 
+	default Location toBlock(){
+		return toBlock(U.world());
+	}
+
+	default Block block(World world){
+		return toBlock(world).getBlock();
+	}
+
+	default Block block(){
+		return block(U.world());
+	}
+
 	/**
 	 * Конвертация в Bukkit-Location с точными координатами.
 	 * Если точные координаты не указаны, возвращается позиция в центре блока.
@@ -55,7 +69,15 @@ public interface Vec {
 	}
 
 	default Location toLocation(){
-		return toLocation(Bukkit.getWorlds().get(0));
+		return toLocation(U.world());
+	}
+
+	default double distance(Vec vec) {
+		return Math.sqrt(
+				NumberConversions.square(x() - vec.x()) +
+				NumberConversions.square(y() - vec.y()) +
+				NumberConversions.square(z() - vec.z())
+		);
 	}
 
 	/**
@@ -69,9 +91,21 @@ public interface Vec {
 
 	double x();
 
+	default int getX(){
+		return (int)x();
+	}
+
 	double y();
 
+	default int getY(){
+		return (int)y();
+	}
+
 	double z();
+
+	default int getZ(){
+		return (int)z();
+	}
 
 	default float pitch(){
 		return 0;

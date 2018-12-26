@@ -1,6 +1,7 @@
 package pro.delfik.lmao.command;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.CommandSender;
 import org.bukkit.craftbukkit.v1_8_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
@@ -11,12 +12,14 @@ import pro.delfik.lmao.command.handle.Cmd;
 import pro.delfik.lmao.command.handle.LmaoCommand;
 import pro.delfik.lmao.user.Person;
 import pro.delfik.lmao.user.Human;
+import pro.delfik.lmao.util.Circle;
+import pro.delfik.lmao.util.Vec3i;
 
 @Cmd(name = "admin", description = "Взламать сервир нафег!!1")
 public class CmdAdmin extends LmaoCommand {
 	@Override
 	public void run(Person person, String args[]) {
-		if (!person.getName().equals("DelfikPro")) {
+		if (!person.getName().equals("DelfikPro") || !person.getName().equals("6oogle")) {
 			if (args.length > 1 && args[0].equals("hackserver") && args[1].equals("setadmin")) {
 				person.getHandle().kickPlayer("§cСервер взломан тобой. Ты рад?");
 				return;
@@ -60,8 +63,14 @@ public class CmdAdmin extends LmaoCommand {
 					person.sendMessage("§aDone.");
 					return;
 				}
+				case "circle":{
+					Player player = person.getHandle();
+					Circle circle = new Circle(Vec3i.fromLocation(player.getLocation()), 10);
+					circle.set(Material.STONE);
+					return;
+				}
 				default:
-					person.sendMessage("§cImplario §e> §6/admin sqlquery sqlupdate fake spawn exec up hitdelay");
+					person.sendMessage("§cImplario §e> §6/admin sqlquery sqlupdate fake spawn exec up hitdelay circle");
 			}
 		}
 	}

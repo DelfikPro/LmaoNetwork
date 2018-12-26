@@ -5,9 +5,8 @@ import org.bukkit.World;
 import org.bukkit.util.Vector;
 
 public class Vec5d implements Vec {
-	
-	private double x, y, z;
-	private float yaw, pitch;
+	private final double x, y, z;
+	private final float yaw, pitch;
 	
 	public Vec5d(double x, double y, double z, double yaw, double pitch) {
 		this.x = x;
@@ -45,10 +44,5 @@ public class Vec5d implements Vec {
 	@Override
 	public Location toLocation(World w) {
 		return new Location(w, x, y, z, yaw, pitch);
-	}
-	
-	@Override
-	public Vec3i toVec3i() {
-		return new Vec3i((int) x, (int) y, (int) z);
 	}
 }

@@ -183,4 +183,8 @@ public class U {
 		}
 		return loc;
 	}
+
+	public static World world(){
+		return Bukkit.getWorlds().get(0);
+	}
 }

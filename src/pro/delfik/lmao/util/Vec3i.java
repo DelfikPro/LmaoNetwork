@@ -2,6 +2,7 @@ package pro.delfik.lmao.util;
 
 import __google_.util.ByteUnzip;
 import __google_.util.ByteZip;
+import __google_.util.Byteable;
 import org.bukkit.Location;
 import org.bukkit.World;
 
@@ -9,7 +10,7 @@ import org.bukkit.World;
  * Три числа int в одном объекте.
  * @see Vec
  */
-public class Vec3i implements Vec {
+public class Vec3i implements Vec, Byteable {
 	public final int x, y, z;
 
 	public Vec3i(int x, int y, int z) {
@@ -61,6 +62,11 @@ public class Vec3i implements Vec {
 	@Override
 	public int hashCode() {
 		return x * 1000000 + y * 1000 + z;
+	}
+
+	@Override
+	public byte[] toBytes() {
+		return toByteArray();
 	}
 
 	public byte[] toByteArray() {
