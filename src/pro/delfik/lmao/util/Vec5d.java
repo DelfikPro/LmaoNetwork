@@ -16,21 +16,30 @@ public class Vec5d implements Vec {
 		this.yaw = (float) yaw;
 		this.pitch = (float) pitch;
 	}
-	
-	public double getX() {return x;}
-	public double getY() {return y;}
-	public double getZ() {return z;}
-	public double getYaw() {return yaw;}
-	public double getPitch() {return pitch;}
-	
+
 	@Override
-	public Vector toBukkitVector() {
-		return new Vector(x, y, z);
+	public double x() {
+		return x;
 	}
-	
+
 	@Override
-	public Location toBlock(World w) {
-		return new Location(w, x, y, z);
+	public double y() {
+		return y;
+	}
+
+	@Override
+	public double z() {
+		return z;
+	}
+
+	@Override
+	public float yaw() {
+		return yaw;
+	}
+
+	@Override
+	public float pitch() {
+		return pitch;
 	}
 	
 	@Override

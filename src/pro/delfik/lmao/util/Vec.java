@@ -1,6 +1,7 @@
 package pro.delfik.lmao.util;
 
 import implario.util.Converter;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.util.Vector;
@@ -23,7 +24,9 @@ public interface Vec {
 	 *
 	 * @return Вектор Bukkit с идентичными координатами.
 	 */
-	Vector toBukkitVector();
+	default Vector toBukkitVector(){
+		return new Vector(x(), y(), z());
+	}
 
 	/**
 	 * Конвертация в Bukkit-Location в указанном мире.
@@ -34,7 +37,9 @@ public interface Vec {
 	 * @return Bukkit-Location
 	 * @see Location
 	 */
-	Location toBlock(World world);
+	default Location toBlock(World world){
+		return new Location(world, x(), y(), z());
+	}
 
 	/**
 	 * Конвертация в Bukkit-Location с точными координатами.
@@ -45,14 +50,36 @@ public interface Vec {
 	 * @return Bukkit-Location с точными координатами.
 	 * @see Location
 	 */
-	Location toLocation(World world);
+	default Location toLocation(World world){
+		return new Location(world, x(), y(), z(), yaw(), pitch());
+	}
+
+	default Location toLocation(){
+		return toLocation(Bukkit.getWorlds().get(0));
+	}
 
 	/**
 	 * Конвертация в округлённый до int Vec3i.
 	 *
 	 * @return Vec3i с округлёнными координатами.
 	 */
-	Vec3i toVec3i();
+	default Vec3i toVec3i(){
+		return new Vec3i(x(), y(), z());
+	}
+
+	double x();
+
+	double y();
+
+	double z();
+
+	default float pitch(){
+		return 0;
+	}
+
+	default float yaw(){
+		return 0;
+	}
 
 	/**
 	 * Генерация объекта Vec из строки.

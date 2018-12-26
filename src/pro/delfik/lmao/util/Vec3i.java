@@ -17,19 +17,35 @@ public class Vec3i implements Vec {
 		this.y = y;
 		this.z = z;
 	}
+
+	public Vec3i(double x, double y, double z){
+		this((int)x, (int)y, (int)z);
+	}
+
+	public Vec3i(ByteUnzip unzip){
+		this(unzip.getInt(), unzip.getInt(), unzip.getInt());
+	}
 	
 	public static Vec3i fromLocation(Location location) {
 		return new Vec3i(location.getBlockX(), location.getBlockY(), location.getBlockZ());
 	}
-	
+
 	@Override
-	public Vec3i toVec3i() {return this;}
-	public org.bukkit.util.Vector toBukkitVector() {
-		return new org.bukkit.util.Vector(x, y, z);
+	public double x() {
+		return x;
 	}
-	public Location toBlock(World w) {
-		return new Location(w, x, y, z);
+
+	@Override
+	public double y() {
+		return y;
 	}
+
+	@Override
+	public double z() {
+		return z;
+	}
+
+	@Override
 	public Location toLocation(World w) {
 		return new Location(w, x + 0.5, y + 0.5, z + 0.5);
 	}
@@ -38,7 +54,7 @@ public class Vec3i implements Vec {
 	public boolean equals(Object obj) {
 		if (!(obj instanceof Vec3i)) return false;
 		Vec3i o = (Vec3i) obj;
-		return o == this || o.x == x && o.y == y && o.z == z;
+		return o == this || (o.x == x && o.y == y && o.z == z);
 
 	}
 	
