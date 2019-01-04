@@ -209,6 +209,11 @@ public class Person {
 	public boolean isVanish() {
 		return vanish != null;
 	}
+
+	public boolean hasItem(int i){
+		long l = 0b1 << i;
+		return (info.items & l) == l;
+	}
 	
 	public void playSound(Sound sound, float volume, float pitch) {
 		getHandle().playSound(getLocation(), sound, volume, pitch);
