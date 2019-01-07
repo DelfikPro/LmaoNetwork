@@ -21,7 +21,6 @@ commands:
   sudo:
   list:
   stop:
-  actions:
   sch:
   i:
   multiplecmds:

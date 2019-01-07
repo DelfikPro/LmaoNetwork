@@ -78,7 +78,7 @@ public class Lmao extends JavaPlugin {
 		final LmaoCommand[] cmds = new LmaoCommand[] {new CmdAdmin(), new CmdGm(),
 				new CmdHelp(), new CmdSudo(), new CmdTp(), new CmdSchem(),
 				new CmdVanish(), new CmdList(), new CmdStop(), new CmdPlayer(),
-				new CmdActions(), new CmdI(), new CmdMultipleCmds(), new CmdOp()};
+				new CmdI(), new CmdMultipleCmds(), new CmdOp()};
 		new Thread(() -> {
 			for (LmaoCommand cmd : cmds) r.regCommand(cmd);
 		}).start();
